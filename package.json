@@ -1,6 +1,6 @@
 {
   "name": "commitizen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Git commit, but play nice with conventions.",
   "main": "index.js",
   "scripts": {
@@ -8,9 +8,9 @@
   },
   "bin": {
     "git-cz": "./bin/git-cz",
-    "git-cz-debug": "./bin/git-cc-debug",
+    "git-cz-debug": "./bin/git-cz-debug",
     "commitizen": "./bin/git-cz",
-    "commitizen-debug": "./bin/git-cc-debug"
+    "commitizen-debug": "./bin/git-cz-debug"
   },
   "author": "Jim Cummins <jimthedev@gmail.com>",
   "license": "MIT",
