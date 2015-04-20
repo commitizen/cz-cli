@@ -11,7 +11,11 @@ npm install -g commitizen
 #### Using the command line tool
 Now, simply use `git cz` instead of `git commit` when committing. 
 
-When you're working in a Commitizen friendly repository, you'll be prompted to fill in any required fields and your commit messages will be formatted according to the the standards defined by project maintainers. If you're not working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit`.
+When you're working in a Commitizen friendly repository, you'll be prompted to fill in any required fields and your commit messages will be formatted according to the the standards defined by project maintainers. 
+
+[![Add and commit with Commitizen](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)
+
+If you're not working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit`.
 
 ### Commitizen for project maintainers
 As a project maintainer, making your repo Commitizen friendly allows you to select pre-existing commit message conventions or to create your own custom commit message convention. When a contributor to your repo uses Commitizen, they will be prompted for the correct fields at commit time. 
