@@ -7,6 +7,24 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="javascripts/base64.js"></script>
+    <script src="javascripts/marked.js"></script>
+    <script type="text/javascript">
+      var githubApiUrl = 'https://api.github.com/repos/commitizen/cz-cli/readme';
+      var contentContainerId = "#readmeContent";
+      $.ajax({
+        url: githubApiUrl,
+        dataType: 'jsonp',
+        success: function(response)
+        {
+          var encodedContent = response.data.content;
+          var markdownText = Base64.decode(encodedContent);
+          var renderedHtml = marked(markdownText);
+          $(contentContainerId).html(renderedHtml);
+        }
+      });
+    </script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -31,82 +49,7 @@
         <hr>
 
         <section id="main_content">
-          <h3>
-<a id="commitizen-for-contributors" class="anchor" href="#commitizen-for-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Commitizen for contributors</h3>
-
-<p>When you commit with Commitizen, you'll be prompted to fill out any required commit fields at commit time. No more waiting until later for a git commit hook to run and reject your commit. No more digging through CONTRIBUTING.md to find what the preferred format is. Get instant feedback on your commit message formatting and be prompted for required fields.</p>
-
-<h4>
-<a id="installing-the-command-line-tool" class="anchor" href="#installing-the-command-line-tool" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing the command line tool</h4>
-
-<p>Installation is as simple as running the following command (add sudo if on OSX/Linux):</p>
-
-<pre><code>npm install -g commitizen
-</code></pre>
-
-<h4>
-<a id="using-the-command-line-tool" class="anchor" href="#using-the-command-line-tool" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the command line tool</h4>
-
-<p>Now, simply use <code>git cz</code> instead of <code>git commit</code> when committing. </p>
-
-<p>When you're working in a Commitizen friendly repository, you'll be prompted to fill in any required fields and your commit messages will be formatted according to the the standards defined by project maintainers. If you're not working in a Commitizen friendly repository, then <code>git cz</code> will work just the same as <code>git commit</code>.</p>
-
-<h3>
-<a id="commitizen-for-project-maintainers" class="anchor" href="#commitizen-for-project-maintainers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Commitizen for project maintainers</h3>
-
-<p>As a project maintainer, making your repo Commitizen friendly allows you to select pre-existing commit message conventions or to create your own custom commit message convention. When a contributor to your repo uses Commitizen, they will be prompted for the correct fields at commit time. </p>
-
-<h4>
-<a id="making-your-repo-commitizen-friendly" class="anchor" href="#making-your-repo-commitizen-friendly" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making your repo Commitizen-friendly</h4>
-
-<p>For this example, we'll be setting up our repo to use <a href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines">AngularJS's commit message convention</a> also known as <a href="https://github.com/ajoslin/conventional-changelog">conventional-changelog</a>.</p>
-
-<p>First, install the Commitizen conventional-changelog adapter into your project.</p>
-
-<pre><code>npm install cz-conventional-changelog
-</code></pre>
-
-<p>Then just add <strong>.cz.json</strong> to the root of your repository with the following contents:</p>
-
-<div class="highlight highlight-json"><pre>{
-  <span class="pl-s"><span class="pl-pds">"</span>path<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>node_modules/cz-conventional-changelog/<span class="pl-pds">"</span></span>
-}</pre></div>
-
-<p>This just tells Commitizen which adapter we actually want our contributors to use when they try to commit to this repo.</p>
-
-<h4>
-<a id="congratulations-your-repo-is-commitizen-friendly-time-to-flaunt-it" class="anchor" href="#congratulations-your-repo-is-commitizen-friendly-time-to-flaunt-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>Congratulations your repo is Commitizen-friendly. Time to flaunt it!</h4>
-
-<p>Add the Commitizen-friendly badge to your README using the following markdown:</p>
-
-<pre><code>[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-</code></pre>
-
-<p>Your badge will look like this:</p>
-
-<p><a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen-friendly"></a></p>
-
-<p>It may also make sense to change your README.md or CONTRIBUTING.md to include or link to the Commitizen project so that your new contributors may learn more about installing and using Commitizen.</p>
-
-<h3>
-<a id="philosophy" class="anchor" href="#philosophy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Philosophy</h3>
-
-<h4>
-<a id="about-commitizen" class="anchor" href="#about-commitizen" aria-hidden="true"><span class="octicon octicon-link"></span></a>About Commitizen</h4>
-
-<p>Commitizen is an open source project that helps contributors be good open source citizens. It accomplishes this by prompting them to follow commit message conventions at commit time. It also empowers project maintainers to create or use predefined commit message conventions in their repos to better communicate their expectations to potential contributors.</p>
-
-<h4>
-<a id="commitizen-or-commit-hooks" class="anchor" href="#commitizen-or-commit-hooks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Commitizen or Commit Hooks</h4>
-
-<p>Both! Commitizen is not meant to be a replacement for git commit hooks. Rather, it is meant to work side-by-side with them to ensure a consistent and positive experience for your contributors. Commitizen treats the commit command as a declarative action. The contributor is declaring that they wish to contribute to your project. It is up to you as the maintainer to define what rules they should be following.</p>
-
-<p>We accomplish this by letting you define which adapter you'd like to use in your project. Adapters just allow multiple projects to share the same commit message conventions. A good example of an adapter is the cz-conventional-commit adapter.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>Jim Cummins (<a href="https://github.com/JimTheDev" class="user-mention">@JimTheDev</a>)</p>
+          <div id="readmeContent"></div>
         </section>
 
         <footer>
