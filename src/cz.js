@@ -6,6 +6,7 @@ var gulp = require('gulp');
 var git = require('gulp-git');
 var process = require('process');
 var minimist = require('minimist');
+var child_process = require('child_process');
 
 exports.init = function(rawGitArgs, environment, config) {
   if(typeof environment === 'undefined') {
@@ -63,20 +64,14 @@ function withoutConfig(rawGitArgs, environment) {
   if(environment.debug === true) {
     console.error('COMMITIZEN DEBUG: No git-cz friendly config was detected. I looked for .czrc, .cz.json, or czConfig in package.json.');
   } else {
-    // Get a gulp stream based off the config
-    gulp.src(process.cwd())
+    var vanillaGitArgs = ["commit"].concat(rawGitArgs);
 
-    // Format then commit
-    .pipe(git.commit(undefined, {args: rawGitArgs, disableMessageRequirement: true}))
+    var child = child_process.spawn('git', vanillaGitArgs, {
+      stdio: 'inherit'
+    });
 
-    // Handle commit success
-    .on('end', function() {
-      console.log('✓ Commit succeeded.');
-    })
-
-    // Handle commit failure
-    .on('error', function (error) {
-      console.error('✗ Commit failed. Did you forget to \'git add\' your files or add a commit message?');
+    child.on('error', function (e, code) {
+      console.error(e);
     });
   }
 }
