@@ -1,0 +1,29 @@
+{
+  "name": "commitizen",
+  "version": "1.0.0",
+  "description": "Git commit, but play nice with conventions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "git-cz": "./bin/git-cz",
+    "git-cz-debug": "./bin/git-cc-debug",
+    "commitizen": "./bin/git-cz",
+    "commitizen-debug": "./bin/git-cc-debug"
+  },
+  "author": "Jim Cummins <jimthedev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "cz-conventional-changelog": "^1.0.0",
+    "dedent": "^0.4.0",
+    "glob": "^5.0.5",
+    "gulp": "^3.8.11",
+    "gulp-git": "^1.1.1",
+    "inquirer": "^0.8.2",
+    "minimist": "^1.1.1",
+    "strip-json-comments": "^1.0.2",
+    "systemjs": "^0.16.7"
+  }
+}

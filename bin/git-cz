@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+var app = require('../src/app.js');
+app.bootstrap();
+
+// PRIORITY HIGH
+// TODO: Tests
+// TODO: Examples
+
+// PRIORITY MEDIUM
+// TODO: 3. Allow users to use their original messages using
+//          some kind of template {{m1}} {{m2}} so that they
+//          aren't lost.
