@@ -4,7 +4,6 @@ var dedent = require('dedent');
 var inquirer = require('inquirer');
 var gulp = require('gulp');
 var git = require('gulp-git');
-var process = require('process');
 var minimist = require('minimist');
 var child_process = require('child_process');
 

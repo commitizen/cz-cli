@@ -1,4 +1,3 @@
-var process = require('process');
 var configLoader = require('./configLoader.js');
 var cz = require('./cz.js');
 
