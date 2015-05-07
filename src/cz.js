@@ -35,8 +35,6 @@ function withConfig(rawGitArgs, environment, config) {
       // Call the prompter method on the module, get the template
       m.prompter(inquirer, function(template) {
 
-        // TODO, apply the stored m's to the template
-        
         // Get a gulp stream based off the config
         gulp.src(config.path)
 

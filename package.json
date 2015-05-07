@@ -1,10 +1,15 @@
 {
   "name": "commitizen",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Git commit, but play nice with conventions.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/commitizen/cz-cli",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commitizen/cz-cli.git"
   },
   "bin": {
     "git-cz": "./bin/git-cz",
@@ -16,11 +21,11 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.0.0",
-    "cz-conventional-changelog": "^1.0.0",
+    "cz-conventional-changelog": "^1.1.0",
     "dedent": "^0.4.0",
     "glob": "^5.0.5",
     "gulp": "^3.8.11",
-    "gulp-git": "^1.1.1",
+    "gulp-git": "^1.2.2",
     "inquirer": "^0.8.2",
     "minimist": "^1.1.1",
     "strip-json-comments": "^1.0.2",
