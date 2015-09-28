@@ -1,6 +1,6 @@
 {
   "name": "commitizen",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Git commit, but play nice with conventions.",
   "main": "index.js",
   "scripts": {
