@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "1.1.1",
-    "cz-conventional-changelog": "1.1.1",
+    "cz-conventional-changelog": "1.1.2",
     "dedent": "0.4.0",
     "glob": "5.0.14",
     "gulp": "3.9.0",
