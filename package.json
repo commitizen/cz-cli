@@ -23,7 +23,7 @@
     "chalk": "1.1.1",
     "cz-conventional-changelog": "1.1.1",
     "dedent": "0.4.0",
-    "glob": "5.0.14",
+    "glob": "5.0.15",
     "gulp": "3.9.0",
     "gulp-git": "1.4.0",
     "inquirer": "0.10.1",
