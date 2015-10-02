@@ -25,7 +25,7 @@
     "dedent": "0.4.0",
     "glob": "5.0.14",
     "gulp": "3.9.0",
-    "gulp-git": "1.4.0",
+    "gulp-git": "1.5.0",
     "inquirer": "0.10.1",
     "minimist": "1.2.0",
     "strip-json-comments": "1.0.4",
