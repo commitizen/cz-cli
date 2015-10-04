@@ -40,6 +40,15 @@ Then just add **.cz.json** to the root of your repository with the following con
 
 This just tells Commitizen which adapter we actually want our contributors to use when they try to commit to this repo.
 
+Alternatively, you can skip adding an additional dot file to your root directory by making **.cz.json** a part of **package.json**... just add the `czConfig` field:
+
+```json
+...
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
+  }
+```
+
 #### Congratulations your repo is Commitizen-friendly. Time to flaunt it!
 
 Add the Commitizen-friendly badge to your README using the following markdown:
