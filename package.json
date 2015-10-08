@@ -29,6 +29,6 @@
     "inquirer": "0.10.1",
     "minimist": "1.2.0",
     "strip-json-comments": "1.0.4",
-    "systemjs": "0.16.11"
+    "systemjs": "0.19.4"
   }
 }
