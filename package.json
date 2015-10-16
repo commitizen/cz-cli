@@ -1,6 +1,6 @@
 {
   "name": "commitizen",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Git commit, but play nice with conventions.",
   "main": "index.js",
   "scripts": {
@@ -23,11 +23,9 @@
   "author": "Jim Cummins <jimthedev@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "babel": "5.8.23",
     "chai": "3.3.0",
     "lodash": "3.10.1",
-    "mocha": "2.3.3",
-    "shelljs": "0.5.3"
+    "mocha": "2.3.3"
   },
   "dependencies": {
     "babel": "5.8.23",
@@ -38,12 +36,13 @@
     "gulp": "3.9.0",
     "gulp-git": "1.5.0",
     "inquirer": "0.10.1",
-    "jsontool": "7.0.2",
+    "json": "7.0.2",
     "minimist": "1.2.0",
     "node-uuid": "1.4.3",
     "nodemon": "1.7.1",
     "rimraf": "2.4.3",
     "semver": "5.0.3",
+    "shelljs": "0.5.3",
     "strip-json-comments": "1.0.4",
     "cz-conventional-changelog": "1.1.4"
   }
