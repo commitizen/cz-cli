@@ -1,4 +1,5 @@
 node_modules/
 .tmp/
+coverage/
 artifacts/
 npm-debug.log

@@ -5,17 +5,18 @@
   "main": "src/index.js",
   "scripts": {
     "start": "npm run test:watch",
-    "test": "mocha test/tests/index.js --compilers js:babel/register",
+    "test": "istanbul cover -x ./test _mocha -- -R spec test/tests/index.js --compilers js:babel/register",
     "test:watch": "nodemon -q --exec \"$(npm bin)/mocha test/tests/index.js --watch --compilers js:babel/register\" --",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "check-coverage": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80 "
   },
   "czConfig": {
     "path": "./node_modules/cz-conventional-changelog"
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test"
+      "pre-commit": "npm run test && npm run check-coverage"
     }
   },
   "homepage": "https://github.com/commitizen/cz-cli",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "chai": "3.3.0",
     "ghooks": "0.3.2",
+    "istanbul": "0.3.22",
     "lodash": "3.10.1",
     "mocha": "2.3.3",
     "semantic-release": "^4.3.5"
