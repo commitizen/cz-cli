@@ -6,8 +6,12 @@ function random() {
   console.log('random');
 }
 
+function randomItems() {
+  console.log('randomItems');
+}
 
 module.exports = {
   all:all,
-  random:random
+  random:random,
+  randomItems:randomItems
 };
