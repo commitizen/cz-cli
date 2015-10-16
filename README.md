@@ -24,23 +24,21 @@ As a project maintainer, making your repo Commitizen friendly allows you to sele
 
 For this example, we'll be setting up our repo to use [AngularJS's commit message convention](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines) also known as [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
 
-First, install the Commitizen conventional-changelog adapter into your project.
+First, install the Commitizen cli tools:
 
 ```
-npm install cz-conventional-changelog
+npm install commitizen -g
 ```
 
-Then just add **.cz.json** to the root of your repository with the following contents:
+Next, initialize your project to use the cz-conventional-changelog adapter by typing:
 
-```json
-{
-  "path": "node_modules/cz-conventional-changelog/"
-}
+```
+commitizen init cz-conventional-changelog --save --save-exact
 ```
 
-This just tells Commitizen which adapter we actually want our contributors to use when they try to commit to this repo.
+Note that if you want to force install over the top of an old adapter, you can apply the `--force` argument. For more information on this, just run `commitizen help`.
 
-Alternatively, you can skip adding an additional dot file to your root directory by making **.cz.json** a part of **package.json**... just add the `czConfig` field:
+Then just add the `czConfig` field to the root of your **package.json** with the following contents:
 
 ```json
 ...
@@ -48,6 +46,8 @@ Alternatively, you can skip adding an additional dot file to your root directory
     "path": "node_modules/cz-conventional-changelog"
   }
 ```
+
+This just tells Commitizen which adapter we actually want our contributors to use when they try to commit to this repo.
 
 #### Congratulations your repo is Commitizen-friendly. Time to flaunt it!
 
@@ -73,4 +73,10 @@ Both! Commitizen is not meant to be a replacement for git commit hooks. Rather, 
 We accomplish this by letting you define which adapter you'd like to use in your project. Adapters just allow multiple projects to share the same commit message conventions. A good example of an adapter is the cz-conventional-commit adapter.
 
 ### Authors and Contributors
-Jim Cummins (@JimTheDev)
+@JimTheDev (Jim Cummins, author)
+@kentcdodds
+@accraze
+@kytwb
+@Den-dp
+
+Special thanks to @stevelacy, whose [gulp-git](https://www.npmjs.com/package/gulp-git) project makes commitizen possible.

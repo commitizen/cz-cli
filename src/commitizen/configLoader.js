@@ -66,7 +66,7 @@ exports.getContent = function(config, directory) {
         ext = path.extname(configPath);
 
         if (ext === '.js' || ext === '.json') {
-            content = require(configPath);
+            content = JSON.parse(fs.readFileSync(configPath, 'utf8'));
         } else {
             content = JSON.parse(
                 stripJSONComments(
@@ -102,8 +102,8 @@ exports.load = function(config, cwd) {
 
     content = this.getContent(
         findup(configs, { nocase: true, cwd: directory }, function(configPath) {
-            if (path.basename(configPath) === 'package.json') {
-                return !!this.getContent(configPath);
+            if (path.basename(configPath) === 'package.json') { 
+                // return !!this.getContent(configPath);
             }
 
             return true;
