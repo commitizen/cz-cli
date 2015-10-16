@@ -1,12 +1,14 @@
 {
   "name": "commitizen",
-  "version": "2.0.2",
+  "version": "0.0.0-semantically-released",
   "description": "Git commit, but play nice with conventions.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "npm run test:watch",
     "test": "mocha test/tests/index.js --compilers js:babel/register",
-    "test:watch": "nodemon -q --exec \"$(npm bin)/mocha test/tests/index.js --watch --compilers js:babel/register\" --"
+    "test:watch": "nodemon -q --exec \"$(npm bin)/mocha test/tests/index.js --watch --compilers js:babel/register\" --",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "commit": "git-cz"
   },
   "czConfig": {
     "path": "./node_modules/cz-conventional-changelog"
@@ -16,16 +18,27 @@
     "type": "git",
     "url": "https://github.com/commitizen/cz-cli.git"
   },
+  "keywords": [
+    "commit",
+    "pretty",
+    "format",
+    "conventional changelog",
+    "commitizen"
+  ],
+  "bugs": {
+    "url": "https://github.com/commitizen/cz-cli/issues"
+  },
   "bin": {
     "git-cz": "./bin/git-cz",
     "commitizen": "./bin/commitizen"
   },
-  "author": "Jim Cummins <jimthedev@gmail.com>",
+  "author": "Jim Cummins <jimthedev@gmail.com> (https://github.com/jimthedev)",
   "license": "MIT",
   "devDependencies": {
     "chai": "3.3.0",
     "lodash": "3.10.1",
-    "mocha": "2.3.3"
+    "mocha": "2.3.3",
+    "semantic-release": "^4.3.5"
   },
   "dependencies": {
     "babel": "5.8.23",
