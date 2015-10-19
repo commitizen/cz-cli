@@ -22,6 +22,7 @@ script:
 after_success:
   - python travis_after_all.py
   - export $(cat .to_export_back)
+  - npm run report-coverage
   - npm run semantic-release
 branches:
   except:

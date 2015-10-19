@@ -4,12 +4,12 @@
   "description": "Git commit, but play nice with conventions.",
   "main": "src/index.js",
   "scripts": {
+    "check-coverage": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80 ",
+    "commit": "git-cz",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "start": "npm run test:watch",
     "test": "istanbul cover -x ./test _mocha -- -R spec test/tests/index.js --compilers js:babel/register",
-    "test:watch": "nodemon -q --exec \"$(npm bin)/mocha test/tests/index.js --watch --compilers js:babel/register\" --",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "commit": "git-cz",
-    "check-coverage": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80 "
+    "test:watch": "nodemon -q --exec \"$(npm bin)/mocha test/tests/index.js --watch --compilers js:babel/register\" --"
   },
   "czConfig": {
     "path": "./node_modules/cz-conventional-changelog"
@@ -42,6 +42,7 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "3.3.0",
+    "codecov.io": "0.1.6",
     "ghooks": "0.3.2",
     "istanbul": "0.3.22",
     "lodash": "3.10.1",
