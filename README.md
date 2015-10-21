@@ -64,6 +64,17 @@ Your badge will look like this:
 
 It may also make sense to change your README.md or CONTRIBUTING.md to include or link to the Commitizen project so that your new contributors may learn more about installing and using Commitizen.
 
+### Adapters
+
+We know that every project and build process has different requirements so we've tried to keep Commitizen open for extension. You can do this by choosing from any of the pre-build adapters or even by building your own. Here are some of the great adapters available to you:
+
+- [cz-conventional-changelog](https://www.npmjs.com/package/cz-conventional-changelog)
+- [cz-jira-smart-commit](https://www.npmjs.com/package/cz-jira-smart-commit)
+- [rb-conventional-changelog](https://www.npmjs.com/package/rb-conventional-changelog)
+- [cz-mapbox-changelog](https://www.npmjs.com/package/cz-mapbox-changelog)
+
+To create an adapter, just fork one of these great adapters and modify it to suit your needs.  We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means neccesary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
+
 ### Philosophy
 
 #### About Commitizen
@@ -72,7 +83,7 @@ Commitizen is an open source project that helps contributors be good open source
 #### Commitizen or Commit Hooks
 Both! Commitizen is not meant to be a replacement for git commit hooks. Rather, it is meant to work side-by-side with them to ensure a consistent and positive experience for your contributors. Commitizen treats the commit command as a declarative action. The contributor is declaring that they wish to contribute to your project. It is up to you as the maintainer to define what rules they should be following.
 
-We accomplish this by letting you define which adapter you'd like to use in your project. Adapters just allow multiple projects to share the same commit message conventions. A good example of an adapter is the cz-conventional-commit adapter.
+We accomplish this by letting you define which adapter you'd like to use in your project. Adapters just allow multiple projects to share the same commit message conventions. A good example of an adapter is the cz-conventional-changlog adapter.
 
 ### Authors and Contributors
 @JimTheDev (Jim Cummins, author)
