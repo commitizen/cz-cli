@@ -51,10 +51,12 @@ function gitCz(rawGitArgs, environment, adapterConfig) {
       if(stagingIsClean) {
         console.error('Error: No files added to staging! Did you forget to run git add?')  
       } else {
+        
+        // OH GOD IM SORRY FOR THIS SECTION
         let adapterPackageJson = getParsedPackageJsonFromPath(resolvedAdapterConfigPath);
         let cliPackageJson = getParsedPackageJsonFromPath(environment.cliPath);
         console.log(`cz-cli@${cliPackageJson.version}, ${adapterPackageJson.name}@${adapterPackageJson.version}\n`);
-        commit(sh, inquirer, process.cwd(), prompter, {args: parsedGitCzArgs, disableAppendPaths:true}, function() {
+        commit(sh, inquirer, process.cwd(), prompter, {args: parsedGitCzArgs, disableAppendPaths:true, emitData:true, quiet:false}, function() {
           // console.log('commit happened');
         });
         

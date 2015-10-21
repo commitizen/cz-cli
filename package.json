@@ -7,6 +7,7 @@
     "check-coverage": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80 ",
     "commit": "git-cz",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run test:watch",
     "test": "istanbul cover -x ./test _mocha -- -R spec test/tests/index.js --compilers js:babel/register",
     "test:watch": "nodemon -q --exec \"$(npm bin)/mocha test/tests/index.js --watch --compilers js:babel/register\" --"
@@ -41,7 +42,7 @@
   "author": "Jim Cummins <jimthedev@gmail.com> (https://github.com/jimthedev)",
   "license": "MIT",
   "devDependencies": {
-    "chai": "3.3.0",
+    "chai": "3.4.0",
     "codecov.io": "0.1.6",
     "ghooks": "0.3.2",
     "istanbul": "0.3.22",
@@ -52,20 +53,20 @@
   "dependencies": {
     "babel": "5.8.23",
     "chalk": "1.1.1",
+    "cz-conventional-changelog": "1.1.4",
     "dedent": "0.4.0",
     "find-node-modules": "1.0.1",
     "glob": "5.0.15",
     "gulp": "3.9.0",
-    "gulp-git": "1.5.0",
+    "gulp-git": "1.6.0",
     "inquirer": "0.10.1",
     "json": "9.0.3",
     "minimist": "1.2.0",
     "node-uuid": "1.4.3",
-    "nodemon": "1.7.2",
+    "nodemon": "1.7.3",
     "rimraf": "2.4.3",
     "semver": "5.0.3",
     "shelljs": "0.5.3",
-    "strip-json-comments": "1.0.4",
-    "cz-conventional-changelog": "1.1.4"
+    "strip-json-comments": "1.0.4"
   }
 }

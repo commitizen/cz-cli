@@ -64,7 +64,7 @@ describe('commit', function() {
    
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths:true, quiet:true}, function() {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths:true, quiet:true, emitData:true}, function() {
       log(repoConfig.path, function(logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();

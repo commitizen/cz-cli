@@ -1,6 +1,7 @@
 import git from 'gulp-git';
 import gulp from 'gulp';
 import dedent from 'dedent';
+import {isString} from '../../common/util';
 
 export { commit };
 
@@ -9,21 +10,38 @@ export { commit };
  */
 function commit(sh, repoPath, message, options, done) {
 
+  var alreadyEnded = false;
+  
   // Get a gulp stream based off the config
   gulp.src(repoPath)
 
     // Format then commit
     .pipe(git.commit(dedent(message), options))
-  
+    
+    // Write progress to the screen
+    .on('data',function(data) {
+      if(!options.quiet) {
+        if(isString(data))
+        {
+         process.stdout.write(data); 
+        } 
+      }
+    })
+    
     // Handle commit success
     .on('end', function() {
-      done();
+      // TODO: Bug? Done is fired twice :(
+      if(!alreadyEnded)
+      {
+        done();
+        alreadyEnded=true; 
+      }
     })
     
     // Handle commit failure
-    .on('error', function (error) {
-      console.error(error);
-      done(error);
+    .on('error', function (err) {
+      console.error(err);
+      done(err);
     });
 
 }
