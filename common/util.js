@@ -42,21 +42,42 @@ function getParsedPackageJsonFromPath(path) {
  * Test if the passed argument is an array
  */
 function isArray(arr) {
-  return arr.constructor === Array;
+    if(typeof arr === "undefined")
+  {
+    return false;
+  } else if (arr === null) {
+    return false;
+  } else {
+    return arr.constructor === Array;
+  }
 }
 
 /**
  * Test if the passed argument is a function 
  */
 function isFunction(functionToCheck) {
- var getType = {};
- return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+  if(typeof functionToCheck === "undefined")
+  {
+    return false;
+  } else if (functionToCheck === null) {
+    return false;
+  } else {
+    var getType = {};
+    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]'; 
+  }
 }
 
 /**
  * Test if the passed argument is a string
  */
 function isString(str) {
-  return Object.prototype.toString.call(str) == '[object String]';
+  if(typeof str === "undefined")
+  {
+    return false;
+  } else if (str === null) {
+    return false;
+  } else {
+    return Object.prototype.toString.call(str) == '[object String]';
+  }
 }
 

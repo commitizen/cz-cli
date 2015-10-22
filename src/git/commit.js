@@ -20,6 +20,10 @@ function commit(sh, repoPath, message, options, done) {
     
     // Write progress to the screen
     .on('data',function(data) {
+      
+      // Ignore this for code coverage since it is only there 
+      // to make our testing suite pretty
+      /* istanbul ignore if  */
       if(!options.quiet) {
         if(isString(data))
         {
