@@ -10,7 +10,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run test:watch",
     "test": "istanbul cover -x ./test _mocha -- -R spec test/tests/index.js --compilers js:babel/register",
-    "test:watch": "nodemon -q --exec \"$(npm bin)/mocha test/tests/index.js --watch --compilers js:babel/register\" --"
+    "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --"
   },
   "czConfig": {
     "path": "./node_modules/cz-conventional-changelog"
