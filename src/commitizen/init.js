@@ -4,7 +4,6 @@ import {executeShellCommand} from '../../common/util';
 import * as adapter from './adapter';
 
 let {
-  addAdapterConfigToPackageJson, 
   addPathToAdapterConfig,
   generateNpmInstallAdapterCommand,
   getNpmInstallStringMappings
@@ -39,7 +38,7 @@ const defaultInitOptions = {
 };
 
 /**
- * Runs npm install for the adapter then modifies the czConfig as needed
+ * Runs npm install for the adapter then modifies the config.commitizen as needed
  */
 function init(sh, repoPath, adapterNpmName, {
   save = false, 
@@ -95,7 +94,6 @@ function init(sh, repoPath, adapterNpmName, {
     try {
       
       executeShellCommand(sh, repoPath, installAdapterCommand);
-      addAdapterConfigToPackageJson(sh, CLI_PATH, repoPath);
       addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
     } catch (e) {
       console.error(e);
@@ -121,7 +119,7 @@ function checkRequiredArguments(sh, path, adapterNpmName) {
 
 /**
  * CONFIG
- * Loads and returns the adapter config at key czConfig, if it exists
+ * Loads and returns the adapter config at key config.commitizen, if it exists
  */
 function loadAdapterConfig() {
   let config = configLoader.load();

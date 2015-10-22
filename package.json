@@ -12,10 +12,10 @@
     "test": "istanbul cover -x ./test _mocha -- -R spec test/tests/index.js --compilers js:babel/register",
     "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --"
   },
-  "czConfig": {
-    "path": "./node_modules/cz-conventional-changelog"
-  },
   "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"  
+    },
     "ghooks": {
       "pre-commit": "npm run test && npm run check-coverage"
     }

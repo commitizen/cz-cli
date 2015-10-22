@@ -5,7 +5,6 @@ import findNodeModules from 'find-node-modules';
 import {isFunction} from '../../common/util';
 
 export {
-  addAdapterConfigToPackageJson,
   addPathToAdapterConfig,
   getNearestNodeModulesDirectory,
   getNearestProjectRootDirectory,
@@ -25,20 +24,12 @@ export {
  */
 
 /**
- * Modifies the package.json, sets key czConfig to an empty object
- */
-function addAdapterConfigToPackageJson(sh, cliPath, repoPath) {
-  let packageJsonPath = path.join(getNearestProjectRootDirectory(),'package.json');
-  sh.exec(`${cliPath}/node_modules/.bin/json -I -f ${packageJsonPath} -e 'this.czConfig={}'`);
-}
-
-/**
- * Modifies the package.json, sets czConfig.path to the path of the adapter
+ * Modifies the package.json, sets config.commitizen.path to the path of the adapter
  * Must be passed an absolute path to the cli's root
  */
 function addPathToAdapterConfig(sh, cliPath, repoPath, adapterNpmName) {
   let packageJsonPath = path.join(getNearestProjectRootDirectory(), 'package.json');
-  sh.exec(`${cliPath}/node_modules/.bin/json -I -f ${packageJsonPath} -e 'this.czConfig.path=\"./node_modules/${adapterNpmName}\"'`);
+  sh.exec(`${cliPath}/node_modules/.bin/json -I -f ${packageJsonPath} -e 'if(!this.config) {this.config={};}; if(!this.config.commitizen) { this.config.commitizen={};}; this.config.commitizen.path=\"./node_modules/${adapterNpmName}\"'`);
 }
 
 /**
@@ -115,7 +106,6 @@ function getPrompter(adapterPath) {
  * return a located adapter path or will throw.
  */
 function resolveAdapterPath(inboundAdapterPath) {
-  
   let outboundAdapterPath;
   
   // Try to open the provided path
@@ -135,8 +125,7 @@ function resolveAdapterPath(inboundAdapterPath) {
     return outboundAdapterPath;
     
   } catch(err) {
-    console.error('Adapter path invalid: ' + inboundAdapterPath);
-    throw (err);
+    throw err;
   }
   
 }

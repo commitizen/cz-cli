@@ -40,16 +40,20 @@ commitizen init cz-conventional-changelog --save --save-exact
 
 Note that if you want to force install over the top of an old adapter, you can apply the `--force` argument. For more information on this, just run `commitizen help`.
 
-Then just add the `czConfig` field to the root of your **package.json** with the following contents:
+Then just add the `config.commitizen` key to the root of your **package.json** as shown here:
 
 ```json
 ...
-  "czConfig": {
-    "path": "node_modules/cz-conventional-changelog"
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 ```
 
 This just tells Commitizen which adapter we actually want our contributors to use when they try to commit to this repo.
+
+Please note that in previous version of Commitizen we used czConfig. **czConfig has been deprecated** and you should migrate to the new format before Commitizen 3.0.0.
 
 #### Congratulations your repo is Commitizen-friendly. Time to flaunt it!
 

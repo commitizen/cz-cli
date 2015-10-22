@@ -80,7 +80,7 @@ describe('init', function() {
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
     expect(packageJson).not.to.have.deep.property('devDependencies','cz-jira-smart-commit');
-    expect(packageJson).to.have.deep.property('czConfig.path','./node_modules/cz-conventional-changelog');
+    expect(packageJson).to.have.deep.property('config.commitizen.path','./node_modules/cz-conventional-changelog');
     // TODO: Eventually may need to offer both path and package keys. package = npm package name
     // Path for local development
   });
@@ -103,9 +103,8 @@ describe('init', function() {
     }).to.not.throw();
     
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    
     expect(packageJson.devDependencies).to.have.property('cz-jira-smart-commit');
-    expect(packageJson).to.have.deep.property('czConfig.path', './node_modules/cz-jira-smart-commit');
+    expect(packageJson).to.have.deep.property('config.commitizen.path', './node_modules/cz-jira-smart-commit');
     
   });
   
