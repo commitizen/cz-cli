@@ -63,7 +63,7 @@
     "json": "9.0.3",
     "minimist": "1.2.0",
     "node-uuid": "1.4.3",
-    "nodemon": "1.7.3",
+    "nodemon": "1.8.0",
     "rimraf": "2.4.3",
     "semver": "5.0.3",
     "shelljs": "0.5.3",
