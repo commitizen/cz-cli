@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import findNodeModules from 'find-node-modules';
 
-import {isFunction} from '../../common/util';
+import {isFunction} from '../common/util';
 
 export {
   addPathToAdapterConfig,

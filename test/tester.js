@@ -1,7 +1,7 @@
 import * as repo from './tools/repo';
 import * as clean from './tools/clean';
 import * as files from './tools/files';
-import * as util from '../common/util';
+import * as util from '../src/common/util';
 import {config as userConfig} from './config';
 import * as sh from 'shelljs'; // local instance
 import _ from 'lodash';

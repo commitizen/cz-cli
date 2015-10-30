@@ -1,7 +1,7 @@
 import git from 'gulp-git';
 import gulp from 'gulp';
 import dedent from 'dedent';
-import {isString} from '../../common/util';
+import {isString} from '../common/util';
 
 export { commit };
 

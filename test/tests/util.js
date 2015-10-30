@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {isArray, isFunction, isString} from '../../common/util';
+import {isArray, isFunction, isString} from '../../src/common/util';
 
 describe('common util', function() {
   

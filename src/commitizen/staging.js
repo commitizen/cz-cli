@@ -1,5 +1,5 @@
 import git from 'gulp-git';
-import {isString} from '../../common/util';
+import {isString} from '../common/util';
 
 export {isClean};
 
