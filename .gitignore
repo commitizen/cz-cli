@@ -2,4 +2,5 @@ node_modules/
 .tmp/
 coverage/
 artifacts/
+/dist
 npm-debug.log

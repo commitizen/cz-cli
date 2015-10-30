@@ -6,6 +6,8 @@
   "scripts": {
     "check-coverage": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80 ",
     "commit": "git-cz",
+    "build": "babel src --out-dir dist",
+    "prepublish": "npm run build",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run test:watch",
