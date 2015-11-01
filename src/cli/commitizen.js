@@ -53,7 +53,7 @@ function bootstrap(environment = {}) {
     contributors to follow your commit message conventions using commitizen then
     you'll need to run a command like this one to add this adapter to your config:
         
-         commitizen init cz-convetional-changelog --save
+         commitizen init cz-conventional-changelog --save
         
     You should swap out cz-conventional-changelog for the NPM package name of the
     adapter you wish you install in your project's package.json.
