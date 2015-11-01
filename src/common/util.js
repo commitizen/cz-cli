@@ -16,7 +16,7 @@ export {
  */
 function executeShellCommand(sh, path, installCommand) {
   sh.cd(path);
-  sh.exec(installCommand); 
+  sh.exec(installCommand);
 }
 
 /**
@@ -53,7 +53,7 @@ function isArray(arr) {
 }
 
 /**
- * Test if the passed argument is a function 
+ * Test if the passed argument is a function
  */
 function isFunction(functionToCheck) {
   if(typeof functionToCheck === "undefined")
@@ -63,7 +63,7 @@ function isFunction(functionToCheck) {
     return false;
   } else {
     var getType = {};
-    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]'; 
+    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
   }
 }
 
@@ -80,4 +80,3 @@ function isString(str) {
     return Object.prototype.toString.call(str) == '[object String]';
   }
 }
-

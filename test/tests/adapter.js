@@ -7,7 +7,7 @@ import fs from 'fs';
 // in the short term
 import {adapter, init as commitizenInit} from '../../src/commitizen';
 
-import {isFunction} from '../../common/util';
+import {isFunction} from '../../src/common/util';
 
 // Bootstrap our tester
 import {bootstrap} from '../tester';

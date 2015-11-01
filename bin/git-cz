@@ -1,6 +1,3 @@
 #!/usr/bin/env node
 
-require("babel/register")({
-	ignore: /node_modules\/(?!commitizen)/
-});
 require('./git-cz.js');
