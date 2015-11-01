@@ -102,3 +102,6 @@ We accomplish this by letting you define which adapter you'd like to use in your
 @Den-dp
 
 Special thanks to @stevelacy, whose [gulp-git](https://www.npmjs.com/package/gulp-git) project makes commitizen possible.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/commitizen/cz-cli/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
