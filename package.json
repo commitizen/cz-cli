@@ -49,7 +49,6 @@
     "codecov.io": "0.1.6",
     "ghooks": "0.3.2",
     "istanbul": "0.3.22",
-    "lodash": "3.10.1",
     "mocha": "2.3.3",
     "semantic-release": "^4.3.5"
   },
@@ -63,6 +62,7 @@
     "gulp": "3.9.0",
     "gulp-git": "1.6.0",
     "inquirer": "0.11.0",
+    "lodash": "3.10.1",
     "minimist": "1.2.0",
     "node-uuid": "1.4.3",
     "nodemon": "1.8.1",
