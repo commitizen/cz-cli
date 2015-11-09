@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import findNodeModules from 'find-node-modules';
+import _ from 'lodash';
 
 import {isFunction} from '../common/util';
 
@@ -28,8 +29,23 @@ export {
  * Must be passed an absolute path to the cli's root
  */
 function addPathToAdapterConfig(sh, cliPath, repoPath, adapterNpmName) {
+  
+  let commitizenAdapterConfig = {
+    config: {
+      commitizen: {
+        path: `./node_modules/${adapterNpmName}`
+      }
+    }
+  };
+  
   let packageJsonPath = path.join(getNearestProjectRootDirectory(), 'package.json');
-  sh.exec(`${cliPath}/node_modules/.bin/json -I -f ${packageJsonPath} -e 'if(!this.config) {this.config={};}; if(!this.config.commitizen) { this.config.commitizen={};}; this.config.commitizen.path=\"./node_modules/${adapterNpmName}\"'`);
+  let packageJsonString = fs.readFileSync(packageJsonPath);
+  let packageJsonContent = JSON.parse(packageJsonString);
+  let newPackageJsonContent = '';
+  if(_.get(packageJsonContent,'config.commitizen.path') !== adapterNpmName) {
+    newPackageJsonContent = _.merge(packageJsonContent, commitizenAdapterConfig);
+  }
+  fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageJsonContent));
 }
 
 /**
