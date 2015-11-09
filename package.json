@@ -45,7 +45,7 @@
   "author": "Jim Cummins <jimthedev@gmail.com> (https://github.com/jimthedev)",
   "license": "MIT",
   "devDependencies": {
-    "chai": "3.4.0",
+    "chai": "3.4.1",
     "codecov.io": "0.1.6",
     "ghooks": "0.3.2",
     "istanbul": "0.3.22",
@@ -57,7 +57,7 @@
     "babel": "5.8.29",
     "chalk": "1.1.1",
     "cz-conventional-changelog": "1.1.4",
-    "dedent": "0.4.0",
+    "dedent": "0.6.0",
     "find-node-modules": "1.0.1",
     "glob": "5.0.15",
     "gulp": "3.9.0",
