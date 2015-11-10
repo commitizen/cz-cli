@@ -11,7 +11,6 @@ notifications:
 node_js:
 - '4'
 - '0.12'
-- '0.10'
 before_install:
 - git config --global user.name "TravisCI"
 - npm i -g npm@^2.0.0
