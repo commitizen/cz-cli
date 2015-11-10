@@ -1,3 +1,4 @@
 /meta
 /src
 /test
+test/tools/trigger-appveyor-tests.sh

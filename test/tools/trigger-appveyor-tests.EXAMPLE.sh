@@ -4,7 +4,8 @@
 # AV_BRANCH=master \
 # AV_TOKEN=my_appveyor_api_token
 
-command="node trigger-appveyor-tests.js"
+DIR="$(cd "$(dirname "$0")" && pwd)"
+command="node $DIR/trigger-appveyor-tests.js"
 
 safeRunCommand() {
    "$@"

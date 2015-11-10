@@ -4,3 +4,4 @@ coverage/
 artifacts/
 /dist
 npm-debug.log
+test/tools/trigger-appveyor-tests.sh
