@@ -18,7 +18,7 @@ test_script:
   - npm test
 
 artifacts:
-  - path: test\artifacts
+  - path: cz-cli\test\artifacts
     name: test artifacts
 
 # Don't actually build.
