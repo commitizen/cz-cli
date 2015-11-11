@@ -16,6 +16,8 @@ test_script:
   - npm --version
   # run tests
   - npm test
+  
+after_test:
   - ps: $root = Resolve-Path .\test\artifacts; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName to-publish }
 
 artifacts:
