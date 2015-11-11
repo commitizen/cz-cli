@@ -49,7 +49,7 @@
     "axios": "0.7.0",
     "chai": "3.4.1",
     "codecov.io": "0.1.6",
-    "ghooks": "0.3.2",
+    "ghooks": "1.0.0",
     "istanbul": "0.3.22",
     "mocha": "2.3.3",
     "semantic-release": "^4.3.5"
