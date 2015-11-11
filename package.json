@@ -12,7 +12,7 @@
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run test:watch",
-    "test": "istanbul cover -x ./test _mocha -- -R spec test/tests/index.js --compilers js:babel/register",
+    "test": "istanbul cover -x ./test node_modules/mocha/bin/_mocha -- -R spec test/tests/index.js --compilers js:babel/register",
     "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --",
     "test:windows": "node ./test/tools/trigger-appveyor-tests.js"
   },
