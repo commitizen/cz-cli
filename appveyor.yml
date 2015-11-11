@@ -17,5 +17,9 @@ test_script:
   # run tests
   - npm test
 
+artifacts:
+  - path: test\artifacts
+    name: test artifacts
+
 # Don't actually build.
 build: off

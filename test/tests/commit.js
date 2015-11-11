@@ -103,8 +103,8 @@ describe('commit', function() {
     
     // Describe an adapter
     let adapterConfig = {
-      path: path.join(repoConfig.path, '/node_modules/cz-jira-smart-commit'),
-      npmName: 'cz-jira-smart-commit'
+      path: path.join(repoConfig.path, '/node_modules/cz-conventional-changelog'),
+      npmName: 'cz-conventional-changelog'
     };
     
     // Quick setup the repos, adapter, and grab a simple prompter
