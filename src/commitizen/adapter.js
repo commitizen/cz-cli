@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import findNodeModules from 'find-node-modules';
 import _ from 'lodash';
+import detectIndent from 'detect-indent';
 
 import {isFunction} from '../common/util';
 
@@ -39,13 +40,15 @@ function addPathToAdapterConfig(sh, cliPath, repoPath, adapterNpmName) {
   };
   
   let packageJsonPath = path.join(getNearestProjectRootDirectory(), 'package.json');
-  let packageJsonString = fs.readFileSync(packageJsonPath);
+  let packageJsonString = fs.readFileSync(packageJsonPath, 'utf-8');
+  // tries to detect the indentation and falls back to a default if it can't
+  let indent = detectIndent(packageJsonString).indent || '  ';
   let packageJsonContent = JSON.parse(packageJsonString);
   let newPackageJsonContent = '';
   if(_.get(packageJsonContent,'config.commitizen.path') !== adapterNpmName) {
     newPackageJsonContent = _.merge(packageJsonContent, commitizenAdapterConfig);
   }
-  fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageJsonContent));
+  fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageJsonContent, null, indent));
 }
 
 /**
