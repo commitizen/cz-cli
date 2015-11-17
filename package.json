@@ -67,7 +67,7 @@
     "inquirer": "0.11.0",
     "lodash": "3.10.1",
     "minimist": "1.2.0",
-    "node-uuid": "1.4.3",
+    "node-uuid": "1.4.4",
     "nodemon": "1.8.1",
     "rimraf": "2.4.3",
     "semver": "5.0.3",
