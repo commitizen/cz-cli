@@ -1,3 +1,4 @@
+import os from 'os';
 import git from 'gulp-git';
 import gulp from 'gulp';
 import dedent from 'dedent';
@@ -11,12 +12,21 @@ export { commit };
 function commit(sh, repoPath, message, options, done) {
 
   var alreadyEnded = false;
+  let dedentedMessage = dedent(message);
+  let operatingSystemNormalizedMessage;
+  // On windows we must use an array in gulp-git instead of a string because
+  // command line parsing works differently
+  if(os.platform()=="win32") {
+    operatingSystemNormalizedMessage = dedentedMessage.split(/\r?\n/);
+  } else {
+    operatingSystemNormalizedMessage = dedentedMessage;
+  }
   
   // Get a gulp stream based off the config
   gulp.src(repoPath)
 
     // Format then commit
-    .pipe(git.commit(dedent(message), options))
+    .pipe(git.commit(operatingSystemNormalizedMessage, options))
     
     // Write progress to the screen
     .on('data',function(data) {
