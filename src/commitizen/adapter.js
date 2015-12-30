@@ -130,12 +130,19 @@ function resolveAdapterPath(inboundAdapterPath) {
   // Try to open the provided path
   try {
     
-    // If we're given a directory, append index.js 
-    if(fs.lstatSync(inboundAdapterPath).isDirectory()) {
-      
-      // Modify the path and make sure the modified path exists
-      outboundAdapterPath = path.join(inboundAdapterPath, 'index.js');
-      fs.lstatSync(outboundAdapterPath); 
+        // If we're given a directory, check for a package.json, otherwise append index.js
+    if (fs.lstatSync(inboundAdapterPath).isDirectory()) {
+      let inboundAdapterPackageJsonPath = path.join(inboundAdapterPath, 'package.json');
+      if (fs.lstatSync(inboundAdapterPackageJsonPath)) {
+        let packageJsonString = fs.readFileSync(inboundAdapterPackageJsonPath, 'utf-8');
+        let packageJsonContent = JSON.parse(packageJsonString);
+        let inboundAdapterMainJsPath = _.get(packageJsonContent, 'main');
+        outboundAdapterPath = path.join(inboundAdapterPath, inboundAdapterMainJsPath);
+      } else {
+        // Modify the path and make sure the modified path exists
+        outboundAdapterPath = path.join(inboundAdapterPath, 'index.js');
+        fs.lstatSync(outboundAdapterPath);
+      }
       
     } else {
       // The file exists and is a file, so just return it
