@@ -9,10 +9,10 @@ export default commit;
 function commit(sh, inquirer, repoPath, prompter, options, done) {
   
   // Get user input -- side effect that is hard to test
-  prompter(inquirer, function(template) {
+  prompter(inquirer, function(template, overrideOptions) {
     
     // Commit the user input -- side effect that we'll test
-    gitCommit(sh, repoPath, template, options, function() {
+    gitCommit(sh, repoPath, template, { ...options, ...overrideOptions }, function() {
       done(template);
     });
   });
