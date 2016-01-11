@@ -69,7 +69,7 @@
     "minimist": "1.2.0",
     "node-uuid": "1.4.7",
     "nodemon": "1.8.1",
-    "rimraf": "2.4.3",
+    "rimraf": "2.5.0",
     "semver": "5.0.3",
     "shelljs": "0.5.3",
     "strip-json-comments": "2.0.0"
