@@ -65,7 +65,7 @@
     "gulp": "3.9.0",
     "gulp-git": "1.6.0",
     "inquirer": "0.11.0",
-    "lodash": "3.10.1",
+    "lodash": "4.0.0",
     "minimist": "1.2.0",
     "node-uuid": "1.4.7",
     "nodemon": "1.8.1",
