@@ -46,7 +46,7 @@
   "author": "Jim Cummins <jimthedev@gmail.com> (https://github.com/jimthedev)",
   "license": "MIT",
   "devDependencies": {
-    "axios": "0.7.0",
+    "axios": "0.9.1",
     "chai": "3.4.1",
     "codecov.io": "0.1.6",
     "ghooks": "1.0.0",
