@@ -61,7 +61,7 @@
     "dedent": "0.6.0",
     "detect-indent": "4.0.0",
     "find-node-modules": "1.0.1",
-    "glob": "6.0.1",
+    "glob": "6.0.2",
     "gulp": "3.9.0",
     "gulp-git": "1.6.0",
     "inquirer": "0.11.0",
