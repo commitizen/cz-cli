@@ -72,6 +72,6 @@
     "rimraf": "2.4.3",
     "semver": "5.0.3",
     "shelljs": "0.5.3",
-    "strip-json-comments": "2.0.0"
+    "strip-json-comments": "2.0.1"
   }
 }
