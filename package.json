@@ -55,7 +55,7 @@
     "semantic-release": "^4.3.5"
   },
   "dependencies": {
-    "babel": "5.8.34",
+    "babel": "6.5.2",
     "chalk": "1.1.1",
     "cz-conventional-changelog": "1.1.4",
     "dedent": "0.6.0",
