@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import sh from 'shelljs';
 import inquirer from 'inquirer';
+import findRoot from 'find-root';
 import {getParsedPackageJsonFromPath} from '../../common/util';
 import {gitCz as gitCzParser, commitizen as commitizenParser} from '../parsers';
 import {commit, staging, adapter} from '../../commitizen';
@@ -11,8 +12,8 @@ import * as gitStrategy from './git';
 // destructure for shorter apis
 let { parse } = gitCzParser;
 
-let { getNearestNodeModulesDirectory, getNearestProjectRootDirectory, getPrompter } = adapter;
-let { isClean } = staging; 
+let { getPrompter, resolveAdapterPath } = adapter;
+let { isClean } = staging;
 
 export default gitCz;
 
@@ -37,31 +38,24 @@ function gitCz(rawGitArgs, environment, adapterConfig) {
   
   // Now, if we've made it past overrides, proceed with the git-cz strategy
   let parsedGitCzArgs = parse(rawGitArgs);
- 
-    // TODO: This can be broken out into its own function. 
-    // Basically we're 
-    // 1. Walking up the tree to find a node_modules folder
-    // 2. Resolving the project root based on the node_modules folder
-    // 3. Resolving the adapter bath based on that project root
-    let resolvedAdapterConfigPath = path.join(getNearestProjectRootDirectory(), adapterConfig.path);
-    
-    let prompter = getPrompter(path.resolve(process.cwd(), resolvedAdapterConfigPath));
+  let resolvedAdapterConfigPath = resolveAdapterPath(adapterConfig.path);
+  let resolvedAdapterRootPath = findRoot(resolvedAdapterConfigPath);
+  let prompter = getPrompter(adapterConfig.path);
 
-    isClean(process.cwd(), function(stagingIsClean){
-      if(stagingIsClean) {
-        console.error('Error: No files added to staging! Did you forget to run git add?')  
-      } else {
-        
-        // OH GOD IM SORRY FOR THIS SECTION
-        let adapterPackageJson = getParsedPackageJsonFromPath(resolvedAdapterConfigPath);
-        let cliPackageJson = getParsedPackageJsonFromPath(environment.cliPath);
-        console.log(`cz-cli@${cliPackageJson.version}, ${adapterPackageJson.name}@${adapterPackageJson.version}\n`);
-        commit(sh, inquirer, process.cwd(), prompter, {args: parsedGitCzArgs, disableAppendPaths:true, emitData:true, quiet:false}, function() {
-          // console.log('commit happened');
-        });
-        
-      }
-    });
-    
+  isClean(process.cwd(), function(stagingIsClean){
+    if(stagingIsClean) {
+      console.error('Error: No files added to staging! Did you forget to run git add?')
+    } else {
+      // OH GOD IM SORRY FOR THIS SECTION
+      let adapterPackageJson = getParsedPackageJsonFromPath(resolvedAdapterRootPath);
+      let cliPackageJson = getParsedPackageJsonFromPath(environment.cliPath);
+      console.log(`cz-cli@${cliPackageJson.version}, ${adapterPackageJson.name}@${adapterPackageJson.version}\n`);
+      commit(sh, inquirer, process.cwd(), prompter, {args: parsedGitCzArgs, disableAppendPaths:true, emitData:true, quiet:false}, function() {
+        // console.log('commit happened');
+      });
+      
+    }
+  });
+  
 
 }
