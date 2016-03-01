@@ -18,11 +18,11 @@ export {
 
 /**
  * ADAPTER
- * 
- * Adapter is generally responsible for actually installing adapters to an 
+ *
+ * Adapter is generally responsible for actually installing adapters to an
  * end user's project. It does not perform checks to determine if there is
  * a previous commitizen adapter installed or if the proper fields were
- * provided. It defers that responsibility to init. 
+ * provided. It defers that responsibility to init.
  */
 
 /**
@@ -107,44 +107,38 @@ function getNpmInstallStringMappings(save, saveDev, saveExact, force) {
  * Gets the prompter from an adapter given an adapter path
  */
 function getPrompter(adapterPath) {
-  // We need to handle directories and files, so resolve the parh first
+  // Resolve the adapter path
   let resolvedAdapterPath = resolveAdapterPath(adapterPath);
 
   // Load the adapter
   let adapter = require(resolvedAdapterPath);
   
   if(adapter && adapter.prompter && isFunction(adapter.prompter)) {
-     return adapter.prompter; 
+     return adapter.prompter;
   } else {
     throw "Could not find prompter method in the provided adapter module: " + adapterPath;
   }
 }
 
 /**
- * Given a path, which can be a directory or file, will
+ * Given a resolvable module name or path, which can be a directory or file, will
  * return a located adapter path or will throw.
  */
 function resolveAdapterPath(inboundAdapterPath) {
-  let outboundAdapterPath;
+  // Check if inboundAdapterPath is a path or node module name
+  let parsed = path.parse(inboundAdapterPath);
+  let isPath = parsed.dir.length > 0;
   
-  // Try to open the provided path
+  // Resolve from process.cwd() if inboundAdapterPath is a path
+  let absoluteAdapterPath = isPath ?
+    path.resolve(process.cwd(), inboundAdapterPath) :
+    inboundAdapterPath;
+  
   try {
-    
-    // If we're given a directory, append index.js 
-    if(fs.lstatSync(inboundAdapterPath).isDirectory()) {
-      
-      // Modify the path and make sure the modified path exists
-      outboundAdapterPath = path.join(inboundAdapterPath, 'index.js');
-      fs.lstatSync(outboundAdapterPath); 
-      
-    } else {
-      // The file exists and is a file, so just return it
-      outboundAdapterPath = inboundAdapterPath;
-    }
-    return outboundAdapterPath;
-    
-  } catch(err) {
-    throw err;
+    // try to resolve the given path
+    return require.resolve(absoluteAdapterPath);
+  } catch (error) {
+    error.message = "Could not resolve " + absoluteAdapterPath, ". " + error.message;
+    throw error;
   }
-  
 }

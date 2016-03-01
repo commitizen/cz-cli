@@ -47,12 +47,20 @@ The above command does three things for you. It installs the cz-conventional-cha
 ...
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
   }
 ```
 
 This just tells Commitizen which adapter we actually want our contributors to use when they try to commit to this repo.
+
+`commitizen.path` is resolved via [require.resolve](https://nodejs.org/api/globals.html#globals_require_resolve) and supports
+
+*  npm modules
+*  directories relative to `process.cwd()` containing an `index.js` file
+*  file base names relative to `process.cwd()` with `js` extension
+*  full relative file names
+*  absolute paths.
 
 Please note that in previous version of Commitizen we used czConfig. **czConfig has been deprecated** and you should migrate to the new format before Commitizen 3.0.0.
 
