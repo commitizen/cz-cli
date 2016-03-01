@@ -1,6 +1,5 @@
 import {expect} from 'chai';
 import path from 'path';
-import fs from 'fs';
 
 // TODO: augment these tests with tests using the actual cli call
 // For now we're just using the library, which is probably fine
@@ -60,8 +59,8 @@ describe('adapter', function() {
     // TEST 
     expect(function() {adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
     expect(function() {adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
-    expect(function() {adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')) }).not.to.throw(Error);
-    
+    expect(function() {adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
+    expect(function() {adapter.resolveAdapterPath('cz-conventional-changelog'); }).not.to.throw(Error);
   });
   
   it('gets adapter prompter functions', function(){
