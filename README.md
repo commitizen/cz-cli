@@ -36,7 +36,7 @@ npm install commitizen -g
 Next, initialize your project to use the cz-conventional-changelog adapter by typing:
 
 ```
-commitizen init cz-conventional-changelog --save --save-exact
+commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
 
 Note that if you want to force install over the top of an old adapter, you can apply the `--force` argument. For more information on this, just run `commitizen help`.
