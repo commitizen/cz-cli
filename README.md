@@ -14,7 +14,7 @@ npm install -g commitizen
 #### Using the command line tool
 Now, simply use `git cz` instead of `git commit` when committing. 
 
-When you're working in a Commitizen friendly repository, you'll be prompted to fill in any required fields and your commit messages will be formatted according to the the standards defined by project maintainers. 
+When you're working in a Commitizen friendly repository, you'll be prompted to fill in any required fields and your commit messages will be formatted according to the standards defined by project maintainers. 
 
 [![Add and commit with Commitizen](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)
 
@@ -91,7 +91,7 @@ We know that every project and build process has different requirements so we've
 - [rb-conventional-changelog](https://www.npmjs.com/package/rb-conventional-changelog)
 - [cz-mapbox-changelog](https://www.npmjs.com/package/cz-mapbox-changelog)
 
-To create an adapter, just fork one of these great adapters and modify it to suit your needs.  We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means neccesary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
+To create an adapter, just fork one of these great adapters and modify it to suit your needs.  We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
 
 ### Philosophy
 
