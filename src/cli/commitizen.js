@@ -65,7 +65,7 @@ function bootstrap(environment = {}) {
          init <adapter-npm-name> [args]
         
            description: Install a commitizen adapter from npm and adds it to your
-                        czConfig in your package.json file.
+                        config.commitizen in your package.json file.
         
            args:
              --save         Install the adapter to package.json dependencies 
