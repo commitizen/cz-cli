@@ -39,6 +39,8 @@ function parse(rawGitArgs) {
     if (key === '_' && value.length > 0) {
       // Anything in the _ array of strings is a one off file
       output += value.join(' ') + ' ';
+    } else if (key === 'verbose') {
+      output += '--verbose ';
     } else if (key === 'message') {
       /**
        * We strip out message because we're already handling this
