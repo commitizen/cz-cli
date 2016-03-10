@@ -38,6 +38,11 @@ function gitCz(rawGitArgs, environment, adapterConfig) {
   
   // Now, if we've made it past overrides, proceed with the git-cz strategy
   let parsedGitCzArgs = parse(rawGitArgs);
+  
+  // Determine if we need to process this commit as a retry instead of a
+  // normal commit.
+  let retryLastCommit = rawGitArgs && rawGitArgs[0] === '--retry';
+  
   let resolvedAdapterConfigPath = resolveAdapterPath(adapterConfig.path);
   let resolvedAdapterRootPath = findRoot(resolvedAdapterConfigPath);
   let prompter = getPrompter(adapterConfig.path);
@@ -50,7 +55,7 @@ function gitCz(rawGitArgs, environment, adapterConfig) {
       let adapterPackageJson = getParsedPackageJsonFromPath(resolvedAdapterRootPath);
       let cliPackageJson = getParsedPackageJsonFromPath(environment.cliPath);
       console.log(`cz-cli@${cliPackageJson.version}, ${adapterPackageJson.name}@${adapterPackageJson.version}\n`);
-      commit(sh, inquirer, process.cwd(), prompter, {args: parsedGitCzArgs, disableAppendPaths:true, emitData:true, quiet:false}, function() {
+      commit(sh, inquirer, process.cwd(), prompter, {args: parsedGitCzArgs, disableAppendPaths:true, emitData:true, quiet:false, retryLastCommit}, function() {
         // console.log('commit happened');
       });
       
