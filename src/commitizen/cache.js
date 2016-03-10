@@ -24,7 +24,7 @@ function setCacheValueSync(cachePath, key, value) {
   } catch (e) {
     originalCache = {};
   }
-  var newCache = Object.assign(originalCache, {
+  var newCache = _.assign(originalCache, {
     [key]: value
   });
   fs.writeFileSync(cachePath, JSON.stringify(newCache, null, '  '));

@@ -24,7 +24,7 @@ beforeEach(function() {
   repo.createEndUser(sh, config.paths.endUserRepo);
 });
 
-describe('commit', function() {
+describe('staging', function() {
   
   it('should determine if a repo is clean', function(done) {
     
