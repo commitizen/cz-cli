@@ -82,6 +82,12 @@ It may also make sense to change your README.md or CONTRIBUTING.md to include or
 
 Commitizen is great on its own, but it shines when you use it with some other amazing open source tools. Kent C. Dodds shows you how to accomplish this in his Egghead.io series, [How to write an open source javascript library](https://egghead.io/series/how-to-write-an-open-source-javascript-library). Many of the concepts can be applied to non-javascript projects as well.
 
+#### Retrying failed commits
+
+As of version 2.7.1, you may attempt to retry the last commit using the `git cz --retry` command.  This can be helpful when you have tests set up to run via a git precommit hook.  In this scenario, you may have attempted a Commitizen commit, painstakingly filled out all of the commitizen fields, but your tests fail. In previous Commitizen versions, after fixing your tests, you would be forced to fill out all of the fields again. Enter the retry command. Commitizen will retry the last commit that you attempted in this repo without you needing to fill out the fields again. 
+
+Please note that the retry cache may be cleared when upgrading commitizen versions, upgrading adapters, or if you delete the `commitizen.json` file in your home or temp directory.  Additionally, the commit cache uses the filesystem path of the repo, so if you move a repo or change its path, you will not be able to retry a commit. This is an edge case, but might be confusing if you have scenarios where you are moving folders that contain repos.
+
 ### Adapters
 
 We know that every project and build process has different requirements so we've tried to keep Commitizen open for extension. You can do this by choosing from any of the pre-build adapters or even by building your own. Here are some of the great adapters available to you:
