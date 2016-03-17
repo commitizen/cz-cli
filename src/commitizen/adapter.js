@@ -48,7 +48,7 @@ function addPathToAdapterConfig(sh, cliPath, repoPath, adapterNpmName) {
   if(_.get(packageJsonContent,'config.commitizen.path') !== adapterNpmName) {
     newPackageJsonContent = _.merge(packageJsonContent, commitizenAdapterConfig);
   }
-  fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageJsonContent, null, indent));
+  fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageJsonContent, null, indent) + '\n');
 }
 
 /**
