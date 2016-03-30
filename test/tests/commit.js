@@ -80,7 +80,7 @@ describe('commit', function() {
 
     // SETUP
 
-    let dummyCommitMessage = `sip sip sippin' on some "sizzurp"`;
+    let dummyCommitMessage = `sip \`sip\` sippin' on some "sizzurp"`;
 
     // Describe a repo and some files to add and commit
     let repoConfig = {
@@ -118,7 +118,7 @@ describe('commit', function() {
 
   });
 
-  
+
   it('should commit multiline messages', function(done) {
     
     this.timeout(config.maxTimeout); // this could take a while
