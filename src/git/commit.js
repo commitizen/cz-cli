@@ -13,7 +13,7 @@ function commit(sh, repoPath, message, options, done) {
 
   var alreadyEnded = false;
   let dedentedMessage = dedent(message);
-  let escapedMessage = dedentedMessage.replace(/"/g, '\\"');
+  let escapedMessage = dedentedMessage.replace(/"/g, '\\"').replace(/`/g, '\\`');
   let operatingSystemNormalizedMessage;
   // On windows we must use an array in gulp-git instead of a string because
   // command line parsing works differently
