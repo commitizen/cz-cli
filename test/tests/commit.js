@@ -74,6 +74,51 @@ describe('commit', function() {
 
   });
   
+  it('should commit message with quotes', function(done) {
+
+    this.timeout(config.maxTimeout); // this could take a while
+
+    // SETUP
+
+    let dummyCommitMessage = `sip sip sippin' on some "sizzurp"`;
+
+    // Describe a repo and some files to add and commit
+    let repoConfig = {
+      path: config.paths.endUserRepo,
+      files: {
+        dummyfile: {
+            contents: `duck-duck-goose`,
+            filename: `mydummyfile.txt`,
+        },
+        gitignore: {
+          contents: `node_modules/`,
+          filename: `.gitignore`
+        }
+      }
+    };
+
+    // Describe an adapter
+    let adapterConfig = {
+      path: path.join(repoConfig.path, '/node_modules/cz-jira-smart-commit'),
+      npmName: 'cz-jira-smart-commit'
+    };
+
+    // Quick setup the repos, adapter, and grab a simple prompter
+    let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage);
+    // TEST
+
+    // Pass in inquirer but it never gets used since we've mocked out a different
+    // version of prompter.
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths:true, quiet:true, emitData:true}, function() {
+      log(repoConfig.path, function(logOutput) {
+        expect(logOutput).to.have.string(dummyCommitMessage);
+        done();
+      });
+    });
+
+  });
+
+  
   it('should commit multiline messages', function(done) {
     
     this.timeout(config.maxTimeout); // this could take a while
