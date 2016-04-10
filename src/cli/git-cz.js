@@ -14,10 +14,9 @@ function bootstrap(environment = {}) {
 
   // Get cli args
   let rawGitArgs = process.argv.slice(2, process.argv.length);
-  
-  // Load the adapter config
-  let adapterConfig = configLoader.load();
-  
+
+  let adapterConfig = environment.config || configLoader.load();
+
   // Choose a strategy based on the existance the adapter config
   if(typeof adapterConfig !== 'undefined') {
     // This tells commitizen we're in business
