@@ -95,6 +95,54 @@ It is important to note that if you are running `git-cz` from a npm script (let'
 
 Note that the last two options **do not** require you to pass `--` before the args but the first **does**.
 
+### Commitizen for multi-repo proejcts
+
+As a project maintainer of many projects, you may want to standardize on a single commit message
+format for all of them. You can create your own node module which acts as front-end for commitizen.
+
+#### 1. Create your own entry point script
+
+
+```
+// my-cli.js
+
+#!/usr/bin/env node
+"use strict";
+
+const path = require('path');
+const bootstrap = require('commitizen/dist/cli/git-cz').bootstrap;
+
+bootstrap({
+  cliPath: path.join(__dirname, '../node_modules/commitizen'),
+  // this is new
+  config: {
+    "path": "cz-conventional-changelog"
+  }
+});
+```
+
+#### 2. Add script to package.json
+
+```
+// package.json
+
+{
+  "name": "company-commit",
+  "bin": "./my-cli.js"
+  "dependencies": {
+    "commitizen": "^2.7.6",
+    "cz-conventional-changelog": "^1.1.5",
+  }
+}
+```
+
+#### 3. Publish it to npm and use it!
+
+```
+npm install company-commit --save-dev
+./node_modules/.bin/company-commit
+```
+
 ### Adapters
 
 We know that every project and build process has different requirements so we've tried to keep Commitizen open for extension. You can do this by choosing from any of the pre-build adapters or even by building your own. Here are some of the great adapters available to you:
