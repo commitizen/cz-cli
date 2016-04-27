@@ -20,6 +20,34 @@ When you're working in a Commitizen friendly repository, you'll be prompted to f
 
 If you're not working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit`.
 
+#### Conventional commit messages as a global utility
+
+Install `commitizen` globally, if you have not already.
+
+```
+npm install -g commitizen
+```
+
+Install your preferred `commitizen` adapter globally, for example [`cz-conventional-changelog`](https://www.npmjs.com/package/cz-conventional-changelog)
+
+```
+npm i -g cz-conventional-changelog
+```
+
+Create a `.czrc` file in your `home` directory, with `path` referring to the preferred, globally installed, `commitizen` adapter
+
+```
+echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+```
+
+You are all set! Now `cd`into any `git` repository and use `git cz` instead of `git commit` and you will find the `commitizen` prompt.
+
+Protip:  You can use all the `git commit` `options` with `git cz`, for example: `git cz -a`.
+
+>If your repository is a [nodejs](https://nodejs.org/en/) project, making it [Commitizen-friendly](#making-your-repo-commitizen-friendly) is super easy.
+
+If your repository is already [Commitizen-friendly](#making-your-repo-commitizen-friendly), the local `commitizen` adapter will be used, instead of globally installed one.
+
 ### Commitizen for project maintainers
 As a project maintainer, making your repo Commitizen friendly allows you to select pre-existing commit message conventions or to create your own custom commit message convention. When a contributor to your repo uses Commitizen, they will be prompted for the correct fields at commit time.
 
