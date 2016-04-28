@@ -6,7 +6,7 @@ export default loader;
 
 /**
  * Command line config helpers
- * Shamelessly ripped from with slight modifications: 
+ * Shamelessly ripped from with slight modifications:
  * https://github.com/jscs-dev/node-jscs/blob/master/lib/cli-config.js
  */
 
@@ -27,7 +27,7 @@ function loader(configs, config, cwd) {
 
     content = getContent(
         findup(configs, { nocase: true, cwd: directory }, function(configPath) {
-            if (path.basename(configPath) === 'package.json') { 
+            if (path.basename(configPath) === 'package.json') {
                 // return !!this.getContent(configPath);
             }
 
@@ -40,7 +40,14 @@ function loader(configs, config, cwd) {
     }
 
     // Try to load standard configs from home dir
-    var directoryArr = [process.env.USERPROFILE, process.env.HOMEPATH, process.env.HOME];
+    var USERPROFILE = process.env.USERPROFILE;
+    var HOMEPATH = process.env.HOMEPATH;
+    var HOME = process.env.HOME;
+
+    if (process.env.FAKE_HOME) {
+      USERPROFILE = HOMEPATH = HOME = process.env.FAKE_HOME;
+    }
+    var directoryArr = [USERPROFILE, HOMEPATH, HOME];
     for (var i = 0, dirLen = directoryArr.length; i < dirLen; i++) {
         if (!directoryArr[i]) {
             continue;
@@ -54,4 +61,4 @@ function loader(configs, config, cwd) {
             }
         }
     }
-} 
+}
