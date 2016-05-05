@@ -58,7 +58,7 @@
     "node-uuid": "1.4.7",
     "nodemon": "1.9.1",
     "nyc": "6.4.0",
-    "proxyquire": "^1.7.4",
+    "proxyquire": "^1.7.6",
     "rimraf": "2.5.2",
     "semantic-release": "^4.3.5",
     "semver": "5.1.0",
