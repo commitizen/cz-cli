@@ -57,7 +57,7 @@
     "mocha": "2.4.5",
     "node-uuid": "1.4.7",
     "nodemon": "1.9.1",
-    "nyc": "6.4.0",
+    "nyc": "6.4.4",
     "proxyquire": "^1.7.4",
     "rimraf": "2.5.2",
     "semantic-release": "^4.3.5",
