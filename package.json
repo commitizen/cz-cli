@@ -92,5 +92,9 @@
       "src/cli",
       "test"
     ]
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">= 0.12"
   }
 }
