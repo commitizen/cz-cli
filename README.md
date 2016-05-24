@@ -123,7 +123,7 @@ It is important to note that if you are running `git-cz` from a npm script (let'
 
 Note that the last two options **do not** require you to pass `--` before the args but the first **does**.
 
-### Commitizen for multi-repo proejcts
+### Commitizen for multi-repo projects
 
 As a project maintainer of many projects, you may want to standardize on a single commit message
 format for all of them. You can create your own node module which acts as front-end for commitizen.
