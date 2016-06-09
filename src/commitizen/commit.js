@@ -1,5 +1,5 @@
 import path from 'path';
-import ConfigDir from 'application-config-path';
+import configDir from 'application-config-path';
 import dedent from 'dedent';
 import {commit as gitCommit, log} from '../git';
 import * as cache from './cache';
@@ -23,7 +23,7 @@ function dispatchGitCommit(sh, repoPath, template, options, overrideOptions, don
   */
 function commit(sh, inquirer, repoPath, prompter, options, done) {
   
-  var cachePath = path.join(ConfigDir('commitizen'), 'commitizen.json');
+  var cachePath = path.join(configDir('commitizen'), 'commitizen.json');
   
   if(options.retryLastCommit) {
     
