@@ -112,7 +112,7 @@ function getPrompter(adapterPath) {
 
   // Load the adapter
   let adapter = require(resolvedAdapterPath);
-  
+
   if(adapter && adapter.prompter && isFunction(adapter.prompter)) {
      return adapter.prompter;
   } else {

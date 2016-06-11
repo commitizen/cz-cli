@@ -61,7 +61,7 @@ describe('commit', function() {
     
     // Quick setup the repos, adapter, and grab a simple prompter
     let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage);
-    // TEST 
+    // TEST
    
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
@@ -128,20 +128,20 @@ describe('commit', function() {
     // Don't trim or delete the spacing in this commit message!
     
     // Git on *nix retains spaces on lines with only spaces
-    // The blank line of this block should have 4 spaces. 
-    let nixCommitMessage = 
+    // The blank line of this block should have 4 spaces.
+    let nixCommitMessage =
     `sip sip sippin on jnkjnkjn
     
     some sizzurp`;
     
     // Git on win32 removes spaces from lines with only spaces
     // The blank line of this block should have no spaces
-    let windowsCommitMessage = 
+    let windowsCommitMessage =
     `sip sip sippin on jnkjnkjn
 
     some sizzurp`;
     
-    let dummyCommitMessage = (os.platform == 'win32') ? windowsCommitMessage : nixCommitMessage; 
+    let dummyCommitMessage = (os.platform == 'win32') ? windowsCommitMessage : nixCommitMessage;
     
     // Describe a repo and some files to add and commit
     let repoConfig = {
@@ -166,7 +166,7 @@ describe('commit', function() {
     
     // Quick setup the repos, adapter, and grab a simple prompter
     let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage);
-    // TEST 
+    // TEST
    
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
@@ -179,7 +179,7 @@ describe('commit', function() {
 
   });
 
-  it('should allow to override options passed to gulp-git', function(done) {
+  it('should allow to override git commit options', function(done) {
     
     this.timeout(config.maxTimeout); // this could take a while
     
@@ -215,7 +215,7 @@ describe('commit', function() {
     
     // Quick setup the repos, adapter, and grab a simple prompter
     let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage, options);
-    // TEST 
+    // TEST
    
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
@@ -234,13 +234,13 @@ describe('commit', function() {
 afterEach(function() {
   // All this should do is archive the tmp path to the artifacts
   clean.afterEach(sh, config.paths.tmp, config.preserve);
-}); 
+});
 
 after(function() {
-  // Once everything is done, the artifacts should be cleaned up based on 
+  // Once everything is done, the artifacts should be cleaned up based on
   // the preserve setting in the config
   clean.after(sh, config.paths.tmp, config.preserve);
-}); 
+});
 
 /**
   * This is just a helper for testing. NOTE that prompter
@@ -267,5 +267,5 @@ function quickPrompterSetup(sh, repoConfig, adapterConfig, commitMessage, option
   // NOTE: In the real world we would not be returning
   // this we would instead be just making the commented
   // out getPrompter() call to get user input (above).
-  return prompter; 
+  return prompter;
 }
