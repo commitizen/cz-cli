@@ -7,7 +7,8 @@ export {
   getParsedPackageJsonFromPath,
   isArray,
   isFunction,
-  isString
+  isString,
+  createIfNotExists
 }
 
 /**
@@ -79,4 +80,20 @@ function isString(str) {
   } else {
     return Object.prototype.toString.call(str) == '[object String]';
   }
+}
+
+/**
+ * Create a directory if it doesn't exist.
+ */
+function createIfNotExists(directory, callback) {  
+  fs.stat(directory, function(err, stats) {
+    //Check if error defined and the error code is "not exists"
+    if (err && err.errno === 34) {
+      //Create the directory, call the callback.
+      fs.mkdir(directory, callback);
+    } else {
+      //just in case there was a different error:
+      callback(err)
+    }
+  });
 }
