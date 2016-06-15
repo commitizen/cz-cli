@@ -53,7 +53,7 @@
     "babel-preset-stage-2": "6.5.0",
     "chai": "3.5.0",
     "codecov.io": "0.1.6",
-    "ghooks": "1.2.1",
+    "ghooks": "1.2.3",
     "mocha": "2.5.3",
     "node-uuid": "1.4.7",
     "nodemon": "1.9.1",
