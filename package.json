@@ -12,13 +12,13 @@
     "report-coverage": "nyc report --reporter=lcov | codecov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run test:watch",
-    "test": "nyc --require babel-core/register _mocha -- test/tests/index.js",
+    "test": "cross-env FAKE_HOME=test nyc --require babel-core/register _mocha -- test/tests/index.js",
     "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --",
     "test:windows": "node ./test/tools/trigger-appveyor-tests.js"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     },
     "ghooks": {
       "pre-commit": "npm run test && npm run check-coverage"
@@ -53,6 +53,7 @@
     "babel-preset-stage-2": "6.5.0",
     "chai": "3.5.0",
     "codecov.io": "0.1.6",
+    "cross-env": "^1.0.7",
     "ghooks": "1.2.1",
     "mocha": "2.5.3",
     "node-uuid": "1.4.7",
