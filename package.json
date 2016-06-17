@@ -56,7 +56,7 @@
     "ghooks": "1.2.4",
     "mocha": "2.5.3",
     "node-uuid": "1.4.7",
-    "nodemon": "1.9.1",
+    "nodemon": "1.9.2",
     "nyc": "6.6.1",
     "proxyquire": "^1.7.9",
     "rimraf": "2.5.2",
