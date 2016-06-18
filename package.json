@@ -8,7 +8,7 @@
     "commit": "node bin/git-cz",
     "build": "babel src --out-dir dist",
     "build:watch": "babel --watch src --out-dir dist",
-    "prepublish": "not-in-install && npm run build || echo ''",
+    "prepublish": "not-in-install && npm run build || true",
     "report-coverage": "nyc report --reporter=lcov | codecov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run test:watch",
