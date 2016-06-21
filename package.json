@@ -72,7 +72,7 @@
     "detect-indent": "4.0.0",
     "find-node-modules": "1.0.1",
     "find-root": "1.0.0",
-    "glob": "7.0.4",
+    "glob": "7.0.5",
     "gulp": "3.9.1",
     "gulp-git": "1.7.2",
     "home-or-tmp": "2.0.0",
