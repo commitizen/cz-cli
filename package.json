@@ -77,7 +77,7 @@
     "gulp-git": "1.7.2",
     "home-or-tmp": "2.0.0",
     "inquirer": "1.1.2",
-    "lodash": "4.11.1",
+    "lodash": "4.13.1",
     "minimist": "1.2.0",
     "shelljs": "0.5.3",
     "strip-json-comments": "2.0.1"
