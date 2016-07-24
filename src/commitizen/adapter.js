@@ -131,7 +131,7 @@ function resolveAdapterPath(inboundAdapterPath) {
   
   // Resolve from process.cwd() if inboundAdapterPath is a path
   let absoluteAdapterPath = isPath ?
-    path.resolve(process.cwd(), inboundAdapterPath) :
+    path.resolve(getNearestProjectRootDirectory(), inboundAdapterPath) :
     inboundAdapterPath;
   
   try {
