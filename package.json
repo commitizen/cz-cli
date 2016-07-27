@@ -74,7 +74,7 @@
     "find-root": "1.0.0",
     "glob": "7.0.5",
     "gulp": "3.9.1",
-    "gulp-git": "1.7.2",
+    "gulp-git": "1.9.0",
     "home-or-tmp": "2.0.0",
     "inquirer": "1.1.2",
     "lodash": "4.14.0",
