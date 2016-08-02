@@ -77,6 +77,7 @@
     "inquirer": "1.1.2",
     "lodash": "4.14.1",
     "minimist": "1.2.0",
+    "path-exists": "2.1.0",
     "shelljs": "0.5.3",
     "strip-json-comments": "2.0.1"
   },
