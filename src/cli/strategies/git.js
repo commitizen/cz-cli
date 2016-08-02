@@ -16,6 +16,7 @@ function git(rawGitArgs, environment) {
 
     child.on('error', function (e, code) {
       console.error(e);
+      throw e;
     });
   }
 }

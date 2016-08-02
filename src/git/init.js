@@ -5,5 +5,5 @@ export { init };
  */
 function init(sh, repoPath) {
   sh.cd(repoPath);
-  sh.exec('git init');    
+  sh.exec('git init');
 }

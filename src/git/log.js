@@ -1,4 +1,4 @@
-import git from 'gulp-git';
+import {exec} from 'child_process';
 
 export { log };
 
@@ -6,8 +6,13 @@ export { log };
  * Asynchronously gets the git log output
  */
 function log(repoPath, done) {
-  // Get a gulp stream based off the config
-  git.exec({cwd: repoPath, args: 'log', quiet: true}, function(err, stdout) {
+  exec('git log', {
+    maxBuffer: Infinity,
+    cwd: repoPath
+  }, function(error, stdout, stderr) {
+    if (error) {
+      done();
+    }
     done(stdout);
   });
 }
