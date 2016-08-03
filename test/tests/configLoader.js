@@ -1,8 +1,23 @@
+import path from 'path';
 import {expect} from 'chai';
-import {getNormalizedConfig} from '../../src/configLoader';
+import {getContent, getNormalizedConfig} from '../../src/configLoader';
+
+const fixturesPath = path.resolve(__dirname, '..', 'fixtures');
 
 describe('configLoader', function() {
   
+  it('errors appropriately for invalid json', function() {
+    expect(() => getContent('invalid-json.json', fixturesPath))
+      .to.throw(/parsing json at/i);
+    expect(() => getContent('invalid-json-rc', fixturesPath))
+      .to.throw(/parsing json at/i);
+  });
+
+  it('parses json files with comments', function() {
+    expect(getContent('valid-json-rc', fixturesPath))
+      .to.deep.equal({'some': 'json'});
+  });
+
   it('normalizes package.json configs', function() {
     
     let config = 'package.json';

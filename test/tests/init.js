@@ -35,7 +35,7 @@ describe('init', function() {
     // Install an adapter
     commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
 
-    // TEST 
+    // TEST
     
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
@@ -70,12 +70,12 @@ describe('init', function() {
     sh.cd(config.paths.endUserRepo);
     commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev:true });
     
-    // TEST 
-    sh.cd(config.paths.endUserRepo); 
+    // TEST
+    sh.cd(config.paths.endUserRepo);
     // Adding a second adapter
     expect(function() {
       commitizenInit(sh, config.paths.endUserRepo, 'cz-jira-smart-commit', { saveDev:true });
-    }).to.throw();
+    }).to.throw(/already configured/);
     
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
@@ -92,7 +92,7 @@ describe('init', function() {
     // SETUP
     
     // Add a first adapter
-    sh.cd(config.paths.endUserRepo); 
+    sh.cd(config.paths.endUserRepo);
     commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev:true });
     
     // TEST
@@ -115,7 +115,7 @@ describe('init', function() {
     // SETUP
     
     // Add a first adapter
-    sh.cd(config.paths.endUserRepo); 
+    sh.cd(config.paths.endUserRepo);
     commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
     
@@ -129,7 +129,7 @@ describe('init', function() {
     // // But you CAN NOT increment a range
     // expect(semver.inc(range, 'major')).to.equal(null);
     // TODO: We need to figure out how to check if the repo has save exact set
-    // in the config before we can re-enable this. The --save-exact setting 
+    // in the config before we can re-enable this. The --save-exact setting
     // in our package.json breaks this test
     
   });
@@ -141,7 +141,7 @@ describe('init', function() {
     // SETUP
     
     // Add a first adapter
-    sh.cd(config.paths.endUserRepo); 
+    sh.cd(config.paths.endUserRepo);
     commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', {saveExact: true});
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
     
@@ -161,10 +161,10 @@ describe('init', function() {
 afterEach(function() {
   // All this should do is archive the tmp path to the artifacts
   clean.afterEach(sh, config.paths.tmp, config.preserve);
-}); 
+});
 
 after(function() {
-  // Once everything is done, the artifacts should be cleaned up based on 
+  // Once everything is done, the artifacts should be cleaned up based on
   // the preserve setting in the config
   clean.after(sh, config.paths.tmp, config.preserve);
-}); 
+});
