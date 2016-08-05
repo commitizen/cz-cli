@@ -31,6 +31,7 @@ function commit(sh, repoPath, message, options, done) {
     stdio: options.quiet ? 'ignore' : 'inherit'
   }, function(error, stdout, stderror) {
     if (error) {
+      error.message = [error.message, stderror].filter(Boolean).join('\n');
       return done(error);
     }
     done();

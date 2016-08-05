@@ -1,4 +1,5 @@
 import path from 'path';
+
 import homeOrTmp from 'home-or-tmp';
 import dedent from 'dedent';
 import {commit as gitCommit, log} from '../git';
@@ -10,12 +11,10 @@ export default commit;
  * Takes all of the final inputs needed in order to make dispatch a git commit
  */
 function dispatchGitCommit(sh, repoPath, template, options, overrideOptions, done) {
-  
     // Commit the user input -- side effect that we'll test
-    gitCommit(sh, repoPath, template, { ...options, ...overrideOptions }, function() {
-      done(template);
+    gitCommit(sh, repoPath, template, { ...options, ...overrideOptions }, function(error) {
+      done(error, template);
     });
-    
 }
 
  /**
@@ -31,7 +30,7 @@ function commit(sh, inquirer, repoPath, prompter, options, done) {
     
     // We want to use the last commit instead of the current commit,
     // so lets override some options using the values from cache.
-    let { 
+    let {
       options: retryOptions,
       overrideOptions: retryOverrideOptions,
       template: retryTemplate
@@ -40,12 +39,23 @@ function commit(sh, inquirer, repoPath, prompter, options, done) {
     
   } else {
     // Get user input -- side effect that is hard to test
-    prompter(inquirer, function(template, overrideOptions) {
-    
+    prompter(inquirer, function(error, template, overrideOptions) {
+      // Allow adapters to error out
+      // (error: Error?, template: String, overrideOptions: Object)
+      if (!(error instanceof Error)) {
+        overrideOptions = template;
+        template = error;
+        error = null;
+      }
+
+      if (error) {
+        return done(error);
+      }
+
       // We don't want to add retries to the cache, only actual commands
       cache.setCacheValueSync(cachePath, repoPath, { template, options, overrideOptions });
       dispatchGitCommit(sh, repoPath, template, options, overrideOptions, done);
-    }); 
+    });
   }
    
 }
