@@ -62,15 +62,14 @@ function gitCz(rawGitArgs, environment, adapterConfig) {
     console.log(`cz-cli@${cliPackageJson.version}, ${adapterPackageJson.name}@${adapterPackageJson.version}\n`);
     commit(sh, inquirer, process.cwd(), prompter, {
       args: parsedGitCzArgs,
-      disableAppendPaths:true,
-      emitData:true,
-      quiet:false,
+      disableAppendPaths: true,
+      emitData: true,
+      quiet: false,
       retryLastCommit
     }, function(error) {
       if (error) {
         throw error;
       }
-      // console.log('commit happened');
     });
   });
 
