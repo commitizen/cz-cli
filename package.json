@@ -67,7 +67,7 @@
   },
   "dependencies": {
     "chalk": "1.1.3",
-    "cz-conventional-changelog": "1.1.6",
+    "cz-conventional-changelog": "1.2.0",
     "dedent": "0.6.0",
     "detect-indent": "4.0.0",
     "find-node-modules": "1.0.3",
