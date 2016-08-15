@@ -3,6 +3,7 @@ import fs from 'fs';
 import findNodeModules from 'find-node-modules';
 import _ from 'lodash';
 import detectIndent from 'detect-indent';
+import sh from 'shelljs';
 
 import {isFunction} from '../common/util';
 
@@ -30,7 +31,7 @@ export {
  * Must be passed an absolute path to the cli's root
  */
 function addPathToAdapterConfig(sh, cliPath, repoPath, adapterNpmName) {
-  
+
   let commitizenAdapterConfig = {
     config: {
       commitizen: {
@@ -38,7 +39,7 @@ function addPathToAdapterConfig(sh, cliPath, repoPath, adapterNpmName) {
       }
     }
   };
-  
+
   let packageJsonPath = path.join(getNearestProjectRootDirectory(), 'package.json');
   let packageJsonString = fs.readFileSync(packageJsonPath, 'utf-8');
   // tries to detect the indentation and falls back to a default if it can't
@@ -55,17 +56,17 @@ function addPathToAdapterConfig(sh, cliPath, repoPath, adapterNpmName) {
  * Generates an npm install command given a map of strings and a package name
  */
 function generateNpmInstallAdapterCommand(stringMappings, adapterNpmName) {
- 
+
   // Start with an initial npm install command
   let installAdapterCommand = `npm install ${adapterNpmName}`;
-  
+
   // Append the neccesary arguments to it based on user preferences
   for(let [key, value] of stringMappings.entries()) {
     if(value) {
       installAdapterCommand = installAdapterCommand + ' ' + value;
     }
   }
-  
+
   return installAdapterCommand;
 }
 
@@ -73,10 +74,10 @@ function generateNpmInstallAdapterCommand(stringMappings, adapterNpmName) {
  * Gets the nearest npm_modules directory
  */
 function getNearestNodeModulesDirectory(options) {
-  
+
   // Get the nearest node_modules directories to the current working directory
   let nodeModulesDirectories = findNodeModules(options);
-  
+
    // Make sure we find a node_modules folder
   if(nodeModulesDirectories && nodeModulesDirectories.length > 0) {
     return nodeModulesDirectories[0];
@@ -128,12 +129,12 @@ function resolveAdapterPath(inboundAdapterPath) {
   // Check if inboundAdapterPath is a path or node module name
   let parsed = path.parse(inboundAdapterPath);
   let isPath = parsed.dir.length > 0;
-  
-  // Resolve from process.cwd() if inboundAdapterPath is a path
+
+  // Resolve from the root of the git repo if inboundAdapterPath is a path
   let absoluteAdapterPath = isPath ?
-    path.resolve(getNearestProjectRootDirectory(), inboundAdapterPath) :
+    path.resolve(getGitRootPath(), inboundAdapterPath) :
     inboundAdapterPath;
-  
+
   try {
     // try to resolve the given path
     return require.resolve(absoluteAdapterPath);
@@ -141,4 +142,8 @@ function resolveAdapterPath(inboundAdapterPath) {
     error.message = "Could not resolve " + absoluteAdapterPath, ". " + error.message;
     throw error;
   }
+}
+
+function getGitRootPath() {
+  return sh.exec('git rev-parse --show-toplevel').output.trim();
 }
