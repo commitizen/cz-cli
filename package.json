@@ -46,7 +46,7 @@
   "author": "Jim Cummins <jimthedev@gmail.com> (https://github.com/jimthedev)",
   "license": "MIT",
   "devDependencies": {
-    "axios": "0.13.1",
+    "axios": "0.14.0",
     "babel-cli": "6.11.4",
     "babel-core": "6.14.0",
     "babel-preset-es2015": "6.13.1",
