@@ -74,7 +74,7 @@
     "find-root": "1.0.0",
     "glob": "7.0.5",
     "home-or-tmp": "2.0.0",
-    "inquirer": "1.1.2",
+    "inquirer": "1.1.3",
     "lodash": "4.15.0",
     "minimist": "1.2.0",
     "path-exists": "2.1.0",
