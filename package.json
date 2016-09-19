@@ -63,7 +63,7 @@
     "rimraf": "2.5.4",
     "semantic-release": "4.3.5",
     "semver": "5.3.0",
-    "sinon": "1.17.3"
+    "sinon": "1.17.6"
   },
   "dependencies": {
     "chalk": "1.1.3",
