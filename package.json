@@ -48,7 +48,7 @@
   "devDependencies": {
     "axios": "0.14.0",
     "babel-cli": "6.16.0",
-    "babel-core": "6.14.0",
+    "babel-core": "6.16.0",
     "babel-preset-es2015": "6.13.1",
     "babel-preset-stage-2": "6.5.0",
     "chai": "3.5.0",
