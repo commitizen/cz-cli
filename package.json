@@ -75,7 +75,7 @@
     "glob": "7.1.0",
     "home-or-tmp": "2.0.0",
     "inquirer": "1.2.1",
-    "lodash": "4.16.2",
+    "lodash": "4.16.3",
     "minimist": "1.2.0",
     "path-exists": "2.1.0",
     "shelljs": "0.5.3",
