@@ -78,7 +78,7 @@
     "lodash": "4.16.3",
     "minimist": "1.2.0",
     "path-exists": "2.1.0",
-    "shelljs": "0.5.3",
+    "shelljs": "0.7.2",
     "strip-json-comments": "2.0.1"
   },
   "babel": {
