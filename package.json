@@ -70,7 +70,7 @@
     "cz-conventional-changelog": "1.2.0",
     "dedent": "0.6.0",
     "detect-indent": "4.0.0",
-    "find-node-modules": "1.0.3",
+    "find-node-modules": "1.0.4",
     "find-root": "1.0.0",
     "glob": "7.1.1",
     "home-or-tmp": "2.0.0",
