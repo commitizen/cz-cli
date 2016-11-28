@@ -5,7 +5,7 @@ When you commit with Commitizen, you'll be prompted to fill out any required com
  [![codecov.io](https://img.shields.io/codecov/c/github/commitizen/cz-cli.svg?style=flat-square)](https://codecov.io/github/commitizen/cz-cli?branch=master) [![npm monthly downloads](https://img.shields.io/npm/dm/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![current version](https://img.shields.io/npm/v/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![bitHound Score](https://www.bithound.io/github/commitizen/cz-cli/badges/score.svg)](https://www.bithound.io/github/commitizen/cz-cli) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 #### Installing the command line tool
-Installation is as simple as running the following command (add sudo if on OSX/Linux):
+Installation is as simple as running the following command (if you see `EACCES` error, reading [fixing npm permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions) may help):
 
 ```
 npm install -g commitizen
