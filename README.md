@@ -181,6 +181,7 @@ We know that every project and build process has different requirements so we've
 - [cz-mapbox-changelog](https://www.npmjs.com/package/cz-mapbox-changelog)
 - [cz-customizable](https://github.com/leonardoanalista/cz-customizable)
 - [cz-conventional-changelog-lint](https://github.com/marionebl/cz-conventional-changelog-lint)
+- [vscode-commitizen](https://github.com/KnisterPeter/vscode-commitizen)
 
 To create an adapter, just fork one of these great adapters and modify it to suit your needs.  We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
 
