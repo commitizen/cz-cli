@@ -1,6 +1,5 @@
 import * as path from 'path';
-import fs from 'fs';
-import rimraf from 'rimraf';
+import fs from 'fs-extra';
 import uuid from 'node-uuid';
 
 export {
@@ -112,7 +111,7 @@ function isNormalNonZeroInteger(str) {
 function keep(sh, basePath, paths, n) {
    
   for (let i=paths.length; i>n; i--) {
-    rimraf.sync(path.resolve(basePath, paths[i-1]));
+    fs.removeSync(path.resolve(basePath, paths[i-1]));
   }
 }
 

@@ -60,7 +60,6 @@
     "nodemon": "1.11.0",
     "nyc": "6.6.1",
     "proxyquire": "1.7.10",
-    "rimraf": "2.5.4",
     "semantic-release": "4.3.5",
     "semver": "5.3.0",
     "sinon": "1.17.6"
