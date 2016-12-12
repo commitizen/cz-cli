@@ -1,4 +1,4 @@
-import {exec} from 'child_process';
+import { exec } from 'child_process';
 
 export { log };
 
@@ -11,6 +11,7 @@ function log(repoPath, done) {
     cwd: repoPath
   }, function(error, stdout, stderr) {
     if (error) {
+      throw new Error(error);
       done();
     }
     done(stdout);
