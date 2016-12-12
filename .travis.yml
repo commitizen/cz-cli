@@ -9,6 +9,9 @@ branches:
 notifications:
   email: false
 node_js:
+- '7'
+- '6'
+- '5'
 - '4'
 - '0.12'
 before_install:
@@ -16,6 +19,7 @@ before_install:
 - npm i -g npm@^2.0.0
 before_script:
 - npm prune
+- git version
 - curl -Lo travis_after_all.py https://git.io/vLSON
 script:
 - npm run test
