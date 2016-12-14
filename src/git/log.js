@@ -11,7 +11,7 @@ function log(repoPath, done) {
     cwd: repoPath
   }, function(error, stdout, stderr) {
     if (error) {
-      throw new Error(error);
+      throw error;
       done();
     }
     done(stdout);
