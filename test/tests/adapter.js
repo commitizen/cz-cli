@@ -60,7 +60,47 @@ describe('adapter', function() {
     expect(function() {adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
     expect(function() {adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
     expect(function() {adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
+    
+    // This line is only here to make sure that cz-conventional-changelog
+    // was installed for the purposes of running tests, it is not needed
+    // for testing any other adapters.
     expect(function() {adapter.resolveAdapterPath('cz-conventional-changelog'); }).not.to.throw(Error);
+  });
+  
+  it('resolves scoped adapter paths', function() {
+
+    this.timeout(config.maxTimeout); // this could take a while
+
+    // SETUP
+
+    // Describe a repo and some files to add and commit
+    let repoConfig = {
+      path: config.paths.endUserRepo,
+      files: {
+        dummyfile: {
+            contents: `duck-duck-goose`,
+            filename: `mydummyfile.txt`,
+        },
+        gitignore: {
+          contents: `node_modules/`,
+          filename: `.gitignore`
+        }
+      }
+    };
+
+    // Describe an adapter
+    let adapterConfig = {
+      path: path.join(repoConfig.path, '/node_modules/@commitizen/cz-conventional-changelog'),
+      npmName: '@commitizen/cz-conventional-changelog'
+    };
+
+    // Install an adapter
+    commitizenInit(sh, config.paths.endUserRepo, '@commitizen/cz-conventional-changelog');
+
+    // TEST
+    expect(function() {adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
+    expect(function() {adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
+    expect(function() {adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
   });
 
   it('gets adapter prompter functions', function(){
