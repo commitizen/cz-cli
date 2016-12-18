@@ -128,7 +128,7 @@ function getPrompter(adapterPath) {
 function resolveAdapterPath(inboundAdapterPath) {
   // Check if inboundAdapterPath is a path or node module name
   let parsed = path.parse(inboundAdapterPath);
-  let isPath = parsed.dir.length > 0;
+  let isPath = parsed.dir.length > 0 && parsed.dir.charAt(0) !== "@";
 
   // Resolve from the root of the git repo if inboundAdapterPath is a path
   let absoluteAdapterPath = isPath ?
