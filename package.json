@@ -10,6 +10,7 @@
     "build:watch": "babel --watch src --out-dir dist",
     "prepublish": "not-in-install && npm run build || true",
     "report-coverage": "nyc report --reporter=lcov | codecov",
+    "write-coverage": "nyc report --reporter=lcov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run test:watch",
     "test": "nyc --require babel-core/register _mocha -- test/tests/index.js",
