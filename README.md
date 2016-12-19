@@ -31,7 +31,7 @@ npm install -g commitizen
 Install your preferred `commitizen` adapter globally, for example [`cz-conventional-changelog`](https://www.npmjs.com/package/cz-conventional-changelog)
 
 ```
-npm i -g cz-conventional-changelog
+npm install -g cz-conventional-changelog
 ```
 
 Create a `.czrc` file in your `home` directory, with `path` referring to the preferred, globally installed, `commitizen` adapter
@@ -91,6 +91,27 @@ This just tells Commitizen which adapter we actually want our contributors to us
 *  absolute paths.
 
 Please note that in previous version of Commitizen we used czConfig. **czConfig has been deprecated** and you should migrate to the new format before Commitizen 3.0.0.
+
+#### Optional: Install and run Commitizen locally
+
+Installing and running Commitizen locally allows you to make sure that developers are running the exact same version of Commitizen on every machine.
+
+Install Commitizen with `npm install --save-dev commitizen`.
+
+Once you have Commitizen installed as a local dev dependency you can execute `./node_modules/.bin/commitizen` or `./node_modules/.bin/git-cz` in order to actually use the commands.
+
+You can then initialize the conventional changelog adapter using: `./node_modules/.bin/commitizen init cz-conventional-changelog --save-dev --save-exact`
+
+And you can then add some nice npm run scripts in your package.json pointing to the local version of commitizen:
+
+```json
+  ...
+  "scripts": {
+    "commit": "git-cz"
+  }
+```
+
+This will be more convenient for your users because then if they want to do a commit, all they need to do is run `npm run commit` and they will get the prompts needed to start a commit!
 
 #### Congratulations your repo is Commitizen-friendly. Time to flaunt it!
 
