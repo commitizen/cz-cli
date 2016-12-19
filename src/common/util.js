@@ -7,7 +7,8 @@ export {
   getParsedPackageJsonFromPath,
   isArray,
   isFunction,
-  isString
+  isString,
+  isInTest
 }
 
 /**
@@ -79,4 +80,8 @@ function isString(str) {
   } else {
     return Object.prototype.toString.call(str) == '[object String]';
   }
+}
+
+function isInTest() {
+  return typeof global.it === 'function';
 }
