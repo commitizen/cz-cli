@@ -139,7 +139,7 @@ function resolveAdapterPath(inboundAdapterPath) {
     // try to resolve the given path
     return require.resolve(absoluteAdapterPath);
   } catch (error) {
-    error.message = "Could not resolve " + absoluteAdapterPath, ". " + error.message;
+    error.message = "Could not resolve " + absoluteAdapterPath + ". " + error.message;
     throw error;
   }
 }
