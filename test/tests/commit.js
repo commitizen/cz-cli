@@ -1,3 +1,5 @@
+/* eslint-env mocha */
+
 import {expect} from 'chai';
 import fs from 'fs';
 import os from 'os';
@@ -141,7 +143,7 @@ describe('commit', function() {
 
     some sizzurp`;
 
-    let dummyCommitMessage = (os.platform == 'win32') ? windowsCommitMessage : nixCommitMessage;
+    let dummyCommitMessage = (os.platform === 'win32') ? windowsCommitMessage : nixCommitMessage;
 
     // Describe a repo and some files to add and commit
     let repoConfig = {

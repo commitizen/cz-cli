@@ -46,7 +46,7 @@ function addPathToAdapterConfig(sh, cliPath, repoPath, adapterNpmName) {
   let indent = detectIndent(packageJsonString).indent || '  ';
   let packageJsonContent = JSON.parse(packageJsonString);
   let newPackageJsonContent = '';
-  if(_.get(packageJsonContent,'config.commitizen.path') !== adapterNpmName) {
+  if(_.get(packageJsonContent, 'config.commitizen.path') !== adapterNpmName) {
     newPackageJsonContent = _.merge(packageJsonContent, commitizenAdapterConfig);
   }
   fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageJsonContent, null, indent) + '\n');
