@@ -21,9 +21,9 @@ test_script:
 on_finish:
   - ps: $root = Resolve-Path .\test\artifacts; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName to-publish }
 
-artifacts:
-  - path: test/artifacts/**/*
-    name: test artifacts
+#artifacts:
+#  - path: test/artifacts/**/*
+#    name: test artifacts
 
 # Don't actually build.
 build: off
