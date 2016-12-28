@@ -22,6 +22,8 @@ before_script:
 - npm prune
 - git version
 script:
+# Only run linting on Node.js 4.x and up
+- if [ $(node -pe 'process.version.match(/v(\d+)\./)[1] >= 4') == 'true' ]; then npm run lint; fi
 - npm run test
 - npm run check-coverage
 after_success:

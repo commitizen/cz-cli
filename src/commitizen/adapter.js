@@ -46,7 +46,7 @@ function addPathToAdapterConfig(sh, cliPath, repoPath, adapterNpmName) {
   let indent = detectIndent(packageJsonString).indent || '  ';
   let packageJsonContent = JSON.parse(packageJsonString);
   let newPackageJsonContent = '';
-  if(_.get(packageJsonContent,'config.commitizen.path') !== adapterNpmName) {
+  if(_.get(packageJsonContent, 'config.commitizen.path') !== adapterNpmName) {
     newPackageJsonContent = _.merge(packageJsonContent, commitizenAdapterConfig);
   }
   fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageJsonContent, null, indent) + '\n');
@@ -139,7 +139,7 @@ function resolveAdapterPath(inboundAdapterPath) {
     // try to resolve the given path
     return require.resolve(absoluteAdapterPath);
   } catch (error) {
-    error.message = "Could not resolve " + absoluteAdapterPath, ". " + error.message;
+    error.message = "Could not resolve " + absoluteAdapterPath + ". " + error.message;
     throw error;
   }
 }

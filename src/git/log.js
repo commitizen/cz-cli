@@ -12,7 +12,6 @@ function log(repoPath, done) {
   }, function(error, stdout, stderr) {
     if (error) {
       throw error;
-      done();
     }
     done(stdout);
   });

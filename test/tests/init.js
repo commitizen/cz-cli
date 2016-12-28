@@ -1,3 +1,5 @@
+/* eslint-env mocha */
+
 import {expect} from 'chai';
 import path from 'path';
 import fs from 'fs';
@@ -79,8 +81,8 @@ describe('init', function() {
 
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).not.to.have.deep.property('devDependencies','cz-jira-smart-commit');
-    expect(packageJson).to.have.deep.property('config.commitizen.path','./node_modules/cz-conventional-changelog');
+    expect(packageJson).not.to.have.deep.property('devDependencies', 'cz-jira-smart-commit');
+    expect(packageJson).to.have.deep.property('config.commitizen.path', './node_modules/cz-conventional-changelog');
     // TODO: Eventually may need to offer both path and package keys. package = npm package name
     // Path for local development
   });
