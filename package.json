@@ -81,7 +81,7 @@
     "fs-extra": "^1.0.0",
     "glob": "7.1.1",
     "inquirer": "1.2.2",
-    "lodash": "4.16.3",
+    "lodash": "4.17.0",
     "minimist": "1.2.0",
     "path-exists": "2.1.0",
     "shelljs": "0.5.3",
