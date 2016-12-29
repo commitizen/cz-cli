@@ -2,7 +2,7 @@
   "name": "commitizen",
   "version": "0.0.0-semantically-released",
   "description": "Git commit, but play nice with conventions.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "check-coverage": "nyc check-coverage --statements 80 --branches 80 --functions 80 --lines 80 ",
     "commit": "node bin/git-cz",
