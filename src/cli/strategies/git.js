@@ -1,4 +1,4 @@
-import child_process from 'child_process';
+import childProcess from 'child_process';
 
 export default git;
 
@@ -10,7 +10,7 @@ function git(rawGitArgs, environment) {
   } else {
     var vanillaGitArgs = ["commit"].concat(rawGitArgs);
 
-    var child = child_process.spawn('git', vanillaGitArgs, {
+    var child = childProcess.spawn('git', vanillaGitArgs, {
       stdio: 'inherit'
     });
 
