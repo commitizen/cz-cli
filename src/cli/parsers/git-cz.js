@@ -25,7 +25,7 @@ function parse(rawGitArgs) {
   for (let arg in args) {
 
     if (!args.hasOwnProperty(arg)) {
-      //The current property is not a direct property
+      // The current property is not a direct property
       continue;
     }
 
