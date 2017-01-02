@@ -4,14 +4,14 @@ export default getNormalizedConfig;
 // settings that we're interested in
 function getNormalizedConfig(config, content) {
   
-  if(content && (config == 'package.json')) {
+  if(content && (config === 'package.json')) {
 
   // PACKAGE.JSON
 
     // Use the npm config key, be good citizens
     if(content.config && content.config.commitizen) {
       return content.config.commitizen;
-    } else if(content.czConfig)  { // Old method, will be deprecated in 3.0.0
+    } else if(content.czConfig) { // Old method, will be deprecated in 3.0.0
     
       // Suppress during test
       if(typeof global.it !== 'function')

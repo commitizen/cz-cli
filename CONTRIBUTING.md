@@ -17,6 +17,21 @@ to release new versions automatically.
 
 *  Commits of type `fix` will trigger bugfix releases, think `0.0.1`
 *  Commits of type `feat` will trigger feature releases, think `0.1.0`
-*  Commits with `BREAKING CHANGE` in body or footer will trigger breakgin releases, think `1.0.0`
+*  Commits with `BREAKING CHANGE` in body or footer will trigger breaking releases, think `1.0.0`
 
-All other commit types wil trigger no new release.
+All other commit types will trigger no new release.
+
+## Gotchas
+
+### Atom removes lines with just spaces, breaking tests
+
+When using Atom, if you edit some of our tests, atom will remove the whitespace on some lines. Unfortunately we wanted this whitespace to
+able to test multiline commits and their difference across operating
+systems. Atom has decided to keep the stripping of whitespace as a
+default. Although we understand this decision, it has the unfortunate
+side effect of editing parts of the file that you might not have
+intended. We think this should be left up to more configurable tools
+like eslint.
+
+For now, in order to work around this, you can take the steps outlined
+[here](https://github.com/atom/whitespace/issues/10#issuecomment-85183781) to temporarily disable automatic whitespace removal in Atom.
