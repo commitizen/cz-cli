@@ -22,16 +22,16 @@ let config = {
   /**
    * This should be set to a large enough timeout that it is
    * longer than the longest test.
-   * 
+   *
    * Usage (in a given test):
    *   this.timeout = config.maxTimeout;
-   * 
+   *
    * Note that only certain long tests should use this
    * max timeout value (such as installing packages).
-   * 
+   *
    * Most tests should use the default timeout.
    */
-  maxTimeout: 120000,
+  maxTimeout: 240000,
   
   /**
    * Whether shelljs should suppress output, should be true
@@ -42,17 +42,17 @@ let config = {
   /**
    * Whether or not to keep the artifacts of the tests after
    * they've run.
-   * 
+   *
    * Possible options:
    *    Positive integer    Keeps latests (n) run artifacts
    *    false (default)     Keeps no artifacts
    *    true | 'all'        Keeps all artifacts, Warning. See below.
-   * 
+   *
    * Artifacts are stored in test/artifacts.
-   * 
-   * Each run of the test suite is given a unique id and each 
+   *
+   * Each run of the test suite is given a unique id and each
    * test is given a unique id.
-   * 
+   *
    * WARNING:
    * 'all' or true may be useful for debugging but you should have
    * the value set to false or a positive integer by default as the
