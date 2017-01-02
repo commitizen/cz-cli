@@ -80,7 +80,7 @@
     "find-root": "1.0.0",
     "fs-extra": "^1.0.0",
     "glob": "7.1.1",
-    "inquirer": "1.2.2",
+    "inquirer": "1.2.3",
     "lodash": "4.17.2",
     "minimist": "1.2.0",
     "path-exists": "2.1.0",
