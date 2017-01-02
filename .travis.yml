@@ -9,20 +9,24 @@ branches:
 notifications:
   email: false
 node_js:
+- '7'
+- '6'
+- '5'
 - '4'
 - '0.12'
 before_install:
 - git config --global user.name "TravisCI"
+- git config --global user.email "commitizen@gmail.com"
 - npm i -g npm@^2.0.0
 before_script:
 - npm prune
-- curl -Lo travis_after_all.py https://git.io/vLSON
+- git version
 script:
+# Only run linting on Node.js 4.x and up
+- if [ $(node -pe 'process.version.match(/v(\d+)\./)[1] >= 4') == 'true' ]; then npm run lint; fi
 - npm run test
 - npm run check-coverage
 after_success:
-- python travis_after_all.py
-- export $(cat .to_export_back)
 - npm run report-coverage
 - npm run test:windows
 - npm run semantic-release

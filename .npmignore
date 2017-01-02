@@ -2,3 +2,8 @@
 /src
 /test
 test/tools/trigger-appveyor-tests.sh
+/coverage
+/.travis.yml
+/appveyor.yml
+jsconfig.json
+travis_after_all.py

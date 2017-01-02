@@ -1,3 +1,5 @@
+/* eslint-env mocha */
+
 import path from 'path';
 import {expect} from 'chai';
 import {getContent, getNormalizedConfig} from '../../src/configLoader';
