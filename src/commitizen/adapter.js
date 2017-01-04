@@ -116,6 +116,8 @@ function getPrompter(adapterPath) {
 
   if(adapter && adapter.prompter && isFunction(adapter.prompter)) {
      return adapter.prompter;
+  } else if (adapter && adapter.default && adapter.default.prompter && isFunction(adapter.default.prompter)) {
+     return adapter.default.prompter;
   } else {
     throw "Could not find prompter method in the provided adapter module: " + adapterPath;
   }
