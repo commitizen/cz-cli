@@ -140,6 +140,42 @@ describe('adapter', function() {
     expect(function() {adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
     expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true;
   });
+  
+  it('gets adapter prompter functions for default export adapters', function(){
+
+    this.timeout(config.maxTimeout); // this could take a while
+
+    // SETUP
+
+    // Describe a repo and some files to add and commit
+    let repoConfig = {
+      path: config.paths.endUserRepo,
+      files: {
+        dummyfile: {
+            contents: `duck-duck-goose`,
+            filename: `mydummyfile.txt`,
+        },
+        gitignore: {
+          contents: `node_modules/`,
+          filename: `.gitignore`
+        }
+      }
+    };
+
+    // Describe an adapter
+    let adapterConfig = {
+      path: path.join(repoConfig.path, '/node_modules/cz-conventional-changelog-default-export'),
+      npmName: 'cz-conventional-changelog-default-export'
+    };
+
+    // Install an adapter
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog-default-export');
+
+    // TEST
+    expect(function() {adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
+    expect(function() {adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
+    expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true;
+  });
 
 });
 

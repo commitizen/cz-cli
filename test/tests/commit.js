@@ -27,6 +27,7 @@ before(function() {
 
 beforeEach(function() {
   this.timeout(config.maxTimeout); // this could take a while
+  /* istanbul ignore next */
   repo.createEndUser(sh, config.paths.endUserRepo);
 });
 
