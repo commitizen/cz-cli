@@ -11,11 +11,9 @@ function normalizeCommitMessage(message) {
     /(")/g :
     /(["|`])/g;
 
-  return dedent(message)
-    .replace(signs, '\\$1')
-    .split(/\r?\n/)
-    .map(line => `-m "${line}"`)
-    .join(' ');
+  const msg = ` -m "` + dedent(message)
+    .replace(signs, '\\$1') + `"`;
+  return msg;
 }
 
 /**
