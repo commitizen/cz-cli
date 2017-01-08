@@ -1,38 +1,37 @@
 import os from 'os';
-import {exec} from 'child_process';
+import {spawn} from 'child_process';
 
 import dedent from 'dedent';
 import {isString} from '../common/util';
 
 export { commit };
 
-function normalizeCommitMessage (message) {
-  const signs = os.platform() === 'win32' ?
-    /(")/g :
-    /(["|`])/g;
-
-  const msg = ` -m "` + dedent(message)
-    .replace(signs, '\\$1') + `"`;
-  return msg;
-}
-
 /**
  * Asynchronously git commit at a given path with a message
  */
 function commit (sh, repoPath, message, options, done) {
-  let args = options.args || '';
-  let commitMessage = normalizeCommitMessage(message);
-
-  exec(`git commit ${commitMessage} ${args}`, {
-    maxBuffer: Infinity,
+  let called = false;
+  let args = ['commit', '-m', dedent(message), ...(options.args || [])];
+  let child = spawn('git', args, {
     cwd: repoPath,
     stdio: options.quiet ? 'ignore' : 'inherit'
-  }, function (error, stdout, stderror) {
-    if (error) {
-      /* istanbul ignore next */
-      error.message = [error.message, stderror].filter(Boolean).join('\n');
-      return done(error);
+  });
+
+  child.on('error', function (err) {
+    if (called) return;
+    called = true;
+
+    done(err);
+  });
+
+  child.on('exit', function (code, signal) {
+    if (called) return;
+    called = true;
+
+    if (code) {
+      done(Object.assign(new Error(`git exited with error code ${code}`), { code, signal }));
+    } else {
+      done(null);
     }
-    done();
   });
 }
