@@ -90,7 +90,7 @@ This just tells Commitizen which adapter we actually want our contributors to us
 *  full relative file names
 *  absolute paths.
 
-Please note that in previous version of Commitizen we used czConfig. **czConfig has been deprecated** and you should migrate to the new format before Commitizen 3.0.0.
+Please note that in previous version of Commitizen we used czConfig. **czConfig has been removed** from Commitizen 3.0.0.
 
 #### Optional: Install and run Commitizen locally
 
