@@ -213,7 +213,7 @@ describe('commit', function () {
     };
 
     let options = {
-      args: `--author="${author}" --no-edit`
+      args: [`--author="${author}"`, '--no-edit']
     };
 
     // Quick setup the repos, adapter, and grab a simple prompter

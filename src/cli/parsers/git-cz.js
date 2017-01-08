@@ -6,65 +6,50 @@ export {
   parse
 };
 
+const reShortMessage = /^-([a-zA-Z]*)m(.*)$/;
+const reLongMessage = /^--message(=.*)?$/;
+
 /**
- * Takes args, parses with minimist and some ugly vudoo, returns output
- * 
- * TODO: Aww shit this is ugly. Rewrite with mega leet tests plz, kthnx.
+ * Strip message declaration from git arguments
  */
 function parse (rawGitArgs) {
+  let result = [];
+  let skipNext = false;
 
-  var args = minimist(rawGitArgs, { 
-    alias: {
-      m: 'message'
-    }
-  });
+  for (const arg of rawGitArgs) {
+    let match;
 
-  // Loop through all keys
-  var output = ' ';
-
-  for (let arg in args) {
-
-    if (!args.hasOwnProperty(arg)) {
-      // The current property is not a direct property
+    if (skipNext) {
+      skipNext = false;
       continue;
     }
 
-    var key = arg;
-    var value = args[arg];
+    match = reShortMessage.exec(arg);
 
-    /**
-     * Ugly, but this is recompiles an argument string without 
-     * any messages passed in.
-     */
-    if (key === '_' && value.length > 0) {
-      // Anything in the _ array of strings is a one off file
-      output += value.join(' ') + ' ';
-    } else if (key === 'verbose') {
-      output += '--verbose ';
-    } else if (key === 'message') {
-      /**
-       * We strip out message because we're already handling this
-       * in minimist's aliases.
-       */
-      continue;
-    } else if (isString(value)) {
-      output += '-' + key + ' ' + value + ' ';
-    } else if (isArray(value) && value.length > 0) {
-      output += '-' + key + ' ' + value.join(' -' + key) + ' ';
-    } else if (value === true || value === false) {
-      output += '-' + key + ' ';
-    } else {
-      /**
-       * Based on the current minimist object structure, we should
-       * never get here, but we'll protect against breaking changes.
-       */
+    if (match) {
+      if (match[1]) {
+        result.push(`-${match[1]}`);
+      }
+
+      if (!match[2]) {
+        skipNext = true;
+      }
+
       continue;
     }
+    
+    match = reLongMessage.exec(arg);
+    
+    if (match) {
+      if (!match[1]) {
+        skipNext = true;
+      }
+
+      continue;
+    }
+
+    result.push(arg);
   }
 
-  if (output.trim().length < 1) {
-    return '';
-  } else {
-    return output;
-  }
+  return result;
 }
