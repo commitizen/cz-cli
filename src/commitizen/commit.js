@@ -1,4 +1,5 @@
 import path from 'path';
+import {deprecate} from 'util';
 
 import pify from 'pify';
 import dedent from 'dedent';
@@ -11,7 +12,11 @@ export default commit;
 
 function askUser (inquirer, prompter) {
   return new Promise(function (resolve, reject) {
-    prompter(inquirer, function (arg0, arg1) {
+    const decoratedInquirer = {
+      prompt: deprecate(inquirer.prompt, 'Using the supplied copy of inquirer is depreacted, please depend on inquirer directly').bind(inquirer)
+    }
+
+    prompter(decoratedInquirer, function (arg0, arg1) {
       // Allow adapters to error out by providing an Error
       if (arg0 instanceof Error) {
         return reject(arg0);
