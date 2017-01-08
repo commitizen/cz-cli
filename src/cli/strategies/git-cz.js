@@ -60,16 +60,20 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
     let adapterPackageJson = getParsedPackageJsonFromPath(resolvedAdapterRootPath);
     let cliPackageJson = getParsedPackageJsonFromPath(environment.cliPath);
     console.log(`cz-cli@${cliPackageJson.version}, ${adapterPackageJson.name}@${adapterPackageJson.version}\n`);
-    commit(sh, inquirer, process.cwd(), prompter, {
+    commit(inquirer, process.cwd(), prompter, {
       args: parsedGitCzArgs,
       disableAppendPaths: true,
       emitData: true,
       quiet: false,
       retryLastCommit
-    }, function (error) {
-      if (error) {
-        throw error;
-      }
+    }).catch(function (error) {
+      //
+      // Throw in next tick to use Node.js built in error handling
+      //
+      // FIXME: This should probably be refactored so that this
+      //        function returns a rejected promise instead...
+      //
+      process.nextTick(function () { throw error; });
     });
   });
 

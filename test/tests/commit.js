@@ -33,7 +33,7 @@ beforeEach(function () {
 
 describe('commit', function () {
 
-  it('should commit simple messages', function (done) {
+  it('should commit simple messages', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -68,16 +68,12 @@ describe('commit', function () {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
-      log(repoConfig.path, function (logOutput) {
-        expect(logOutput).to.have.string(dummyCommitMessage);
-        done();
-      });
-    });
-
+    return commitizenCommit(inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true})
+      .then(() => log(repoConfig.path))
+      .then(logOutput => expect(logOutput).to.have.string(dummyCommitMessage))
   });
 
-  it('should commit message with quotes', function (done) {
+  it('should commit message with quotes', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -112,17 +108,13 @@ describe('commit', function () {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
-      log(repoConfig.path, function (logOutput) {
-        expect(logOutput).to.have.string(dummyCommitMessage);
-        done();
-      });
-    });
-
+    return commitizenCommit(inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true})
+      .then(() => log(repoConfig.path))
+      .then(logOutput => expect(logOutput).to.have.string(dummyCommitMessage))
   });
 
 
-  it('should commit multiline messages', function (done) {
+  it('should commit multiline messages', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -173,16 +165,12 @@ describe('commit', function () {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true}, function () {
-      log(repoConfig.path, function (logOutput) {
-        expect(logOutput).to.have.string(dummyCommitMessage);
-        done();
-      });
-    });
-
+    return commitizenCommit(inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true})
+      .then(() => log(repoConfig.path))
+      .then(logOutput => expect(logOutput).to.have.string(dummyCommitMessage))
   });
 
-  it('should allow to override git commit options', function (done) {
+  it('should allow to override git commit options', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -222,14 +210,12 @@ describe('commit', function () {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
-      log(repoConfig.path, function (logOutput) {
+    return commitizenCommit(inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true})
+      .then(() => log(repoConfig.path))
+      .then(logOutput => {
         expect(logOutput).to.have.string(author);
         expect(logOutput).to.have.string(dummyCommitMessage);
-        done();
       });
-    });
-
   });
 
 });
@@ -263,11 +249,11 @@ function quickPrompterSetup (sh, repoConfig, adapterConfig, commitMessage, optio
     commit(commitMessage, options);
   }
 
-  gitInit(sh, repoConfig.path);
+  gitInit(repoConfig.path);
 
   writeFilesToPath(repoConfig.files, repoConfig.path);
 
-  gitAdd(sh, repoConfig.path);
+  gitAdd(repoConfig.path);
 
   // NOTE: In the real world we would not be returning
   // this we would instead be just making the commented
