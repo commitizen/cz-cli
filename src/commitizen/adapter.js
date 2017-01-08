@@ -3,7 +3,7 @@ import fs from 'fs';
 import findNodeModules from 'find-node-modules';
 import _ from 'lodash';
 import detectIndent from 'detect-indent';
-import sh from 'shelljs';
+import execa from 'execa';
 
 import {isFunction} from '../common/util';
 
@@ -150,5 +150,5 @@ function resolveAdapterPath (inboundAdapterPath) {
 }
 
 function getGitRootPath () {
-  return sh.exec('git rev-parse --show-toplevel').stdout.trim();
+  return execa.sync('git', ['rev-parse', '--show-toplevel']).stdout.trim();
 }
