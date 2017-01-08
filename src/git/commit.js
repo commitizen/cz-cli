@@ -6,7 +6,7 @@ import {isString} from '../common/util';
 
 export { commit };
 
-function normalizeCommitMessage(message) {
+function normalizeCommitMessage (message) {
   const signs = os.platform() === 'win32' ?
     /(")/g :
     /(["|`])/g;
@@ -19,7 +19,7 @@ function normalizeCommitMessage(message) {
 /**
  * Asynchronously git commit at a given path with a message
  */
-function commit(sh, repoPath, message, options, done) {
+function commit (sh, repoPath, message, options, done) {
   let args = options.args || '';
   let commitMessage = normalizeCommitMessage(message);
 
@@ -27,7 +27,7 @@ function commit(sh, repoPath, message, options, done) {
     maxBuffer: Infinity,
     cwd: repoPath,
     stdio: options.quiet ? 'ignore' : 'inherit'
-  }, function(error, stdout, stderror) {
+  }, function (error, stdout, stderror) {
     if (error) {
       /* istanbul ignore next */
       error.message = [error.message, stderror].filter(Boolean).join('\n');

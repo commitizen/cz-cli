@@ -5,11 +5,11 @@ export {isClean};
 /**
  * Asynchrounously determines if the staging area is clean
  */
-function isClean(repoPath, done) {
+function isClean (repoPath, done) {
   exec('git diff --cached --name-only', {
     maxBuffer: Infinity,
     cwd: repoPath || process.cwd()
-  }, function(error, stdout) {
+  }, function (error, stdout) {
     if (error) {
       return done(error);
     }

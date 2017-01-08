@@ -15,7 +15,7 @@ export {
  * Executes the command passed to it at the path requested
  * using the instance of shelljs passed in
  */
-function executeShellCommand(sh, path, installCommand) {
+function executeShellCommand (sh, path, installCommand) {
   sh.cd(path);
   sh.exec(installCommand);
 }
@@ -23,7 +23,7 @@ function executeShellCommand(sh, path, installCommand) {
 /**
  * Gets the parsed contents of a json file
  */
-function getParsedJsonFromFile(filePath, fileName, encoding = 'utf8') {
+function getParsedJsonFromFile (filePath, fileName, encoding = 'utf8') {
   try {
     var packageJsonContents = fs.readFileSync(path.join(filePath, fileName), encoding);
     return JSON.parse(packageJsonContents);
@@ -35,15 +35,15 @@ function getParsedJsonFromFile(filePath, fileName, encoding = 'utf8') {
 /**
  * A helper method for getting the contents of package.json at a given path
  */
-function getParsedPackageJsonFromPath(path) {
+function getParsedPackageJsonFromPath (path) {
   return getParsedJsonFromFile(path, 'package.json');
 }
 
 /**
  * Test if the passed argument is an array
  */
-function isArray(arr) {
-    if(typeof arr === "undefined")
+function isArray (arr) {
+    if (typeof arr === "undefined")
   {
     return false;
   } else if (arr === null) {
@@ -56,8 +56,8 @@ function isArray(arr) {
 /**
  * Test if the passed argument is a function
  */
-function isFunction(functionToCheck) {
-  if(typeof functionToCheck === "undefined")
+function isFunction (functionToCheck) {
+  if (typeof functionToCheck === "undefined")
   {
     return false;
   } else if (functionToCheck === null) {
@@ -71,8 +71,8 @@ function isFunction(functionToCheck) {
 /**
  * Test if the passed argument is a string
  */
-function isString(str) {
-  if(typeof str === "undefined")
+function isString (str) {
+  if (typeof str === "undefined")
   {
     return false;
   } else if (str === null) {
@@ -82,6 +82,6 @@ function isString(str) {
   }
 }
 
-function isInTest() {
+function isInTest () {
   return typeof global.it === 'function';
 }

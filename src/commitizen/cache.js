@@ -10,14 +10,14 @@ export {
 /**
  * Reads the entire cache
  */
-function readCacheSync(cachePath) {
+function readCacheSync (cachePath) {
   return JSON.parse(fs.readFileSync(cachePath, 'utf8'));
 }
 
 /**
  * Sets a cache value and writes the file to disk
  */
-function setCacheValueSync(cachePath, key, value) {
+function setCacheValueSync (cachePath, key, value) {
   var originalCache;
   try {
     originalCache = readCacheSync(cachePath); 
@@ -34,11 +34,11 @@ function setCacheValueSync(cachePath, key, value) {
 /**
  * Gets a single value from the cache given a key
  */
-function getCacheValueSync(cachePath, repoPath) {
+function getCacheValueSync (cachePath, repoPath) {
   try {
     let cache = readCacheSync(cachePath);
     return cache[repoPath];
-  } catch(e) {
+  } catch (e) {
     return;
   }
 }

@@ -1,12 +1,9 @@
 {
   "extends": "standard",
   "rules": {
-    "block-spacing": 0,
     "brace-style": 0,
     "comma-dangle": 0,
     "indent": 0,
-    "key-spacing": 0,
-    "keyword-spacing": 0,
     "no-duplicate-imports": 0,
     "no-multiple-empty-lines": 0,
     "no-path-concat": 0,
@@ -16,10 +13,6 @@
     "operator-linebreak": 0,
     "padded-blocks": 0,
     "quotes": 0,
-    "semi-spacing": 0,
-    "semi": 0,
-    "space-before-blocks": 0,
-    "space-before-function-paren": 0,
-    "space-infix-ops": 0
+    "semi": 0
   }
 }

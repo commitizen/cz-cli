@@ -14,7 +14,7 @@ export default getConfigContent;
  * @param {String} configPath - full path to configuration file
  * @return {Object}
  */
-function readConfigContent(configPath) {
+function readConfigContent (configPath) {
     const parsedPath = path.parse(configPath)
     const isRcFile = parsedPath.ext !== '.js' && parsedPath.ext !== '.json';
     const jsonString = fs.readFileSync(configPath, 'utf-8');
@@ -46,7 +46,7 @@ function readConfigContent(configPath) {
  * @param {String} directory - directory path which will be joined with config argument
  * @return {Object}
  */
-function getConfigContent(configPath, baseDirectory) {
+function getConfigContent (configPath, baseDirectory) {
     if (!configPath) {
       return;
     }

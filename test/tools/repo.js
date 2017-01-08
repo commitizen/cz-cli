@@ -6,7 +6,7 @@ export {
 /**
  * Create an empty repo
  */
-function createEmpty(sh, path) {
+function createEmpty (sh, path) {
   sh.mkdir(path);
   sh.cd(path);
   sh.exec('npm init --force --yes'); 
@@ -15,6 +15,6 @@ function createEmpty(sh, path) {
 /**
  * Create a new repo to hold an end user app
  */
-function createEndUser(sh, path) {
+function createEndUser (sh, path) {
   createEmpty(sh, path);
 }

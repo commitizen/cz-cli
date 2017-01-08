@@ -16,19 +16,19 @@ import {init as commitizenInit, staging} from '../../src/commitizen';
 let { config, sh, repo, clean, util, files } = bootstrap();
 let { writeFilesToPath } = files;
 
-before(function() {
+before(function () {
   // Creates the temp path
   clean.before(sh, config.paths.tmp);
 });
 
-beforeEach(function() {
+beforeEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   repo.createEndUser(sh, config.paths.endUserRepo);
 });
 
-describe('staging', function() {
+describe('staging', function () {
 
-  it('should determine if a repo is clean', function(done) {
+  it('should determine if a repo is clean', function (done) {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -51,10 +51,10 @@ describe('staging', function() {
 
     gitInit(sh, repoConfig.path);
 
-    staging.isClean('./@this-actually-does-not-exist', function(stagingError) {
+    staging.isClean('./@this-actually-does-not-exist', function (stagingError) {
       expect(stagingError).to.be.an.instanceof(Error);
 
-      staging.isClean(repoConfig.path, function(stagingIsCleanError, stagingIsClean) {
+      staging.isClean(repoConfig.path, function (stagingIsCleanError, stagingIsClean) {
         expect(stagingIsCleanError).to.be.null;
         expect(stagingIsClean).to.be.true;
 
@@ -62,7 +62,7 @@ describe('staging', function() {
 
         gitAdd(sh, repoConfig.path);
 
-        staging.isClean(repoConfig.path, function(afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
+        staging.isClean(repoConfig.path, function (afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
           expect(afterWriteStagingIsCleanError).to.be.null;
           expect(afterWriteStagingIsClean).to.be.false;
           done();
@@ -74,13 +74,13 @@ describe('staging', function() {
 
 });
 
-afterEach(function() {
+afterEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // All this should do is archive the tmp path to the artifacts
   clean.afterEach(sh, config.paths.tmp, config.preserve);
 });
 
-after(function() {
+after(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // Once everything is done, the artifacts should be cleaned up based on
   // the preserve setting in the config

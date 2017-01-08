@@ -11,7 +11,7 @@ export {
  * 
  * TODO: Aww shit this is ugly. Rewrite with mega leet tests plz, kthnx.
  */
-function parse(rawGitArgs) {
+function parse (rawGitArgs) {
 
   var args = minimist(rawGitArgs, { 
     alias: {
@@ -49,7 +49,7 @@ function parse(rawGitArgs) {
       continue;
     } else if (isString(value)) {
       output += '-' + key + ' ' + value + ' ';
-    } else if (isArray(value) && value.length>0) {
+    } else if (isArray(value) && value.length > 0) {
       output += '-' + key + ' ' + value.join(' -' + key) + ' ';
     } else if (value === true || value === false) {
       output += '-' + key + ' ';
@@ -62,7 +62,7 @@ function parse(rawGitArgs) {
     }
   }
 
-  if(output.trim().length < 1) {
+  if (output.trim().length < 1) {
     return '';
   } else {
     return output;

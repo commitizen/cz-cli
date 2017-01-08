@@ -17,7 +17,7 @@ let { isClean } = staging;
 
 export default gitCz;
 
-function gitCz(rawGitArgs, environment, adapterConfig) {
+function gitCz (rawGitArgs, environment, adapterConfig) {
 
   // See if any override conditions exist.
   
@@ -25,12 +25,12 @@ function gitCz(rawGitArgs, environment, adapterConfig) {
   // commit strategy than git-cz. For example, in the case of --amend
   let parsedCommitizenArgs = commitizenParser.parse(rawGitArgs);
   
-  if(parsedCommitizenArgs.a) {
+  if (parsedCommitizenArgs.a) {
     // console.log('override -a in place');
     addPath(sh, process.cwd());
   }
   
-  if(parsedCommitizenArgs.amend) {
+  if (parsedCommitizenArgs.amend) {
     // console.log('override --amend in place');
     gitStrategy.default(rawGitArgs, environment);
     return;
@@ -47,12 +47,12 @@ function gitCz(rawGitArgs, environment, adapterConfig) {
   let resolvedAdapterRootPath = findRoot(resolvedAdapterConfigPath);
   let prompter = getPrompter(adapterConfig.path);
 
-  isClean(process.cwd(), function(error, stagingIsClean){
+  isClean(process.cwd(), function (error, stagingIsClean) {
     if (error) {
       throw error;
     }
 
-    if(stagingIsClean) {
+    if (stagingIsClean) {
       throw new Error('No files added to staging! Did you forget to run git add?');
     }
 
@@ -66,7 +66,7 @@ function gitCz(rawGitArgs, environment, adapterConfig) {
       emitData: true,
       quiet: false,
       retryLastCommit
-    }, function(error) {
+    }, function (error) {
       if (error) {
         throw error;
       }

@@ -13,7 +13,7 @@ export {
  * This is the main cli entry point.
  * environment may be used for debugging.
  */
-function bootstrap(environment = {}) {
+function bootstrap (environment = {}) {
   
   // Get cli args
   let rawGitArgs = process.argv.slice(2, process.argv.length);
@@ -29,7 +29,7 @@ function bootstrap(environment = {}) {
       console.log(`Attempting to initialize using the npm package ${adapterNpmName}`);
       try {
         init(sh, process.cwd(), adapterNpmName, parsedArgs);  
-      } catch(e) {
+      } catch (e) {
         console.error(`Error: ${e}`);
       }
     } else {

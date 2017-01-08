@@ -16,19 +16,19 @@ import {bootstrap} from '../tester';
 // Destructure some things based on the bootstrap process
 let {config, sh, repo, clean, util} = bootstrap();
 
-before(function() {
+before(function () {
   // Creates the temp path
   clean.before(sh, config.paths.tmp);
 });
 
-beforeEach(function() {
+beforeEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   repo.createEndUser(sh, config.paths.endUserRepo);
 });
 
-describe('init', function() {
+describe('init', function () {
 
-  it('installs an adapter with --save-dev', function() {
+  it('installs an adapter with --save-dev', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -45,14 +45,14 @@ describe('init', function() {
 
   });
 
-  it('installs an adapter with --save', function() {
+  it('installs an adapter with --save', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
     // SETUP
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', {save: true, saveDev:false});
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', {save: true, saveDev: false});
 
     // TEST
 
@@ -62,7 +62,7 @@ describe('init', function() {
 
   });
 
-  it('errors on previously installed adapter', function() {
+  it('errors on previously installed adapter', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -70,13 +70,13 @@ describe('init', function() {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev:true });
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev: true });
 
     // TEST
     sh.cd(config.paths.endUserRepo);
     // Adding a second adapter
-    expect(function() {
-      commitizenInit(sh, config.paths.endUserRepo, 'cz-jira-smart-commit', { saveDev:true });
+    expect(function () {
+      commitizenInit(sh, config.paths.endUserRepo, 'cz-jira-smart-commit', { saveDev: true });
     }).to.throw(/already configured/);
 
     // Check resulting json
@@ -87,7 +87,7 @@ describe('init', function() {
     // Path for local development
   });
 
-  it('succeeds if force is true', function() {
+  it('succeeds if force is true', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -95,13 +95,13 @@ describe('init', function() {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev:true });
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev: true });
 
     // TEST
 
     // Adding a second adapter
-    expect(function() {
-      commitizenInit(sh, config.paths.endUserRepo, 'cz-jira-smart-commit', { saveDev:true, force:true });
+    expect(function () {
+      commitizenInit(sh, config.paths.endUserRepo, 'cz-jira-smart-commit', { saveDev: true, force: true });
     }).to.not.throw();
 
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
@@ -110,7 +110,7 @@ describe('init', function() {
 
   });
 
-  it('installs an adapter without --save-exact', function() {
+  it('installs an adapter without --save-exact', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -136,7 +136,7 @@ describe('init', function() {
 
   });
 
-  it('installs an adapter with --save-exact', function() {
+  it('installs an adapter with --save-exact', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -160,13 +160,13 @@ describe('init', function() {
   });
 });
 
-afterEach(function() {
+afterEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // All this should do is archive the tmp path to the artifacts
   clean.afterEach(sh, config.paths.tmp, config.preserve);
 });
 
-after(function() {
+after(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // Once everything is done, the artifacts should be cleaned up based on
   // the preserve setting in the config

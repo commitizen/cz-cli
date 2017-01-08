@@ -16,19 +16,19 @@ import {bootstrap} from '../tester';
 // Destructure some things based on the bootstrap process
 let {config, sh, repo, clean, util} = bootstrap();
 
-before(function() {
+before(function () {
   // Creates the temp path
   clean.before(sh, config.paths.tmp);
 });
 
-beforeEach(function() {
+beforeEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   repo.createEndUser(sh, config.paths.endUserRepo);
 });
 
-describe('adapter', function() {
+describe('adapter', function () {
 
-  it('resolves adapter paths', function() {
+  it('resolves adapter paths', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -59,17 +59,17 @@ describe('adapter', function() {
     commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
 
     // TEST
-    expect(function() {adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function() {adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
-    expect(function() {adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
+    expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
+    expect(function () { adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
+    expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
     
     // This line is only here to make sure that cz-conventional-changelog
     // was installed for the purposes of running tests, it is not needed
     // for testing any other adapters.
-    expect(function() {adapter.resolveAdapterPath('cz-conventional-changelog'); }).not.to.throw(Error);
+    expect(function () { adapter.resolveAdapterPath('cz-conventional-changelog'); }).not.to.throw(Error);
   });
   
-  it('resolves scoped adapter paths', function() {
+  it('resolves scoped adapter paths', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -100,12 +100,12 @@ describe('adapter', function() {
     commitizenInit(sh, config.paths.endUserRepo, '@commitizen/cz-conventional-changelog');
 
     // TEST
-    expect(function() {adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function() {adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
-    expect(function() {adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
+    expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
+    expect(function () { adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
+    expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
   });
 
-  it('gets adapter prompter functions', function(){
+  it('gets adapter prompter functions', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -136,12 +136,12 @@ describe('adapter', function() {
     commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
 
     // TEST
-    expect(function() {adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function() {adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
+    expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
+    expect(function () { adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
     expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true;
   });
   
-  it('gets adapter prompter functions for default export adapters', function(){
+  it('gets adapter prompter functions for default export adapters', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -172,20 +172,20 @@ describe('adapter', function() {
     commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog-default-export');
 
     // TEST
-    expect(function() {adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function() {adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
+    expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
+    expect(function () { adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
     expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true;
   });
 
 });
 
-afterEach(function() {
+afterEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // All this should do is archive the tmp path to the artifacts
   clean.afterEach(sh, config.paths.tmp, config.preserve);
 });
 
-after(function() {
+after(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // Once everything is done, the artifacts should be cleaned up based on
   // the preserve setting in the config
