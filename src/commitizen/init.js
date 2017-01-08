@@ -40,7 +40,7 @@ const defaultInitOptions = {
 /**
  * Runs npm install for the adapter then modifies the config.commitizen as needed
  */
-function init(sh, repoPath, adapterNpmName, {
+function init (sh, repoPath, adapterNpmName, {
   save = false, 
   saveDev = true, 
   saveExact = false,
@@ -63,13 +63,13 @@ function init(sh, repoPath, adapterNpmName, {
   let installAdapterCommand = generateNpmInstallAdapterCommand(stringMappings, adapterNpmName);
 
   // Check for previously installed adapters
-  if(adapterConfig && adapterConfig.path && adapterConfig.path.length>0) {
+  if (adapterConfig && adapterConfig.path && adapterConfig.path.length > 0) {
     
     // console.log(`
     //   Previous adapter detected! 
     // `);
     
-    if(!force) { 
+    if (!force) { 
       
       // console.log(`
       //   Previous adapter detected! 
@@ -105,14 +105,14 @@ function init(sh, repoPath, adapterNpmName, {
  * Checks to make sure that the required arguments are passed
  * Throws an exception if any are not.
  */
-function checkRequiredArguments(sh, path, adapterNpmName) {
-  if(!sh) {
+function checkRequiredArguments (sh, path, adapterNpmName) {
+  if (!sh) {
     throw "You must pass an instance of shelljs when running init.";
   }
-  if(!path) {
+  if (!path) {
     throw "Path is required when running init.";
   }
-  if(!adapterNpmName) {
+  if (!adapterNpmName) {
     throw "The adapter's npm name is required when running init.";
   }
 }
@@ -121,9 +121,9 @@ function checkRequiredArguments(sh, path, adapterNpmName) {
  * CONFIG
  * Loads and returns the adapter config at key config.commitizen, if it exists
  */
-function loadAdapterConfig() {
+function loadAdapterConfig () {
   let config = configLoader.load();
-  if(config) {
+  if (config) {
     return config; 
   } else {
     return;

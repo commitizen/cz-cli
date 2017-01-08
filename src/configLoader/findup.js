@@ -5,7 +5,7 @@ export default findup;
 
 // Before, "findup-sync" package was used,
 // but it does not provide filter callback
-function findup(patterns, options, fn) {
+function findup (patterns, options, fn) {
     /* jshint -W083 */
 
     var lastpath;
@@ -16,7 +16,7 @@ function findup(patterns, options, fn) {
     options.cwd = path.resolve(options.cwd);
 
     do {
-        file = patterns.filter(function(pattern) {
+        file = patterns.filter(function (pattern) {
             var configPath = glob.sync(pattern, options)[0];
 
             if (configPath) {

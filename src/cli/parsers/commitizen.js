@@ -11,7 +11,7 @@ export {
  * 
  * TODO: Aww shit this is ugly. Rewrite with mega leet tests plz, kthnx.
  */
-function parse(rawGitArgs) {
+function parse (rawGitArgs) {
 
    var args = minimist(rawGitArgs, { 
      boolean: true

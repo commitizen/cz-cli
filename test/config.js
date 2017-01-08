@@ -4,7 +4,7 @@ import path from 'path';
  * Modify the testConfig to your liking
  */
 let config = {
-  paths : {
+  paths: {
     /**
      * Where to place the artifacts for the last test run.
      * These are cleared at the beginning of the next test

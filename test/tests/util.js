@@ -3,9 +3,9 @@
 import {expect} from 'chai';
 import {isArray, isFunction, isString} from '../../src/common/util';
 
-describe('common util', function() {
+describe('common util', function () {
   
-  it('isArray determines if array is passed', function() {
+  it('isArray determines if array is passed', function () {
     
     // Truthies
     expect(isArray([])).to.be.true;
@@ -19,7 +19,7 @@ describe('common util', function() {
     expect(isArray(undefined)).to.be.false;
     expect(isArray(null)).to.be.false;
     expect(isArray(49)).to.be.false;
-    expect(isArray(function(){})).to.be.false;
+    expect(isArray(function () {})).to.be.false;
     expect(isArray({})).to.be.false;
     expect(isArray("asdf")).to.be.false;
     expect(isArray(true)).to.be.false;
@@ -28,10 +28,10 @@ describe('common util', function() {
     
   });
   
-  it('isFunction determines if a function is passed', function() {
+  it('isFunction determines if a function is passed', function () {
 
     // Truthies
-    expect(isFunction(function(){})).to.be.true;
+    expect(isFunction(function () {})).to.be.true;
     // eslint-disable-next-line no-new-func
     expect(isFunction(new Function())).to.be.true;
 
@@ -48,7 +48,7 @@ describe('common util', function() {
     
   });
   
-  it('isString determines if string is passed', function() {
+  it('isString determines if string is passed', function () {
     
     // Truthies
     expect(isString('a single quoted string')).to.be.true;
@@ -62,7 +62,7 @@ describe('common util', function() {
     expect(isString(new String())).to.be.true;
 
     // Falsies
-    expect(isString(function(){})).to.be.false;
+    expect(isString(function () {})).to.be.false;
     expect(isString(undefined)).to.be.false;
     expect(isString(null)).to.be.false;
     expect(isString(49)).to.be.false;

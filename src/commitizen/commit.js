@@ -11,9 +11,9 @@ export default commit;
 /**
  * Takes all of the final inputs needed in order to make dispatch a git commit
  */
-function dispatchGitCommit(sh, repoPath, template, options, overrideOptions, done) {
+function dispatchGitCommit (sh, repoPath, template, options, overrideOptions, done) {
     // Commit the user input -- side effect that we'll test
-    gitCommit(sh, repoPath, template, { ...options, ...overrideOptions }, function(error) {
+    gitCommit(sh, repoPath, template, { ...options, ...overrideOptions }, function (error) {
       done(error, template);
     });
 }
@@ -21,16 +21,16 @@ function dispatchGitCommit(sh, repoPath, template, options, overrideOptions, don
  /**
   * Asynchronously commits files using commitizen
   */
-function commit(sh, inquirer, repoPath, prompter, options, done) {
+function commit (sh, inquirer, repoPath, prompter, options, done) {
   var cacheDirectory = cacheDir('commitizen');
   var cachePath = path.join(cacheDirectory, 'commitizen.json');
 
-  ensureDir(cacheDirectory, function(error) {
+  ensureDir(cacheDirectory, function (error) {
     if (error) {
       console.error("Couldn't create commitizen cache directory: ", error);
       // TODO: properly handle error?
     } else {
-      if(options.retryLastCommit) {
+      if (options.retryLastCommit) {
 
         console.log('Retrying last commit attempt.');
 
@@ -45,7 +45,7 @@ function commit(sh, inquirer, repoPath, prompter, options, done) {
 
       } else {
         // Get user input -- side effect that is hard to test
-        prompter(inquirer, function(error, template, overrideOptions) {
+        prompter(inquirer, function (error, template, overrideOptions) {
           // Allow adapters to error out
           // (error: Error?, template: String, overrideOptions: Object)
           if (!(error instanceof Error)) {

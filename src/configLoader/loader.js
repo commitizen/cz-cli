@@ -17,7 +17,7 @@ export default loader;
  * @param {String} [cwd = process.cwd()] - directory path which will be joined with config argument
  * @return {Object|undefined}
  */
-function loader(configs, config, cwd) {
+function loader (configs, config, cwd) {
     var content;
     var directory = cwd || process.cwd();
 
@@ -27,7 +27,7 @@ function loader(configs, config, cwd) {
     }
 
     content = getContent(
-        findup(configs, { nocase: true, cwd: directory }, function(configPath) {
+        findup(configs, { nocase: true, cwd: directory }, function (configPath) {
             if (path.basename(configPath) === 'package.json') {
                 // return !!this.getContent(configPath);
             }
@@ -40,7 +40,7 @@ function loader(configs, config, cwd) {
         return content;
     }
     /* istanbul ignore if */
-    if(!isInTest()) {
+    if (!isInTest()) {
       // Try to load standard configs from home dir
       var directoryArr = [process.env.USERPROFILE, process.env.HOMEPATH, process.env.HOME];
       for (var i = 0, dirLen = directoryArr.length; i < dirLen; i++) {

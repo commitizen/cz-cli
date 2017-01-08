@@ -12,13 +12,13 @@ export {
 let testSuiteRunId = uuid.v4();
 
 // At the beginning of a run purge .tmp
-function before(sh, tmpPath) {
+function before (sh, tmpPath) {
   cleanPath(sh, tmpPath);
   // clean(sh, tmpPath, 'all');
 }
 
-function afterEach(sh, tmpPath, preserve) {
-  if(preserve !== false) {
+function afterEach (sh, tmpPath, preserve) {
+  if (preserve !== false) {
     archive(sh, tmpPath, testSuiteRunId);  
   }
   cleanPath(sh, tmpPath);
@@ -26,7 +26,7 @@ function afterEach(sh, tmpPath, preserve) {
 
 // After should listen to the user via the config
 // Before should always purge .tmp irregardless of config
-function after(sh, tmpPath, preserve) {
+function after (sh, tmpPath, preserve) {
   clean(sh, tmpPath, preserve);
 }
 
@@ -36,10 +36,10 @@ function after(sh, tmpPath, preserve) {
  * 
  * Generally should be run in afterEach()
  */
-function archive(sh, tmpPath, testSuiteRunId) {
-  let destinationPath = path.resolve(tmpPath + '/../artifacts/'+ testSuiteRunId + '/' + uuid.v4());
+function archive (sh, tmpPath, testSuiteRunId) {
+  let destinationPath = path.resolve(tmpPath + '/../artifacts/' + testSuiteRunId + '/' + uuid.v4());
   sh.mkdir('-p', destinationPath);
-  sh.cp('-Rf', tmpPath+'/*', destinationPath);
+  sh.cp('-Rf', tmpPath + '/*', destinationPath);
 }
 
 /**
@@ -47,7 +47,7 @@ function archive(sh, tmpPath, testSuiteRunId) {
  * 
  * Generally called in after()
  */
-function clean(sh, tmpPath, preserve) {
+function clean (sh, tmpPath, preserve) {
   
   /** 
    * If preserve is a normal integer over 0 thats how many results to keep.
@@ -80,7 +80,7 @@ function clean(sh, tmpPath, preserve) {
     let artifactFolders = fs.readdirSync(artifactsBasePath);
     
     // Reverse chronologially sort the files
-    artifactFolders.sort(function(a, b) {
+    artifactFolders.sort(function (a, b) {
       return fs.statSync(path.resolve(artifactsBasePath, b)).mtime.getTime() - fs.statSync(path.resolve(artifactsBasePath, a)).mtime.getTime();
     });
     
@@ -92,9 +92,9 @@ function clean(sh, tmpPath, preserve) {
   cleanPath(sh, tmpPath);
 }
 
-function isNormalNonZeroInteger(str) {
+function isNormalNonZeroInteger (str) {
    
-  if(Number.isInteger(str) && str > 0) { // Check for integers above 0 
+  if (Number.isInteger(str) && str > 0) { // Check for integers above 0 
     return str;
   } else { // Check for strings that cast to ints that are above 0
     var n = ~~Number(str);
@@ -108,19 +108,19 @@ function isNormalNonZeroInteger(str) {
  *
  * n is the (1 indexed) count of files to keep.
  */
-function keep(sh, basePath, paths, n) {
+function keep (sh, basePath, paths, n) {
    
-  for (let i=paths.length; i>n; i--) {
-    fs.removeSync(path.resolve(basePath, paths[i-1]));
+  for (let i = paths.length; i > n; i--) {
+    fs.removeSync(path.resolve(basePath, paths[i - 1]));
   }
 }
 
-function getFileCount(path) {
+function getFileCount (path) {
   let files = fs.readdirSync(path);
   return files ? files.length : 0;
 } 
 
-function cleanPath(sh, tmpPath) {
+function cleanPath (sh, tmpPath) {
   sh.rm('-rf', tmpPath + '/*');
   sh.mkdir(tmpPath);
 }

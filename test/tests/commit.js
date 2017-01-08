@@ -20,20 +20,20 @@ let { config, sh, repo, clean, util, files } = bootstrap();
 let { writeFilesToPath } = files;
 let { getPrompter } = adapter;
 
-before(function() {
+before(function () {
   // Creates the temp path
   clean.before(sh, config.paths.tmp);
 });
 
-beforeEach(function() {
+beforeEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   /* istanbul ignore next */
   repo.createEndUser(sh, config.paths.endUserRepo);
 });
 
-describe('commit', function() {
+describe('commit', function () {
 
-  it('should commit simple messages', function(done) {
+  it('should commit simple messages', function (done) {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -68,8 +68,8 @@ describe('commit', function() {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths:true, quiet:true, emitData:true}, function() {
-      log(repoConfig.path, function(logOutput) {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
+      log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
       });
@@ -77,7 +77,7 @@ describe('commit', function() {
 
   });
 
-  it('should commit message with quotes', function(done) {
+  it('should commit message with quotes', function (done) {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -112,8 +112,8 @@ describe('commit', function() {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths:true, quiet:true, emitData:true}, function() {
-      log(repoConfig.path, function(logOutput) {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
+      log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
       });
@@ -122,7 +122,7 @@ describe('commit', function() {
   });
 
 
-  it('should commit multiline messages', function(done) {
+  it('should commit multiline messages', function (done) {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -173,8 +173,8 @@ describe('commit', function() {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths:true, quiet:true}, function() {
-      log(repoConfig.path, function(logOutput) {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true}, function () {
+      log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
       });
@@ -182,7 +182,7 @@ describe('commit', function() {
 
   });
 
-  it('should allow to override git commit options', function(done) {
+  it('should allow to override git commit options', function (done) {
 
     this.timeout(config.maxTimeout); // this could take a while
 
@@ -222,8 +222,8 @@ describe('commit', function() {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths:true, quiet:true, emitData:true}, function() {
-      log(repoConfig.path, function(logOutput) {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
+      log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(author);
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
@@ -234,13 +234,13 @@ describe('commit', function() {
 
 });
 
-afterEach(function() {
+afterEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // All this should do is archive the tmp path to the artifacts
   clean.afterEach(sh, config.paths.tmp, config.preserve);
 });
 
-after(function() {
+after(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // Once everything is done, the artifacts should be cleaned up based on
   // the preserve setting in the config
@@ -251,7 +251,7 @@ after(function() {
   * This is just a helper for testing. NOTE that prompter
   * prompter is overriden for testing purposes.
   */
-function quickPrompterSetup(sh, repoConfig, adapterConfig, commitMessage, options={}) {
+function quickPrompterSetup (sh, repoConfig, adapterConfig, commitMessage, options = {}) {
 
   commitizenInit(sh, repoConfig.path, adapterConfig.npmName);
 
@@ -259,7 +259,7 @@ function quickPrompterSetup(sh, repoConfig, adapterConfig, commitMessage, option
   // In our real code we'd use this here but since we're testing,
   // we'll provide prompter. We'd normally use:
   //   let prompter = getPrompter(adapterConfig.path);
-  let prompter = function(cz, commit) {
+  let prompter = function (cz, commit) {
     commit(commitMessage, options);
   }
 
