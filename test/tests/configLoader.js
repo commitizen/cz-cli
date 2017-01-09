@@ -30,12 +30,7 @@ describe('configLoader', function () {
       }
     };
     
-    let oldStyleConfig = {
-      czConfig: 'myOldConfig'
-    };
-    
     expect(getNormalizedConfig(config, npmStyleConfig)).to.equal('myNpmConfig');
-    expect(getNormalizedConfig(config, oldStyleConfig)).to.equal('myOldConfig');
     
   });
   
