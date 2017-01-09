@@ -8,6 +8,7 @@
     "commit": "node bin/git-cz",
     "build": "babel src --out-dir dist",
     "build:watch": "babel --watch src --out-dir dist",
+    "precommit": "npm run lint && npm run test && npm run check-coverage",
     "prepublish": "not-in-install && npm run build || true",
     "report-coverage": "nyc report --reporter=lcov | codecov",
     "write-coverage": "nyc report --reporter=lcov",
@@ -21,9 +22,6 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    },
-    "ghooks": {
-      "pre-commit": "npm run lint && npm run test && npm run check-coverage"
     }
   },
   "homepage": "https://github.com/commitizen/cz-cli",
@@ -60,7 +58,7 @@
     "eslint-config-standard": "6.2.1",
     "eslint-plugin-promise": "3.4.0",
     "eslint-plugin-standard": "2.0.1",
-    "ghooks": "1.3.2",
+    "husky": "0.12.0",
     "in-publish": "^2.0.0",
     "mocha": "3.1.2",
     "node-uuid": "1.4.7",
