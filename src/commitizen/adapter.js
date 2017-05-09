@@ -150,5 +150,5 @@ function resolveAdapterPath (inboundAdapterPath) {
 }
 
 function getGitRootPath () {
-  return sh.exec('git rev-parse --show-toplevel').stdout.trim();
+  return sh.exec('git rev-parse --show-toplevel', {silent: true}).stdout.trim();
 }
