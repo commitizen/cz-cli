@@ -113,6 +113,8 @@ And you can then add some nice npm run scripts in your package.json pointing to 
 
 This will be more convenient for your users because then if they want to do a commit, all they need to do is run `npm run commit` and they will get the prompts needed to start a commit!
 
+> **NOTE:** if you are using `precommit` hooks thanks to something like `husky`, you will need to name your script some thing other than "commit" (e.g. "cm": "git-cz"). The reason is because npm-scripts has a "feature" where it automatically runs scripts with the name *prexxx* where *xxx* is the name of another script. In essence, npm and husky will run "precommit" scripts twice if you name the script "commit," and the work around is to prevent the npm-triggered *precommit* script.
+
 #### Congratulations your repo is Commitizen-friendly. Time to flaunt it!
 
 Add the Commitizen-friendly badge to your README using the following markdown:
