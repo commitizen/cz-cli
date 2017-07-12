@@ -220,8 +220,8 @@ Both! Commitizen is not meant to be a replacement for git commit hooks. Rather, 
 We accomplish this by letting you define which adapter you'd like to use in your project. Adapters just allow multiple projects to share the same commit message conventions. A good example of an adapter is the cz-conventional-changelog adapter.
 
 ### Related projects
-* [conventional-changelog](https://git.io/v18sw) – Generate a changelog from conventional commit history
-* [commitlint](https://git.io/vQ1oK) - Lint commit messages
+* [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) – Generate a changelog from conventional commit history
+* [commitlint](https://github.com/marionebl/commitlint) - Lint commit messages
 
 ### Authors and Contributors
 @JimTheDev (Jim Cummins, author)
