@@ -1,4 +1,6 @@
 ### Commitizen for contributors
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/commitizen/cz-cli.svg)](https://greenkeeper.io/)
 When you commit with Commitizen, you'll be prompted to fill out any required commit fields at commit time. No more waiting until later for a git commit hook to run and reject your commit (though [that](https://github.com/kentcdodds/validate-commit-msg) can still be helpful). No more digging through [CONTRIBUTING.md](CONTRIBUTING.md) to find what the preferred format is. Get instant feedback on your commit message formatting and be prompted for required fields.
 
 [![travis.ci](https://img.shields.io/travis/commitizen/cz-cli.svg?style=flat-square)](https://travis-ci.org/commitizen/cz-cli) [![Build status](https://ci.appveyor.com/api/projects/status/ha5vb0p6iq8450un/branch/master?svg=true)](https://ci.appveyor.com/project/jimthedev/cz-cli/branch/master)
