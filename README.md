@@ -69,7 +69,10 @@ commitizen init cz-conventional-changelog --save-dev --save-exact
 
 Note that if you want to force install over the top of an old adapter, you can apply the `--force` argument. For more information on this, just run `commitizen help`.
 
-The above command does three things for you. It installs the cz-conventional-changelog adapter npm module, it saves it to the package.json's dependencies or devDependencies, and lastly it  add the `config.commitizen` key to the root of your **package.json** as shown here:
+The above command does three things for you. 
+1. Installs the cz-conventional-changelog adapter npm module
+2. Saves it to package.json's dependencies or devDependencies
+3. Adds the `config.commitizen` key to the root of your **package.json** as shown here:
 
 ```json
 ...
@@ -90,7 +93,7 @@ This just tells Commitizen which adapter we actually want our contributors to us
 *  full relative file names
 *  absolute paths.
 
-Please note that in previous version of Commitizen we used czConfig. **czConfig has been deprecated** and you should migrate to the new format before Commitizen 3.0.0.
+Please note that in the previous version of Commitizen we used czConfig. **czConfig has been deprecated** and you should migrate to the new format before Commitizen 3.0.0.
 
 #### Optional: Install and run Commitizen locally
 
