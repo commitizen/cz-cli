@@ -5,9 +5,9 @@
 You consider contributing changes to commitizen – thank you!
 Please consider these guidelines when filing a pull request:
 
-*  Commits follow the Angular commit convention
+*  Commits follow the [Angular commit convention](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines)
 *  JavaScript is written using ES2015 features
-*  4 spaces indentation
+*  2 spaces indentation
 *  Features and bug fixes should be covered by test cases
 
 ## Creating releases
