@@ -53,7 +53,7 @@ As a project maintainer, making your repo Commitizen friendly allows you to sele
 
 #### Making your repo Commitizen-friendly
 
-For this example, we'll be setting up our repo to use [AngularJS's commit message convention](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines) also known as [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
+For this example, we'll be setting up our repo to use [AngularJS's commit message convention](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) also known as [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
 
 First, install the Commitizen cli tools:
 
