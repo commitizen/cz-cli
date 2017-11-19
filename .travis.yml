@@ -9,11 +9,9 @@ branches:
 notifications:
   email: false
 node_js:
-- '7'
+- '8'
 - '6'
-- '5'
 - '4'
-- '0.12'
 before_install:
 - git config --global user.name "TravisCI"
 - git config --global user.email "commitizen@gmail.com"
@@ -24,6 +22,11 @@ before_script:
 script:
 # Only run linting on Node.js 4.x and up
 - if [ $(node -pe 'process.version.match(/v(\d+)\./)[1] >= 4') == 'true' ]; then npm run lint; fi
+- git remote set-branches origin $TRAVIS_BRANCH
+- git fetch --unshallow --quiet
+- git checkout master --quiet
+- git checkout - --quiet
+- $(npm bin)/commitlint --from="$TRAVIS_BRANCH" --to="$TRAVIS_COMMIT"
 - npm run test
 - npm run check-coverage
 after_success:
