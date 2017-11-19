@@ -9,11 +9,9 @@ branches:
 notifications:
   email: false
 node_js:
-- '7'
+- '8'
 - '6'
-- '5'
 - '4'
-- '0.12'
 before_install:
 - git config --global user.name "TravisCI"
 - git config --global user.email "commitizen@gmail.com"
