@@ -25,11 +25,6 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
   // commit strategy than git-cz. For example, in the case of --amend
   let parsedCommitizenArgs = commitizenParser.parse(rawGitArgs);
   
-  if (parsedCommitizenArgs.a) {
-    // console.log('override -a in place');
-    addPath(sh, process.cwd());
-  }
-  
   if (parsedCommitizenArgs.amend) {
     // console.log('override --amend in place');
     gitStrategy.default(rawGitArgs, environment);
