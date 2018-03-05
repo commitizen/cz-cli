@@ -12,7 +12,7 @@ import inquirer from 'inquirer';
 import {bootstrap} from '../tester';
 
 // Get our source files
-import {addPath as gitAdd, commit as gitCommit, init as gitInit, log} from '../../src/git';
+import {addPath as gitAdd, addFile as gitAddFile, commit as gitCommit, init as gitInit, log, whatChanged} from '../../src/git';
 import {commit as commitizenCommit, init as commitizenInit, adapter} from '../../src/commitizen';
 
 // Destructure some things for cleaner tests
@@ -232,6 +232,63 @@ describe('commit', function () {
 
   });
 
+  it('should respect original behavior of -a option', function (done) {
+
+    this.timeout(config.maxTimeout); // this could take a while
+
+    // SETUP
+
+    let dummyCommitMessage = `sip sip sippin on some sizzurp`;
+
+    // Describe a repo and some files to add and commit
+    let repoConfig = {
+      path: config.paths.endUserRepo,
+      files: {
+        dummyfile: {
+            contents: `duck-duck-goose`,
+            filename: `mydummyfile.txt`,
+        },
+        dummyfilecopy: {
+          contents: `duck-duck-goose`,
+          filename: `mydummyfilecopy.txt`,
+          add: false,
+        },
+        gitignore: {
+          contents: `node_modules/`,
+          filename: `.gitignore`
+        }
+      }
+    };
+
+    // Describe an adapter
+    let adapterConfig = {
+      path: path.join(repoConfig.path, '/node_modules/cz-jira-smart-commit'),
+      npmName: 'cz-jira-smart-commit'
+    };
+
+    let options = {
+      args: ['-a']
+    };
+
+    // Quick setup the repos, adapter, and grab a simple prompter
+    let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage, options);
+    // TEST
+
+    // Pass in inquirer but it never gets used since we've mocked out a different
+    // version of prompter.
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
+      log(repoConfig.path, function (logOutput) {
+        expect(logOutput).to.have.string(dummyCommitMessage);
+      });
+      whatChanged(repoConfig.path, function (whatChangedOutput) {
+        expect(whatChangedOutput).to.have.string('A\t' + repoConfig.files.dummyfile.filename);
+        expect(whatChangedOutput).to.not.have.string('A\t' + repoConfig.files.dummyfilecopy.filename);
+        done();
+      });
+    });
+
+  });
+
 });
 
 afterEach(function () {
@@ -267,7 +324,12 @@ function quickPrompterSetup (sh, repoConfig, adapterConfig, commitMessage, optio
 
   writeFilesToPath(repoConfig.files, repoConfig.path);
 
-  gitAdd(sh, repoConfig.path);
+  for (let key in repoConfig.files) {
+    let file = repoConfig.files[key];
+    if (file.add !== false) {
+      gitAddFile(sh, repoConfig.path, file.filename);
+    }
+  }
 
   // NOTE: In the real world we would not be returning
   // this we would instead be just making the commented
