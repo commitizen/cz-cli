@@ -1,7 +1,7 @@
 ### Commitizen for contributors
 When you commit with Commitizen, you'll be prompted to fill out any required commit fields at commit time. No more waiting until later for a git commit hook to run and reject your commit (though [that](https://github.com/kentcdodds/validate-commit-msg) can still be helpful). No more digging through [CONTRIBUTING.md](CONTRIBUTING.md) to find what the preferred format is. Get instant feedback on your commit message formatting and be prompted for required fields.
 
-[![travis.ci](https://img.shields.io/travis/commitizen/cz-cli.svg?style=flat-square)](https://travis-ci.org/commitizen/cz-cli) [![Build status](https://ci.appveyor.com/api/projects/status/ha5vb0p6iq8450un/branch/master?svg=true)](https://ci.appveyor.com/project/jimthedev/cz-cli/branch/master)
+[![Backers on Open Collective](https://opencollective.com/commitizen/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/commitizen/sponsors/badge.svg)](#sponsors) [![travis.ci](https://img.shields.io/travis/commitizen/cz-cli.svg?style=flat-square)](https://travis-ci.org/commitizen/cz-cli) [![Build status](https://ci.appveyor.com/api/projects/status/ha5vb0p6iq8450un/branch/master?svg=true)](https://ci.appveyor.com/project/jimthedev/cz-cli/branch/master)
  [![codecov.io](https://img.shields.io/codecov/c/github/commitizen/cz-cli.svg?style=flat-square)](https://codecov.io/github/commitizen/cz-cli?branch=master) [![npm monthly downloads](https://img.shields.io/npm/dm/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![current version](https://img.shields.io/npm/v/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![bitHound Score](https://www.bithound.io/github/commitizen/cz-cli/badges/score.svg)](https://www.bithound.io/github/commitizen/cz-cli) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 #### Installing the command line tool
@@ -234,3 +234,33 @@ We accomplish this by letting you define which adapter you'd like to use in your
 @Den-dp
 
 Special thanks to @stevelacy, whose [gulp-git](https://www.npmjs.com/package/gulp-git) project makes commitizen possible.
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="graphs/contributors"><img src="https://opencollective.com/commitizen/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/commitizen#backer)]
+
+<a href="https://opencollective.com/commitizen#backers" target="_blank"><img src="https://opencollective.com/commitizen/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/commitizen#sponsor)]
+
+<a href="https://opencollective.com/commitizen/sponsor/0/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/commitizen/sponsor/1/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/commitizen/sponsor/2/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/commitizen/sponsor/3/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/commitizen/sponsor/4/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/commitizen/sponsor/5/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/commitizen/sponsor/6/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/commitizen/sponsor/7/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/commitizen/sponsor/8/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/commitizen/sponsor/9/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/9/avatar.svg"></a>
+
+
