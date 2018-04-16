@@ -52,7 +52,7 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
       throw error;
     }
 
-    if (stagingIsClean) {
+    if (stagingIsClean && !parsedGitCzArgs.includes('--allow-empty')) {
       throw new Error('No files added to staging! Did you forget to run git add?');
     }
 
