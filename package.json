@@ -83,11 +83,13 @@
     "fs-extra": "^1.0.0",
     "glob": "7.1.1",
     "inquirer": "1.2.3",
+    "isutf8": "^2.0.2",
     "lodash": "4.17.5",
     "minimist": "1.2.0",
     "opencollective": "1.0.3",
     "path-exists": "2.1.0",
     "shelljs": "0.7.6",
+    "strip-bom": "^3.0.0",
     "strip-json-comments": "2.0.1"
   },
   "babel": {

@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import {sync as existsSync} from 'path-exists';
 import stripJSONComments from 'strip-json-comments';
+import isUTF8 from 'isutf8';
+import stripBom from 'strip-bom';
 
 import {getNormalizedConfig} from '../configLoader';
 
@@ -65,21 +67,21 @@ function getConfigContent (configPath, baseDirectory) {
 /**
  * Read proper content from config file.
  * If the chartset of the config file is not utf-8, one error will be thrown.
- * @param {String} configPath 
+ * @param {String} configPath
  * @return {String}
  */
 function readConfigFileContent (configPath) {
 
-    if (!configPath) {
-        throw new Error("config file path couldn't be empty");
-    }
+  if (typeof configPath !== 'string') {
+    throw new TypeError("configPath, expected a string, but got" + typeof configPath);
+  }
 
-    let rawBufContent = fs.readFileSync(configPath);
-    let tmpBuf = Buffer.from(rawBufContent.toString("UTF-8"), "UTF-8");
+  let rawBufContent = fs.readFileSync(configPath);
 
-    if (!rawBufContent.equals(tmpBuf)) {
-      throw new Error(["We expect the charset of the config file is UTF-8, but", configPath, "is not , please check"].join('\n'));
-    }
+  if (!isUTF8(rawBufContent)) {
+    throw new Error(`The config file at "${configPath}" contains invalid utf8`);
+  }
 
-    return rawBufContent.toString("UTF-8");
+
+  return stripBom(rawBufContent.toString("utf8"));
 }
