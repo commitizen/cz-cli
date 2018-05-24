@@ -65,7 +65,7 @@
     "in-publish": "^2.0.0",
     "mocha": "3.5.3",
     "node-uuid": "1.4.8",
-    "nodemon": "1.11.0",
+    "nodemon": "1.17.5",
     "nyc": "10.0.0",
     "proxyquire": "1.7.10",
     "semantic-release": "6.3.5",
