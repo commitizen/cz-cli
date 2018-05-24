@@ -76,7 +76,7 @@
     "cachedir": "^1.1.0",
     "chalk": "1.1.3",
     "cz-conventional-changelog": "2.0.0",
-    "dedent": "0.6.0",
+    "dedent": "0.7.0",
     "detect-indent": "4.0.0",
     "find-node-modules": "1.0.4",
     "find-root": "1.0.0",
