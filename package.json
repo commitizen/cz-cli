@@ -67,7 +67,7 @@
     "node-uuid": "1.4.8",
     "nodemon": "1.17.5",
     "nyc": "10.3.2",
-    "proxyquire": "1.7.10",
+    "proxyquire": "1.8.0",
     "semantic-release": "6.3.5",
     "semver": "5.3.0",
     "sinon": "1.17.6"
