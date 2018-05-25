@@ -57,7 +57,7 @@
     "chai": "3.5.0",
     "codecov.io": "0.1.6",
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
-    "eslint": "3.19.0",
+    "eslint": "4.19.1",
     "eslint-config-standard": "6.2.1",
     "eslint-plugin-promise": "3.7.0",
     "eslint-plugin-standard": "2.3.1",
