@@ -82,7 +82,7 @@
     "find-root": "1.1.0",
     "fs-extra": "^1.0.0",
     "glob": "7.1.2",
-    "inquirer": "1.2.3",
+    "inquirer": "5.2.0",
     "lodash": "4.17.10",
     "minimist": "1.2.0",
     "opencollective": "1.0.3",
