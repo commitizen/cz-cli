@@ -66,7 +66,7 @@
     "mocha": "3.5.3",
     "node-uuid": "1.4.8",
     "nodemon": "1.17.5",
-    "nyc": "10.3.2",
+    "nyc": "11.8.0",
     "proxyquire": "1.8.0",
     "semantic-release": "6.3.6",
     "semver": "5.5.0",
