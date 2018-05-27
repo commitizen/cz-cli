@@ -13,6 +13,8 @@ describe('configLoader', function () {
       .to.throw(/parsing json at/i);
     expect(() => getContent('invalid-json-rc', fixturesPath))
       .to.throw(/parsing json at/i);
+    expect(() => getContent('invalid-charset.json', fixturesPath))
+      .to.throw(/contains invalid charset/i);
   });
 
   it('parses json files with comments', function () {

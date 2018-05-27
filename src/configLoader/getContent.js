@@ -72,14 +72,10 @@ function getConfigContent (configPath, baseDirectory) {
  */
 function readConfigFileContent (configPath) {
 
-  if (typeof configPath !== 'string') {
-    throw new TypeError("configPath, expected a string, but got" + typeof configPath);
-  }
-
   let rawBufContent = fs.readFileSync(configPath);
 
   if (!isUTF8(rawBufContent)) {
-    throw new Error(`The config file at "${configPath}" contains invalid utf8`);
+    throw new Error(`The config file at "${configPath}" contains invalid charset, expect utf8`);
   }
 
 
