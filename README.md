@@ -14,6 +14,18 @@ npm install -g commitizen
 #### Using the command line tool
 Now, simply use `git cz` instead of `git commit` when committing.
 
+_Alternatively_, if you are using **Node 10+** you can use `npx` instead of installing globally:
+```
+npx git-cz
+```
+or as an npm script:
+```json
+  ...
+  "scripts": {
+    "commit": "npx git-cz"
+  }
+```
+
 When you're working in a Commitizen friendly repository, you'll be prompted to fill in any required fields and your commit messages will be formatted according to the standards defined by project maintainers.
 
 [![Add and commit with Commitizen](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)
@@ -101,7 +113,12 @@ Installing and running Commitizen locally allows you to make sure that developer
 
 Install Commitizen with `npm install --save-dev commitizen`.
 
-Once you have Commitizen installed as a local dev dependency you can execute `./node_modules/.bin/commitizen` or `./node_modules/.bin/git-cz` in order to actually use the commands.
+On **Node v10+** you can use `npx` to initialize the conventional changelog adapter:
+```
+npx commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+
+For **previous versions of Node (<= 9) ** you can execute `./node_modules/.bin/commitizen` or `./node_modules/.bin/git-cz` in order to actually use the commands.
 
 You can then initialize the conventional changelog adapter using: `./node_modules/.bin/commitizen init cz-conventional-changelog --save-dev --save-exact`
 
