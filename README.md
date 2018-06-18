@@ -14,7 +14,7 @@ npm install -g commitizen
 #### Using the command line tool
 Now, simply use `git cz` instead of `git commit` when committing.
 
-_Alternatively_, if you are using **Node 10+** you can use `npx` instead of installing globally:
+_Alternatively_, if you are using **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) instead of installing globally:
 ```
 npx git-cz
 ```
@@ -113,7 +113,7 @@ Installing and running Commitizen locally allows you to make sure that developer
 
 Install Commitizen with `npm install --save-dev commitizen`.
 
-On **Node v10+** you can use `npx` to initialize the conventional changelog adapter:
+On **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) to initialize the conventional changelog adapter:
 ```
 npx commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
