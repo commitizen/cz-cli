@@ -118,7 +118,7 @@ On **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-np
 npx commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
 
-For **previous versions of Node (<= 9) ** you can execute `./node_modules/.bin/commitizen` or `./node_modules/.bin/git-cz` in order to actually use the commands.
+For **previous versions of NPM (< 5.2) ** you can execute `./node_modules/.bin/commitizen` or `./node_modules/.bin/git-cz` in order to actually use the commands.
 
 You can then initialize the conventional changelog adapter using: `./node_modules/.bin/commitizen init cz-conventional-changelog --save-dev --save-exact`
 
