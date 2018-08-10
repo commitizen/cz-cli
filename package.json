@@ -14,7 +14,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run test:watch",
     "lint": "eslint --ignore-path .gitignore .",
-    "test": "nyc --require babel-core/register _mocha -- test/tests/index.js",
+    "test": "nyc --require ./test/helpers/register _mocha -- test/tests/index.js",
     "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --",
     "test:windows": "node ./test/tools/trigger-appveyor-tests.js",
     "postinstall": "opencollective postinstall"
