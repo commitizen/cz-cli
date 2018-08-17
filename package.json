@@ -69,7 +69,7 @@
     "nyc": "10.3.2",
     "proxyquire": "1.8.0",
     "semantic-release": "6.3.6",
-    "semver": "5.5.0",
+    "semver": "5.5.1",
     "sinon": "1.17.7"
   },
   "dependencies": {
