@@ -16,8 +16,7 @@
     "lint": "eslint --ignore-path .gitignore .",
     "test": "nyc --require babel-core/register _mocha -- test/tests/index.js",
     "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --",
-    "test:windows": "node ./test/tools/trigger-appveyor-tests.js",
-    "postinstall": "opencollective postinstall"
+    "test:windows": "node ./test/tools/trigger-appveyor-tests.js"
   },
   "config": {
     "commitizen": {
@@ -85,7 +84,6 @@
     "inquirer": "1.2.3",
     "lodash": "4.17.10",
     "minimist": "1.2.0",
-    "opencollective": "1.0.3",
     "path-exists": "2.1.0",
     "shelljs": "0.7.6",
     "strip-json-comments": "2.0.1"
