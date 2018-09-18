@@ -13,7 +13,7 @@ let {
 
 export default init;
 
-const CLI_PATH = path.normalize(__dirname + '/../../');
+const CLI_PATH = path.normalize(path.join(__dirname, '../../'));
 
 /**
  * CZ INIT

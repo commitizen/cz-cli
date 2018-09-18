@@ -5,7 +5,6 @@
     "comma-dangle": 0,
     "indent": 0,
     "no-multiple-empty-lines": 0,
-    "no-path-concat": 0,
     "operator-linebreak": 0,
     "padded-blocks": 0,
     "quotes": 0,
