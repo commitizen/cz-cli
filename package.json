@@ -69,7 +69,7 @@
     "proxyquire": "1.8.0",
     "semantic-release": "6.3.6",
     "semver": "5.5.0",
-    "sinon": "1.17.7"
+    "sinon": "6.3.4"
   },
   "dependencies": {
     "cachedir": "^1.1.0",
