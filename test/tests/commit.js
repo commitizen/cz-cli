@@ -118,7 +118,6 @@ describe('commit', function () {
 
   });
 
-
   it('should commit multiline messages', function (done) {
 
     this.timeout(config.maxTimeout); // this could take a while

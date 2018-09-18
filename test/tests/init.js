@@ -174,7 +174,6 @@ describe('init', function () {
 
   });
 
-
   it('installs an adapter with --yarn --dev', function () {
 
     this.timeout(config.maxTimeout); // this could take a while

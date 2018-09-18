@@ -3,7 +3,6 @@
 
 import { expect } from 'chai';
 
-
 // Bootstrap our tester
 import { bootstrap } from '../tester';
 
