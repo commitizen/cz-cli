@@ -1,10 +1,8 @@
 /* eslint-env mocha */
 
 import { expect } from 'chai';
-import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import _ from 'lodash';
 
 import inquirer from 'inquirer';
 
@@ -12,13 +10,12 @@ import inquirer from 'inquirer';
 import { bootstrap } from '../tester';
 
 // Get our source files
-import { addPath as gitAdd, addFile as gitAddFile, commit as gitCommit, init as gitInit, log, whatChanged } from '../../src/git';
-import { commit as commitizenCommit, init as commitizenInit, adapter } from '../../src/commitizen';
+import { addFile as gitAddFile, init as gitInit, log, whatChanged } from '../../src/git';
+import { commit as commitizenCommit, init as commitizenInit } from '../../src/commitizen';
 
 // Destructure some things for cleaner tests
-let { config, sh, repo, clean, util, files } = bootstrap();
+let { config, sh, repo, clean, files } = bootstrap();
 let { writeFilesToPath } = files;
-let { getPrompter } = adapter;
 
 before(function () {
   // Creates the temp path

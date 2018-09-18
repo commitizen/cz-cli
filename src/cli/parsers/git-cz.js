@@ -1,7 +1,3 @@
-import minimist from 'minimist';
-
-import { isString, isArray } from '../../common/util';
-
 export {
   parse
 };

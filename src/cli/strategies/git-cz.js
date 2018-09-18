@@ -1,12 +1,9 @@
-import fs from 'fs';
-import path from 'path';
 import sh from 'shelljs';
 import inquirer from 'inquirer';
 import findRoot from 'find-root';
 import { getParsedPackageJsonFromPath } from '../../common/util';
 import { gitCz as gitCzParser, commitizen as commitizenParser } from '../parsers';
 import { commit, staging, adapter } from '../../commitizen';
-import { addPath } from '../../git';
 import * as gitStrategy from './git';
 
 // destructure for shorter apis

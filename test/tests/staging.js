@@ -2,19 +2,17 @@
 /* eslint-disable no-unused-expressions */
 
 import { expect } from 'chai';
-import path from 'path';
-import fs from 'fs';
 
 
 // Bootstrap our tester
 import { bootstrap } from '../tester';
 
 // Get our source files
-import { init as gitInit, addPath as gitAdd, log } from '../../src/git';
-import { init as commitizenInit, staging } from '../../src/commitizen';
+import { init as gitInit, addPath as gitAdd } from '../../src/git';
+import { staging } from '../../src/commitizen';
 
 // Destructure some things for cleaner tests
-let { config, sh, repo, clean, util, files } = bootstrap();
+let { config, sh, repo, clean, files } = bootstrap();
 let { writeFilesToPath } = files;
 
 before(function () {

@@ -15,7 +15,7 @@ import { isFunction } from '../../src/common/util';
 import { bootstrap } from '../tester';
 
 // Destructure some things based on the bootstrap process
-let { config, sh, repo, clean, util } = bootstrap();
+let { config, sh, repo, clean } = bootstrap();
 
 before(function () {
   // Creates the temp path

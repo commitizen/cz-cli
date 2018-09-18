@@ -1,8 +1,6 @@
-import os from 'os';
 import { spawn } from 'child_process';
 
 import dedent from 'dedent';
-import { isString } from '../common/util';
 
 export { commit };
 

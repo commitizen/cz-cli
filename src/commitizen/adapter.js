@@ -63,7 +63,7 @@ function generateNpmInstallAdapterCommand (stringMappings, adapterNpmName) {
   let installAdapterCommand = `npm install ${adapterNpmName}`;
 
   // Append the neccesary arguments to it based on user preferences
-  for (let [key, value] of stringMappings.entries()) {
+  for (let value of stringMappings.values()) {
     if (value) {
       installAdapterCommand = installAdapterCommand + ' ' + value;
     }
@@ -81,7 +81,7 @@ function generateYarnAddAdapterCommand (stringMappings, adapterNpmName) {
   let installAdapterCommand = `yarn add ${adapterNpmName}`;
 
   // Append the necessary arguments to it based on user preferences
-  for (let [key, value] of stringMappings.entries()) {
+  for (let value of stringMappings.values()) {
     if (value) {
       installAdapterCommand = installAdapterCommand + ' ' + value;
     }

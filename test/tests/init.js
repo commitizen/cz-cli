@@ -1,8 +1,6 @@
 /* eslint-env mocha */
 
 import { expect } from 'chai';
-import path from 'path';
-import fs from 'fs';
 import semver from 'semver';
 
 // TODO: augment these tests with tests using the actual cli call

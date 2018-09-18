@@ -109,16 +109,11 @@ function isNormalNonZeroInteger (str) {
  * n is the (1 indexed) count of files to keep.
  */
 function keep (sh, basePath, paths, n) {
-   
+
   for (let i = paths.length; i > n; i--) {
     fs.removeSync(path.resolve(basePath, paths[i - 1]));
   }
 }
-
-function getFileCount (path) {
-  let files = fs.readdirSync(path);
-  return files ? files.length : 0;
-} 
 
 function cleanPath (sh, tmpPath) {
   sh.rm('-rf', tmpPath + '/*');

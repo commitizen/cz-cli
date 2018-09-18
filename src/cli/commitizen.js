@@ -1,4 +1,4 @@
-import { configLoader, init } from '../commitizen';
+import { init } from '../commitizen';
 import { commitizen as commitizenParser } from './parsers';
 import * as sh from 'shelljs';
 
