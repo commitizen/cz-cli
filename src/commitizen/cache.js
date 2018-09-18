@@ -39,6 +39,6 @@ function getCacheValueSync (cachePath, repoPath) {
     let cache = readCacheSync(cachePath);
     return cache[repoPath];
   } catch (e) {
-    return;
+    
   }
 }

@@ -1,6 +1,6 @@
 import path from 'path';
 import * as configLoader from './configLoader';
-import {executeShellCommand} from '../common/util';
+import { executeShellCommand } from '../common/util';
 import * as adapter from './adapter';
 
 let {
@@ -137,6 +137,6 @@ function loadAdapterConfig () {
   if (config) {
     return config;
   } else {
-    return;
+    
   }
 }

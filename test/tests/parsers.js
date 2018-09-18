@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 import { parse } from '../../src/cli/parsers/git-cz';
 
 describe('parsers', () => {

@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 import path from 'path';
 import fs from 'fs';
 import semver from 'semver';
@@ -8,13 +8,13 @@ import semver from 'semver';
 // TODO: augment these tests with tests using the actual cli call
 // For now we're just using the library, which is probably fine
 // in the short term
-import {init as commitizenInit} from '../../src/commitizen';
+import { init as commitizenInit } from '../../src/commitizen';
 
 // Bootstrap our tester
-import {bootstrap} from '../tester';
+import { bootstrap } from '../tester';
 
 // Destructure some things based on the bootstrap process
-let {config, sh, repo, clean, util} = bootstrap();
+let { config, sh, repo, clean, util } = bootstrap();
 
 before(function () {
   // Creates the temp path
@@ -52,7 +52,7 @@ describe('init', function () {
     // SETUP
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', {save: true, saveDev: false});
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { save: true, saveDev: false });
 
     // TEST
 
@@ -144,7 +144,7 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', {saveExact: true});
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveExact: true });
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
 
     // TEST

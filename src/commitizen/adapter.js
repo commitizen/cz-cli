@@ -5,7 +5,7 @@ import _ from 'lodash';
 import detectIndent from 'detect-indent';
 import sh from 'shelljs';
 
-import {isFunction} from '../common/util';
+import { isFunction } from '../common/util';
 
 export {
   addPathToAdapterConfig,
@@ -180,5 +180,5 @@ function resolveAdapterPath (inboundAdapterPath) {
 }
 
 function getGitRootPath () {
-  return sh.exec('git rev-parse --show-toplevel', {silent: true}).stdout.trim();
+  return sh.exec('git rev-parse --show-toplevel', { silent: true }).stdout.trim();
 }

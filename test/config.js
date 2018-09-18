@@ -62,4 +62,4 @@ let config = {
   preserve: 1
 };
 
-export {config};
+export { config };

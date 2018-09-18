@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import {sync as existsSync} from 'path-exists';
+import { sync as existsSync } from 'path-exists';
 import stripJSONComments from 'strip-json-comments';
 
-import {getNormalizedConfig} from '../configLoader';
+import { getNormalizedConfig } from '../configLoader';
 
 export default getConfigContent;
 

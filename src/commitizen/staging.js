@@ -1,6 +1,6 @@
-import {exec} from 'child_process';
+import { exec } from 'child_process';
 
-export {isClean};
+export { isClean };
 
 /**
  * Asynchrounously determines if the staging area is clean

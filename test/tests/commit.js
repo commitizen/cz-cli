@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
@@ -9,11 +9,11 @@ import _ from 'lodash';
 import inquirer from 'inquirer';
 
 // Bootstrap our tester
-import {bootstrap} from '../tester';
+import { bootstrap } from '../tester';
 
 // Get our source files
-import {addPath as gitAdd, addFile as gitAddFile, commit as gitCommit, init as gitInit, log, whatChanged} from '../../src/git';
-import {commit as commitizenCommit, init as commitizenInit, adapter} from '../../src/commitizen';
+import { addPath as gitAdd, addFile as gitAddFile, commit as gitCommit, init as gitInit, log, whatChanged } from '../../src/git';
+import { commit as commitizenCommit, init as commitizenInit, adapter } from '../../src/commitizen';
 
 // Destructure some things for cleaner tests
 let { config, sh, repo, clean, util, files } = bootstrap();
@@ -68,7 +68,7 @@ describe('commit', function () {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
@@ -112,7 +112,7 @@ describe('commit', function () {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
@@ -173,7 +173,7 @@ describe('commit', function () {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true}, function () {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
@@ -222,7 +222,7 @@ describe('commit', function () {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(author);
         expect(logOutput).to.have.string(dummyCommitMessage);
@@ -276,7 +276,7 @@ describe('commit', function () {
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, {disableAppendPaths: true, quiet: true, emitData: true}, function () {
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
       });

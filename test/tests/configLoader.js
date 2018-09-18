@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 
 import path from 'path';
-import {expect} from 'chai';
-import {getContent, getNormalizedConfig} from '../../src/configLoader';
+import { expect } from 'chai';
+import { getContent, getNormalizedConfig } from '../../src/configLoader';
 
 const fixturesPath = path.resolve(__dirname, '..', 'fixtures');
 
@@ -17,7 +17,7 @@ describe('configLoader', function () {
 
   it('parses json files with comments', function () {
     expect(getContent('valid-json-rc', fixturesPath))
-      .to.deep.equal({'some': 'json'});
+      .to.deep.equal({ 'some': 'json' });
   });
 
   it('normalizes package.json configs', function () {
@@ -47,7 +47,7 @@ describe('configLoader', function () {
       path: './path/to/adapter'
     };
     
-    expect(getNormalizedConfig(config, czJsonStyleConfig)).to.deep.equal({path: './path/to/adapter'});
+    expect(getNormalizedConfig(config, czJsonStyleConfig)).to.deep.equal({ path: './path/to/adapter' });
     
   });
   
@@ -59,7 +59,7 @@ describe('configLoader', function () {
       path: './path/to/adapter'
     };
     
-    expect(getNormalizedConfig(config, czrcStyleConfig)).to.deep.equal({path: './path/to/adapter'});
+    expect(getNormalizedConfig(config, czrcStyleConfig)).to.deep.equal({ path: './path/to/adapter' });
     
   });
  

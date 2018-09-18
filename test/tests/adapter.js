@@ -1,20 +1,21 @@
 /* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 import path from 'path';
 
 // TODO: augment these tests with tests using the actual cli call
 // For now we're just using the library, which is probably fine
 // in the short term
-import {adapter, init as commitizenInit} from '../../src/commitizen';
+import { adapter, init as commitizenInit } from '../../src/commitizen';
 
-import {isFunction} from '../../src/common/util';
+import { isFunction } from '../../src/common/util';
 
 // Bootstrap our tester
-import {bootstrap} from '../tester';
+import { bootstrap } from '../tester';
 
 // Destructure some things based on the bootstrap process
-let {config, sh, repo, clean, util} = bootstrap();
+let { config, sh, repo, clean, util } = bootstrap();
 
 before(function () {
   // Creates the temp path
@@ -62,13 +63,13 @@ describe('adapter', function () {
     expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
     expect(function () { adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
     expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
-    
+
     // This line is only here to make sure that cz-conventional-changelog
     // was installed for the purposes of running tests, it is not needed
     // for testing any other adapters.
     expect(function () { adapter.resolveAdapterPath('cz-conventional-changelog'); }).not.to.throw(Error);
   });
-  
+
   it('resolves scoped adapter paths', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
@@ -140,7 +141,7 @@ describe('adapter', function () {
     expect(function () { adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
     expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true;
   });
-  
+
   it('gets adapter prompter functions for default export adapters', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
