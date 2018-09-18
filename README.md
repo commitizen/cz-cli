@@ -79,9 +79,15 @@ Next, initialize your project to use the cz-conventional-changelog adapter by ty
 commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
 
+Or if you are using Yarn:
+
+```
+commitizen init cz-conventional-changelog --yarn --dev --exact
+```
+
 Note that if you want to force install over the top of an old adapter, you can apply the `--force` argument. For more information on this, just run `commitizen help`.
 
-The above command does three things for you. 
+The above command does three things for you.
 1. Installs the cz-conventional-changelog adapter npm module
 2. Saves it to package.json's dependencies or devDependencies
 3. Adds the `config.commitizen` key to the root of your **package.json** as shown here:
