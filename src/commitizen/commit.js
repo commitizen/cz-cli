@@ -64,5 +64,5 @@ function commit (sh, inquirer, repoPath, prompter, options, done) {
       }
     }
   });
-   
+
 }

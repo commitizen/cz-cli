@@ -137,6 +137,6 @@ function loadAdapterConfig () {
   if (config) {
     return config;
   } else {
-    
+
   }
 }

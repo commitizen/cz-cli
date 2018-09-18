@@ -11,14 +11,14 @@ let config = {
      * run.
      */
     tmp: path.join(__dirname, '/.tmp'),
-    
+
     /**
      * Where to temporarily store the artifacts for the end
      * user repo.
      */
     endUserRepo: path.join(__dirname, '/.tmp/enduser-app')
   },
-  
+
   /**
    * This should be set to a large enough timeout that it is
    * longer than the longest test.
@@ -32,13 +32,13 @@ let config = {
    * Most tests should use the default timeout.
    */
   maxTimeout: 240000,
-  
+
   /**
    * Whether shelljs should suppress output, should be true
    * unless debugging.
    */
   silent: true,
-  
+
   /**
    * Whether or not to keep the artifacts of the tests after
    * they've run.

@@ -20,7 +20,7 @@ function readCacheSync (cachePath) {
 function setCacheValueSync (cachePath, key, value) {
   var originalCache;
   try {
-    originalCache = readCacheSync(cachePath); 
+    originalCache = readCacheSync(cachePath);
   } catch (e) {
     originalCache = {};
   }
@@ -39,6 +39,6 @@ function getCacheValueSync (cachePath, repoPath) {
     let cache = readCacheSync(cachePath);
     return cache[repoPath];
   } catch (e) {
-    
+
   }
 }

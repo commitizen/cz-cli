@@ -125,23 +125,12 @@ describe('commit', function () {
 
     // SETUP
 
-    // Don't trim or delete the spacing in this commit message!
-
     // Git on *nix retains spaces on lines with only spaces
-    // The blank line of this block should have 4 spaces.
-    let nixCommitMessage =
-    `sip sip sippin on jnkjnkjn
-    
-    some sizzurp`;
-
     // Git on win32 removes spaces from lines with only spaces
-    // The blank line of this block should have no spaces
-    let windowsCommitMessage =
+    let dummyCommitMessage =
     `sip sip sippin on jnkjnkjn
-
+${(os.platform === 'win32') ? '' : '    '}
     some sizzurp`;
-
-    let dummyCommitMessage = (os.platform === 'win32') ? windowsCommitMessage : nixCommitMessage;
 
     // Describe a repo and some files to add and commit
     let repoConfig = {

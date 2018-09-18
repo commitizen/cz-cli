@@ -10,10 +10,10 @@ import _ from 'lodash';
 let patchedConfig = _.cloneDeep(userConfig);
 
 function bootstrap () {
-  
+
   // Patch any shelljs specific config settings
   sh.config.silent = patchedConfig.silent || true;
-  
+
   // Return the patched config and shelljs instance
   return {
     config: patchedConfig,

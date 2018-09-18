@@ -45,9 +45,9 @@ function die () {
 }
 
 function ensureEnvironmentVariableIsSet (envName) {
-  if (!process.env[envName]) 
+  if (!process.env[envName])
   {
     console.error('ERROR: The environment variable ' + envName + ' was not set and is required to run windows tests.');
-    process.exit(1); 
+    process.exit(1);
   }
 }

@@ -33,9 +33,9 @@ function parse (rawGitArgs) {
 
       continue;
     }
-    
+
     match = reLongMessage.exec(arg);
-    
+
     if (match) {
       if (!match[1]) {
         skipNext = true;
