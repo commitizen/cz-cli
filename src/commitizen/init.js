@@ -74,41 +74,15 @@ function init (sh, repoPath, adapterNpmName, {
   let installAdapterCommand = yarn ? generateYarnAddAdapterCommand(stringMappings, adapterNpmName) : generateNpmInstallAdapterCommand(stringMappings, adapterNpmName);
 
   // Check for previously installed adapters
-  if (adapterConfig && adapterConfig.path && adapterConfig.path.length > 0) {
+  if (adapterConfig && adapterConfig.path && adapterConfig.path.length > 0 && !force) {
+    throw new Error('A previous adapter is already configured. Use --force to override');
+  }
 
-    // console.log(`
-    //   Previous adapter detected!
-    // `);
-
-    if (!force) {
-
-      // console.log(`
-      //   Previous adapter detected!
-      // `);
-
-      throw new Error('A previous adapter is already configured. Use --force to override');
-    } else { // Override it
-      try {
-        executeShellCommand(sh, repoPath, installAdapterCommand);
-        addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-  } else {
-
-    // console.log(`
-    //   No previous adapter was detected
-    // `);
-
-    try {
-
-      executeShellCommand(sh, repoPath, installAdapterCommand);
-      addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
-    } catch (e) {
-      console.error(e);
-    }
+  try {
+    executeShellCommand(sh, repoPath, installAdapterCommand);
+    addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
+  } catch (e) {
+    console.error(e);
   }
 }
 
