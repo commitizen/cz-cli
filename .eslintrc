@@ -7,7 +7,6 @@
     "no-duplicate-imports": 0,
     "no-multiple-empty-lines": 0,
     "no-path-concat": 0,
-    "no-throw-literal": 0,
     "no-trailing-spaces": 0,
     "no-unused-vars": 0,
     "operator-linebreak": 0,

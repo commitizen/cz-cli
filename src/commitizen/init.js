@@ -86,7 +86,7 @@ function init (sh, repoPath, adapterNpmName, {
       //   Previous adapter detected!
       // `);
 
-      throw 'A previous adapter is already configured. Use --force to override';
+      throw new Error('A previous adapter is already configured. Use --force to override');
     } else { // Override it
       try {
         executeShellCommand(sh, repoPath, installAdapterCommand);
@@ -118,13 +118,13 @@ function init (sh, repoPath, adapterNpmName, {
  */
 function checkRequiredArguments (sh, path, adapterNpmName) {
   if (!sh) {
-    throw "You must pass an instance of shelljs when running init.";
+    throw new Error("You must pass an instance of shelljs when running init.");
   }
   if (!path) {
-    throw "Path is required when running init.";
+    throw new Error("Path is required when running init.");
   }
   if (!adapterNpmName) {
-    throw "The adapter's npm name is required when running init.";
+    throw new Error("The adapter's npm name is required when running init.");
   }
 }
 
