@@ -1,0 +1,16 @@
+  # File: jobs/build.yml
+
+parameters:
+  name: ''
+  pool: ''
+  sign: false
+
+jobs:
+- job: ${{ parameters.name }}
+  pool: ${{ parameters.pool }}
+  steps:
+  - script: npm install
+  - script: npm run build
+  - script: npm test
+  - ${{ if eq(parameters.sign, 'true') }}:
+    - script: sign
