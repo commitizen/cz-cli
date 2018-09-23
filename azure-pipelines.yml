@@ -3,16 +3,22 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-pool:
-  vmImage: 'Ubuntu 16.04'
+jobs:
+- template: jobs/build.yml  # Template reference
+  parameters:
+    name: macOS
+    pool:
+      vmImage: 'macOS-10.13'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '8.x'
-  displayName: 'Install Node.js'
+- template: jobs/build.yml  # Template reference
+  parameters:
+    name: Linux
+    pool:
+      vmImage: 'Ubuntu-16.04'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- template: jobs/build.yml  # Template reference
+  parameters:
+    name: Windows
+    pool:
+      vmImage: 'vs2017-win2016'
+    sign: true  # Extra step on Windows only
