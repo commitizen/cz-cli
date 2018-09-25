@@ -11,7 +11,6 @@ jobs:
   steps:
   - script: git config --global user.email "example@example.com"
   - script: git config --global user.name "Example Git User"
-  - script: npm install -g yarn
   - script: npm install
   - script: npm run build
   - script: npm test
