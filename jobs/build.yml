@@ -14,5 +14,3 @@ jobs:
   - script: npm install
   - script: npm run build
   - script: npm test
-  - ${{ if eq(parameters.sign, 'true') }}:
-    - script: sign
