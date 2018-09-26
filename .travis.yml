@@ -1,15 +1,12 @@
 sudo: false
 language: node_js
 branches:
-  except:
-  - /^v\d+\.\d+\.\d+$/
+  only:
+  - master
 notifications:
   email: false
 node_js:
 - '10'
-- '9'
-- '8'
-- '6'
 before_install:
 - git config --global user.name "TravisCI"
 - git config --global user.email "commitizen@gmail.com"
@@ -21,9 +18,7 @@ script:
 - npm run check-coverage
 after_success:
 - npm run report-coverage
-- npm run test:windows
-- npm install -g travis-deploy-once
-- travis-deploy-once "npm run semantic-release"
+- npm run semantic-release
 env:
   global:
     - AV_ACCOUNTNAME: jimthedev
