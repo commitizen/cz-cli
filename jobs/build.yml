@@ -14,3 +14,8 @@ jobs:
   - script: npm install
   - script: npm run build
   - script: npm test
+  - task: PublishBuildArtifacts@1
+    displayName: Publish packages
+    condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
