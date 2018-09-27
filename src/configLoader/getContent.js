@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { sync as existsSync } from 'path-exists';
+
 import stripJSONComments from 'strip-json-comments';
 
 import { getNormalizedConfig } from '../configLoader';
@@ -54,7 +54,7 @@ function getConfigContent (configPath, baseDirectory) {
     const resolvedPath = path.resolve(baseDirectory, configPath);
     const configBasename = path.basename(resolvedPath);
 
-    if (!existsSync(resolvedPath)) {
+    if (!fs.existsSync(resolvedPath)) {
       return getNormalizedConfig(resolvedPath);
     }
 

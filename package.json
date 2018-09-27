@@ -84,7 +84,6 @@
     "inquirer": "1.2.3",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
-    "path-exists": "^3.0.0",
     "shelljs": "0.8.2",
     "strip-json-comments": "2.0.1"
   },
