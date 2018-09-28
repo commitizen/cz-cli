@@ -84,7 +84,7 @@
     "inquirer": "1.2.3",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
-    "shelljs": "0.8.2",
+    "shelljs": "0.7.6",
     "strip-json-comments": "2.0.1"
   },
   "babel": {
