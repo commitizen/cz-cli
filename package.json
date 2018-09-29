@@ -48,11 +48,11 @@
   "author": "Jim Cummins <jimthedev@gmail.com> (https://github.com/jimthedev)",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "7.1.2",
+    "@babel/core": "7.1.2",
+    "@babel/preset-env": "7.1.0",
+    "@babel/register": "7.0.0",
     "axios": "0.18.0",
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.3",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-stage-2": "6.24.1",
     "chai": "3.5.0",
     "codecov.io": "0.1.6",
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
@@ -90,8 +90,14 @@
   },
   "babel": {
     "presets": [
-      "es2015",
-      "stage-2"
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "6"
+          }
+        }
+      ]
     ]
   },
   "nyc": {
@@ -102,7 +108,7 @@
   },
   "engineStrict": true,
   "engines": {
-    "node": ">= 0.12"
+    "node": ">= 6"
   },
   "collective": {
     "type": "opencollective",

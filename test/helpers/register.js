@@ -1,4 +1,4 @@
-require('babel-core/register')({
+require('@babel/register')({
   ignore: [
     /node_modules/,
     /yarn/
