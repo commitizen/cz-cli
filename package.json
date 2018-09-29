@@ -54,6 +54,7 @@
     "@babel/register": "7.0.0",
     "axios": "0.18.0",
     "chai": "4.2.0",
+    "codecov": "3.1.0",
     "codecov.io": "0.1.6",
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
     "eslint": "3.19.0",
