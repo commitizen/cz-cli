@@ -1,7 +1,7 @@
 import path from 'path';
 
-import {findup, getContent} from '../configLoader';
-import {isInTest} from '../common/util.js';
+import { findup, getContent } from '../configLoader';
+import { isInTest } from '../common/util.js';
 
 export default loader;
 

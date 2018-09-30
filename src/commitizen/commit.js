@@ -1,9 +1,8 @@
 import path from 'path';
 
-import dedent from 'dedent';
 import cacheDir from 'cachedir';
-import {ensureDir} from 'fs-extra';
-import {commit as gitCommit, log} from '../git';
+import { ensureDir } from 'fs-extra';
+import { commit as gitCommit } from '../git';
 import * as cache from './cache';
 
 export default commit;
@@ -65,5 +64,5 @@ function commit (sh, inquirer, repoPath, prompter, options, done) {
       }
     }
   });
-   
+
 }

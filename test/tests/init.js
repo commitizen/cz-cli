@@ -1,20 +1,18 @@
 /* eslint-env mocha */
 
-import {expect} from 'chai';
-import path from 'path';
-import fs from 'fs';
+import { expect } from 'chai';
 import semver from 'semver';
 
 // TODO: augment these tests with tests using the actual cli call
 // For now we're just using the library, which is probably fine
 // in the short term
-import {init as commitizenInit} from '../../src/commitizen';
+import { init as commitizenInit } from '../../src/commitizen';
 
 // Bootstrap our tester
-import {bootstrap} from '../tester';
+import { bootstrap } from '../tester';
 
 // Destructure some things based on the bootstrap process
-let {config, sh, repo, clean, util} = bootstrap();
+let { config, sh, repo, clean, util } = bootstrap();
 
 before(function () {
   // Creates the temp path
@@ -41,7 +39,7 @@ describe('init', function () {
 
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).to.have.deep.property('devDependencies.cz-conventional-changelog');
+    expect(packageJson).to.have.nested.property('devDependencies.cz-conventional-changelog');
 
   });
 
@@ -52,13 +50,13 @@ describe('init', function () {
     // SETUP
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', {save: true, saveDev: false});
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { save: true, saveDev: false });
 
     // TEST
 
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).to.have.deep.property('dependencies.cz-conventional-changelog');
+    expect(packageJson).to.have.nested.property('dependencies.cz-conventional-changelog');
 
   });
 
@@ -81,8 +79,8 @@ describe('init', function () {
 
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).not.to.have.deep.property('devDependencies', 'cz-jira-smart-commit');
-    expect(packageJson).to.have.deep.property('config.commitizen.path', './node_modules/cz-conventional-changelog');
+    expect(packageJson).not.to.have.nested.property('devDependencies', 'cz-jira-smart-commit');
+    expect(packageJson).to.have.nested.property('config.commitizen.path', './node_modules/cz-conventional-changelog');
     // TODO: Eventually may need to offer both path and package keys. package = npm package name
     // Path for local development
   });
@@ -106,7 +104,7 @@ describe('init', function () {
 
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
     expect(packageJson.devDependencies).to.have.property('cz-jira-smart-commit');
-    expect(packageJson).to.have.deep.property('config.commitizen.path', './node_modules/cz-jira-smart-commit');
+    expect(packageJson).to.have.nested.property('config.commitizen.path', './node_modules/cz-jira-smart-commit');
 
   });
 
@@ -144,7 +142,7 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', {saveExact: true});
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveExact: true });
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
 
     // TEST
@@ -172,10 +170,9 @@ describe('init', function () {
 
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).to.have.deep.property('dependencies.cz-conventional-changelog');
+    expect(packageJson).to.have.nested.property('dependencies.cz-conventional-changelog');
 
   });
-
 
   it('installs an adapter with --yarn --dev', function () {
 
@@ -190,7 +187,7 @@ describe('init', function () {
 
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).to.have.deep.property('devDependencies.cz-conventional-changelog');
+    expect(packageJson).to.have.nested.property('devDependencies.cz-conventional-changelog');
 
   });
 
@@ -213,8 +210,8 @@ describe('init', function () {
 
     // Check resulting json
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).not.to.have.deep.property('devDependencies', 'cz-jira-smart-commit');
-    expect(packageJson).to.have.deep.property('config.commitizen.path', './node_modules/cz-conventional-changelog');
+    expect(packageJson).not.to.have.nested.property('devDependencies', 'cz-jira-smart-commit');
+    expect(packageJson).to.have.nested.property('config.commitizen.path', './node_modules/cz-conventional-changelog');
     // TODO: Eventually may need to offer both path and package keys. package = npm package name
     // Path for local development
   });
@@ -238,7 +235,7 @@ describe('init', function () {
 
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
     expect(packageJson.devDependencies).to.have.property('cz-jira-smart-commit');
-    expect(packageJson).to.have.deep.property('config.commitizen.path', './node_modules/cz-jira-smart-commit');
+    expect(packageJson).to.have.nested.property('config.commitizen.path', './node_modules/cz-jira-smart-commit');
 
   });
 

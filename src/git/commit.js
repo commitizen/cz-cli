@@ -1,8 +1,6 @@
-import os from 'os';
-import {spawn} from 'child_process';
+import { spawn } from 'child_process';
 
 import dedent from 'dedent';
-import {isString} from '../common/util';
 
 export { commit };
 
@@ -27,7 +25,7 @@ function commit (sh, repoPath, message, options, done) {
   child.on('exit', function (code, signal) {
     if (called) return;
     called = true;
-    
+
     if (code) {
       if (code === 128) {
         console.warn(`

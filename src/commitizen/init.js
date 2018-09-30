@@ -1,6 +1,6 @@
 import path from 'path';
 import * as configLoader from './configLoader';
-import {executeShellCommand} from '../common/util';
+import { executeShellCommand } from '../common/util';
 import * as adapter from './adapter';
 
 let {
@@ -13,7 +13,7 @@ let {
 
 export default init;
 
-const CLI_PATH = path.normalize(__dirname + '/../../');
+const CLI_PATH = path.normalize(path.join(__dirname, '../../'));
 
 /**
  * CZ INIT
@@ -74,41 +74,21 @@ function init (sh, repoPath, adapterNpmName, {
   let installAdapterCommand = yarn ? generateYarnAddAdapterCommand(stringMappings, adapterNpmName) : generateNpmInstallAdapterCommand(stringMappings, adapterNpmName);
 
   // Check for previously installed adapters
-  if (adapterConfig && adapterConfig.path && adapterConfig.path.length > 0) {
+  if (adapterConfig && adapterConfig.path && adapterConfig.path.length > 0 && !force) {
+    throw new Error(`A previous adapter is already configured. Use --force to override
+    adapterConfig.path: ${adapterConfig.path}
+    repoPath: ${repoPath}
+    CLI_PATH: ${CLI_PATH}
+    installAdapterCommand: ${installAdapterCommand}
+    adapterNpmName: ${adapterNpmName}
+    `);
+  }
 
-    // console.log(`
-    //   Previous adapter detected!
-    // `);
-
-    if (!force) {
-
-      // console.log(`
-      //   Previous adapter detected!
-      // `);
-
-      throw 'A previous adapter is already configured. Use --force to override';
-    } else { // Override it
-      try {
-        executeShellCommand(sh, repoPath, installAdapterCommand);
-        addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-  } else {
-
-    // console.log(`
-    //   No previous adapter was detected
-    // `);
-
-    try {
-
-      executeShellCommand(sh, repoPath, installAdapterCommand);
-      addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
-    } catch (e) {
-      console.error(e);
-    }
+  try {
+    executeShellCommand(sh, repoPath, installAdapterCommand);
+    addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
+  } catch (e) {
+    console.error(e);
   }
 }
 
@@ -118,13 +98,13 @@ function init (sh, repoPath, adapterNpmName, {
  */
 function checkRequiredArguments (sh, path, adapterNpmName) {
   if (!sh) {
-    throw "You must pass an instance of shelljs when running init.";
+    throw new Error("You must pass an instance of shelljs when running init.");
   }
   if (!path) {
-    throw "Path is required when running init.";
+    throw new Error("Path is required when running init.");
   }
   if (!adapterNpmName) {
-    throw "The adapter's npm name is required when running init.";
+    throw new Error("The adapter's npm name is required when running init.");
   }
 }
 
@@ -137,6 +117,6 @@ function loadAdapterConfig () {
   if (config) {
     return config;
   } else {
-    return;
+
   }
 }

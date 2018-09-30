@@ -9,7 +9,7 @@ export {
 function createEmpty (sh, path) {
   sh.mkdir(path);
   sh.cd(path);
-  sh.exec('npm init --force --yes'); 
+  sh.exec('npm init --force --yes');
 }
 
 /**

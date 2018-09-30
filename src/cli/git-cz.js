@@ -1,6 +1,5 @@
-import {configLoader} from '../commitizen';
-import {git as useGitStrategy} from './strategies';
-import {gitCz as useGitCzStrategy} from './strategies';
+import { configLoader } from '../commitizen';
+import { git as useGitStrategy, gitCz as useGitCzStrategy } from './strategies';
 
 export {
   bootstrap

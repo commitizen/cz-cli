@@ -5,7 +5,7 @@ import _ from 'lodash';
 import detectIndent from 'detect-indent';
 import sh from 'shelljs';
 
-import {isFunction} from '../common/util';
+import { isFunction } from '../common/util';
 
 export {
   addPathToAdapterConfig,
@@ -63,7 +63,7 @@ function generateNpmInstallAdapterCommand (stringMappings, adapterNpmName) {
   let installAdapterCommand = `npm install ${adapterNpmName}`;
 
   // Append the neccesary arguments to it based on user preferences
-  for (let [key, value] of stringMappings.entries()) {
+  for (let value of stringMappings.values()) {
     if (value) {
       installAdapterCommand = installAdapterCommand + ' ' + value;
     }
@@ -81,7 +81,7 @@ function generateYarnAddAdapterCommand (stringMappings, adapterNpmName) {
   let installAdapterCommand = `yarn add ${adapterNpmName}`;
 
   // Append the necessary arguments to it based on user preferences
-  for (let [key, value] of stringMappings.entries()) {
+  for (let value of stringMappings.values()) {
     if (value) {
       installAdapterCommand = installAdapterCommand + ' ' + value;
     }
@@ -152,7 +152,7 @@ function getPrompter (adapterPath) {
   } else if (adapter && adapter.default && adapter.default.prompter && isFunction(adapter.default.prompter)) {
      return adapter.default.prompter;
   } else {
-    throw "Could not find prompter method in the provided adapter module: " + adapterPath;
+    throw new Error(`Could not find prompter method in the provided adapter module: ${adapterPath}`);
   }
 }
 
@@ -180,5 +180,5 @@ function resolveAdapterPath (inboundAdapterPath) {
 }
 
 function getGitRootPath () {
-  return sh.exec('git rev-parse --show-toplevel', {silent: true}).stdout.trim();
+  return sh.exec('git rev-parse --show-toplevel', { silent: true }).stdout.trim();
 }
