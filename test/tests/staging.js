@@ -49,10 +49,10 @@ describe('staging', function () {
 
     gitInit(sh, repoConfig.path);
 
-    staging.isClean('./@this-actually-does-not-exist', function (stagingError) {
+    staging.isClean('./@this-actually-does-not-exist', false, function (stagingError) {
       expect(stagingError).to.be.an.instanceof(Error);
 
-      staging.isClean(repoConfig.path, function (stagingIsCleanError, stagingIsClean) {
+      staging.isClean(repoConfig.path, false, function (stagingIsCleanError, stagingIsClean) {
         expect(stagingIsCleanError).to.be.null;
         expect(stagingIsClean).to.be.true;
 
@@ -60,12 +60,23 @@ describe('staging', function () {
 
         gitAdd(sh, repoConfig.path);
 
-        staging.isClean(repoConfig.path, function (afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
+        staging.isClean(repoConfig.path, false, function (afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
           expect(afterWriteStagingIsCleanError).to.be.null;
           expect(afterWriteStagingIsClean).to.be.false;
-          done();
-        });
 
+          writeFilesToPath({
+            dummymodified: {
+              contents: repoConfig.files.dummyfile.contents + '-modified',
+              filename: repoConfig.files.dummyfile.filename,
+            }
+          }, repoConfig.path);
+
+          staging.isClean(repoConfig.path, true, function (afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
+            expect(afterWriteStagingIsCleanError).to.be.null;
+            expect(afterWriteStagingIsClean).to.be.false;
+            done();
+          });
+        });
       });
     });
   });

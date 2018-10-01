@@ -5,8 +5,9 @@ export { isClean };
 /**
  * Asynchrounously determines if the staging area is clean
  */
-function isClean (repoPath, done) {
-  exec('git diff --cached --name-only', {
+function isClean (repoPath, commitAll, done) {
+  const cmd = commitAll ? 'git diff --name-only' : 'git diff --cached --name-only';
+  exec(cmd, {
     maxBuffer: Infinity,
     cwd: repoPath || process.cwd()
   }, function (error, stdout) {

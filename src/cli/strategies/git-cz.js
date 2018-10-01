@@ -38,8 +38,9 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
   let resolvedAdapterConfigPath = resolveAdapterPath(adapterConfig.path);
   let resolvedAdapterRootPath = findRoot(resolvedAdapterConfigPath);
   let prompter = getPrompter(adapterConfig.path);
+  const commitAll = parsedCommitizenArgs.a === true || parsedCommitizenArgs.all === true;
 
-  isClean(process.cwd(), function (error, stagingIsClean) {
+  isClean(process.cwd(), commitAll, function (error, stagingIsClean) {
     if (error) {
       throw error;
     }
