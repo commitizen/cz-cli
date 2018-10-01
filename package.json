@@ -1,6 +1,6 @@
 {
   "name": "commitizen",
-  "version": "0.0.0-semantically-released",
+  "version": "0.0.0-development",
   "description": "Git commit, but play nice with conventions.",
   "main": "dist/index.js",
   "scripts": {
@@ -11,11 +11,12 @@
     "prepare": "not-in-install && npm run build || true",
     "report-coverage": "nyc report --reporter=lcov | codecov",
     "write-coverage": "nyc report --reporter=lcov",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
     "start": "npm run test:watch",
     "lint": "eslint --ignore-path .gitignore .",
     "test": "nyc --require @babel/register _mocha -- test/tests/index.js",
-    "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --"
+    "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "config": {
     "commitizen": {
@@ -68,9 +69,10 @@
     "nodemon": "1.18.4",
     "nyc": "13.0.1",
     "proxyquire": "^2.1.0",
-    "semantic-release": "6.3.6",
+    "semantic-release": "^15.9.16",
     "semver": "5.5.1",
-    "sinon": "^6.3.4"
+    "sinon": "^6.3.4",
+    "travis-deploy-once": "^5.0.9"
   },
   "dependencies": {
     "cachedir": "2.1.0",
