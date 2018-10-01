@@ -1,0 +1,24 @@
+  # File: jobs/semantic-release.yml
+
+parameters:
+  dependsOn: ''
+
+jobs:
+- job: Release
+  dependsOn: ${{ parameters.dependsOn }}
+  pool:
+    vmImage: 'Ubuntu 16.04'
+  strategy:
+    parallel: 1
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: 10.x
+  - script: npm install
+  - script: npm run build
+  - script: npm run semantic-release
+    env:
+      GIT_AUTHOR_NAME: TravisCI
+      GIT_COMMITTER_NAME: TravisCI
+      GIT_AUTHOR_EMAIL: commitizen@gmail.com
+      GIT_COMMITTER_EMAIL: commitizen@gmail.com

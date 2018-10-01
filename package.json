@@ -11,7 +11,7 @@
     "prepare": "not-in-install && npm run build || true",
     "report-coverage": "nyc report --reporter=lcov | codecov",
     "write-coverage": "nyc report --reporter=lcov",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
     "start": "npm run test:watch",
     "lint": "eslint --ignore-path .gitignore .",
     "test": "nyc --require @babel/register _mocha -- test/tests/index.js",
@@ -68,7 +68,7 @@
     "nodemon": "1.18.4",
     "nyc": "13.0.1",
     "proxyquire": "^2.1.0",
-    "semantic-release": "6.3.6",
+    "semantic-release": "^15.9.16",
     "semver": "5.5.1",
     "sinon": "^6.3.4"
   },

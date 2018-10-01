@@ -22,3 +22,10 @@ jobs:
     pool:
       vmImage: 'vs2017-win2016'
     sign: true  # Extra step on Windows only
+
+- template: jobs/semantic-release.yml  # Template reference
+  parameters:
+    dependsOn:
+      - macOS
+      - Linux
+      - Windows
