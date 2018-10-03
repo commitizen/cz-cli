@@ -63,9 +63,20 @@ describe('staging', function () {
         staging.isClean(repoConfig.path, function (afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
           expect(afterWriteStagingIsCleanError).to.be.null;
           expect(afterWriteStagingIsClean).to.be.false;
-          done();
-        });
 
+          writeFilesToPath({
+            dummymodified: {
+              contents: repoConfig.files.dummyfile.contents + '-modified',
+              filename: repoConfig.files.dummyfile.filename,
+            }
+          }, repoConfig.path);
+
+          staging.isClean(repoConfig.path, function (afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
+            expect(afterWriteStagingIsCleanError).to.be.null;
+            expect(afterWriteStagingIsClean).to.be.false;
+            done();
+          });
+        });
       });
     });
   });
