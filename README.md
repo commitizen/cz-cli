@@ -226,6 +226,7 @@ We know that every project and build process has different requirements so we've
 
 - [cz-conventional-changelog](https://www.npmjs.com/package/cz-conventional-changelog)
 - [cz-jira-smart-commit](https://www.npmjs.com/package/cz-jira-smart-commit)
+- [@endemolshinegroup/cz-jira-smart-commit](https://github.com/EndemolShineGroup/cz-jira-smart-commit-esg)
 - [rb-conventional-changelog](https://www.npmjs.com/package/rb-conventional-changelog)
 - [cz-mapbox-changelog](https://www.npmjs.com/package/cz-mapbox-changelog)
 - [cz-customizable](https://github.com/leonardoanalista/cz-customizable)
