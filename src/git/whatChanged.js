@@ -1,6 +1,6 @@
-import { exec } from 'child_process';
+import { exec } from 'child_process'
 
-export { whatChanged };
+export { whatChanged }
 
 /**
  * Asynchronously gets the git whatchanged output
@@ -11,8 +11,8 @@ function whatChanged (repoPath, done) {
     cwd: repoPath
   }, function (error, stdout, stderr) {
     if (error) {
-      throw error;
+      throw error
     }
-    done(stdout);
-  });
+    done(stdout)
+  })
 }

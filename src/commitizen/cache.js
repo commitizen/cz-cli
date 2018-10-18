@@ -1,34 +1,34 @@
-import fs from 'fs';
-import _ from 'lodash';
+import fs from 'fs'
+import _ from 'lodash'
 
 export {
   getCacheValueSync,
   readCacheSync,
-  setCacheValueSync,
-};
+  setCacheValueSync
+}
 
 /**
  * Reads the entire cache
  */
 function readCacheSync (cachePath) {
-  return JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+  return JSON.parse(fs.readFileSync(cachePath, 'utf8'))
 }
 
 /**
  * Sets a cache value and writes the file to disk
  */
 function setCacheValueSync (cachePath, key, value) {
-  var originalCache;
+  var originalCache
   try {
-    originalCache = readCacheSync(cachePath);
+    originalCache = readCacheSync(cachePath)
   } catch (e) {
-    originalCache = {};
+    originalCache = {}
   }
   var newCache = _.assign(originalCache, {
     [key]: value
-  });
-  fs.writeFileSync(cachePath, JSON.stringify(newCache, null, '  '));
-  return newCache;
+  })
+  fs.writeFileSync(cachePath, JSON.stringify(newCache, null, '  '))
+  return newCache
 }
 
 /**
@@ -36,8 +36,8 @@ function setCacheValueSync (cachePath, key, value) {
  */
 function getCacheValueSync (cachePath, repoPath) {
   try {
-    let cache = readCacheSync(cachePath);
-    return cache[repoPath];
+    let cache = readCacheSync(cachePath)
+    return cache[repoPath]
   } catch (e) {
 
   }

@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'path'
 
 /**
  * Modify the testConfig to your liking
@@ -60,6 +60,6 @@ let config = {
    * it. Use at your own risk.
    */
   preserve: 1
-};
+}
 
-export { config };
+export { config }

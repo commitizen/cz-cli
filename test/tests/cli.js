@@ -1,12 +1,12 @@
 /* eslint-env mocha */
 
-import { expect } from 'chai';
-import proxyquire from 'proxyquire';
-import sinon from 'sinon';
+import { expect } from 'chai'
+import proxyquire from 'proxyquire'
+import sinon from 'sinon'
 
 describe('git-cz', () => {
-  let bootstrap;
-  let fakeStrategies, fakeCommitizen;
+  let bootstrap
+  let fakeStrategies, fakeCommitizen
 
   beforeEach(() => {
     fakeStrategies = {
@@ -23,39 +23,38 @@ describe('git-cz', () => {
     bootstrap = proxyquire('../../src/cli/git-cz', {
       './strategies': fakeStrategies,
       '../commitizen': fakeCommitizen
-    }).bootstrap;
-  });
+    }).bootstrap
+  })
 
   describe('bootstrap', () => {
     describe('when config is provided', () => {
       it('passes config to useGitCzStrategy', () => {
-        const config = sinon.spy();
+        const config = sinon.spy()
 
-        bootstrap({ config });
+        bootstrap({ config })
 
-        expect(fakeStrategies.gitCz.args[0][2]).to.equal(config);
-      });
-    });
+        expect(fakeStrategies.gitCz.args[0][2]).to.equal(config)
+      })
+    })
 
     describe('when config is not provided', () => {
-
       describe('and the config is returned from configLoader.load', () => {
         it('uses config from configLoader.load()', () => {
-          const config = sinon.stub();
-          fakeCommitizen.configLoader.load.returns(config);
+          const config = sinon.stub()
+          fakeCommitizen.configLoader.load.returns(config)
 
-          bootstrap({});
+          bootstrap({})
 
-          expect(fakeStrategies.gitCz.args[0][2]).to.equal(config);
-        });
-      });
+          expect(fakeStrategies.gitCz.args[0][2]).to.equal(config)
+        })
+      })
 
       describe('and the config is not returned from configLoader.load', () => {
         it('tells commitizen to use the git strategy', () => {
-          bootstrap({});
-          expect(fakeStrategies.git.called).to.equal(true);
-        });
-      });
-    });
-  });
-});
+          bootstrap({})
+          expect(fakeStrategies.git.called).to.equal(true)
+        })
+      })
+    })
+  })
+})

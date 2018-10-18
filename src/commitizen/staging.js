@@ -1,6 +1,6 @@
-import { exec } from 'child_process';
+import { exec } from 'child_process'
 
-export { isClean };
+export { isClean }
 
 /**
  * Asynchrounously determines if the staging area is clean
@@ -11,9 +11,9 @@ function isClean (repoPath, done) {
     cwd: repoPath || process.cwd()
   }, function (error, stdout) {
     if (error) {
-      return done(error);
+      return done(error)
     }
-    let output = stdout || '';
-    done(null, output.trim().length === 0);
-  });
+    let output = stdout || ''
+    done(null, output.trim().length === 0)
+  })
 }

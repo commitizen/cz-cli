@@ -1,6 +1,6 @@
-import { exec } from 'child_process';
+import { exec } from 'child_process'
 
-export { log };
+export { log }
 
 /**
  * Asynchronously gets the git log output
@@ -11,8 +11,8 @@ function log (repoPath, done) {
     cwd: repoPath
   }, function (error, stdout, stderr) {
     if (error) {
-      throw error;
+      throw error
     }
-    done(stdout);
-  });
+    done(stdout)
+  })
 }

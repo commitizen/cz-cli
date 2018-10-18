@@ -1,11 +1,11 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
 
-import stripJSONComments from 'strip-json-comments';
+import stripJSONComments from 'strip-json-comments'
 
-import { getNormalizedConfig } from '../configLoader';
+import { getNormalizedConfig } from '../configLoader'
 
-export default getConfigContent;
+export default getConfigContent
 
 /**
  * Read the content of a configuration file
@@ -15,29 +15,29 @@ export default getConfigContent;
  * @return {Object}
  */
 function readConfigContent (configPath) {
-    const parsedPath = path.parse(configPath)
-    const isRcFile = parsedPath.ext !== '.js' && parsedPath.ext !== '.json';
-    const jsonString = fs.readFileSync(configPath, 'utf-8');
-    const parse = isRcFile ?
-      (contents) => JSON.parse(stripJSONComments(contents)) :
-      (contents) => JSON.parse(contents);
+  const parsedPath = path.parse(configPath)
+  const isRcFile = parsedPath.ext !== '.js' && parsedPath.ext !== '.json'
+  const jsonString = fs.readFileSync(configPath, 'utf-8')
+  const parse = isRcFile
+    ? (contents) => JSON.parse(stripJSONComments(contents))
+    : (contents) => JSON.parse(contents)
 
-    try {
-        const parsed = parse(jsonString);
+  try {
+    const parsed = parse(jsonString)
 
-        Object.defineProperty(parsed, 'configPath', {
-          value: configPath
-        });
+    Object.defineProperty(parsed, 'configPath', {
+      value: configPath
+    })
 
-        return parsed;
-    } catch (error) {
-        error.message = [
-          `Parsing JSON at ${configPath} for commitizen config failed:`,
-          error.mesasge
-        ].join('\n');
+    return parsed
+  } catch (error) {
+    error.message = [
+      `Parsing JSON at ${configPath} for commitizen config failed:`,
+      error.mesasge
+    ].join('\n')
 
-        throw error;
-    }
+    throw error
+  }
 }
 
 /**
@@ -47,17 +47,17 @@ function readConfigContent (configPath) {
  * @return {Object}
  */
 function getConfigContent (configPath, baseDirectory) {
-    if (!configPath) {
-      return;
-    }
+  if (!configPath) {
+    return
+  }
 
-    const resolvedPath = path.resolve(baseDirectory, configPath);
-    const configBasename = path.basename(resolvedPath);
+  const resolvedPath = path.resolve(baseDirectory, configPath)
+  const configBasename = path.basename(resolvedPath)
 
-    if (!fs.existsSync(resolvedPath)) {
-      return getNormalizedConfig(resolvedPath);
-    }
+  if (!fs.existsSync(resolvedPath)) {
+    return getNormalizedConfig(resolvedPath)
+  }
 
-    const content = readConfigContent(resolvedPath);
-    return getNormalizedConfig(configBasename, content);
+  const content = readConfigContent(resolvedPath)
+  return getNormalizedConfig(configBasename, content)
 };

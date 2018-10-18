@@ -1,9 +1,9 @@
-import path from 'path';
+import path from 'path'
 
-import { findup, getContent } from '../configLoader';
-import { isInTest } from '../common/util.js';
+import { findup, getContent } from '../configLoader'
+import { isInTest } from '../common/util.js'
 
-export default loader;
+export default loader
 
 /**
  * Command line config helpers
@@ -18,43 +18,43 @@ export default loader;
  * @return {Object|undefined}
  */
 function loader (configs, config, cwd) {
-    var content;
-    var directory = cwd || process.cwd();
+  var content
+  var directory = cwd || process.cwd()
 
-    // If config option is given, attempt to load it
-    if (config) {
-        return getContent(config, directory);
-    }
+  // If config option is given, attempt to load it
+  if (config) {
+    return getContent(config, directory)
+  }
 
-    content = getContent(
-        findup(configs, { nocase: true, cwd: directory }, function (configPath) {
-            if (path.basename(configPath) === 'package.json') {
-                // return !!this.getContent(configPath);
-            }
+  content = getContent(
+    findup(configs, { nocase: true, cwd: directory }, function (configPath) {
+      if (path.basename(configPath) === 'package.json') {
+        // return !!this.getContent(configPath);
+      }
 
-            return true;
-        })
-    );
+      return true
+    })
+  )
 
-    if (content) {
-        return content;
-    }
-    /* istanbul ignore if */
-    if (!isInTest()) {
-      // Try to load standard configs from home dir
-      var directoryArr = [process.env.USERPROFILE, process.env.HOMEPATH, process.env.HOME];
-      for (var i = 0, dirLen = directoryArr.length; i < dirLen; i++) {
-          if (!directoryArr[i]) {
-              continue;
-          }
+  if (content) {
+    return content
+  }
+  /* istanbul ignore if */
+  if (!isInTest()) {
+    // Try to load standard configs from home dir
+    var directoryArr = [process.env.USERPROFILE, process.env.HOMEPATH, process.env.HOME]
+    for (var i = 0, dirLen = directoryArr.length; i < dirLen; i++) {
+      if (!directoryArr[i]) {
+        continue
+      }
 
-          for (var j = 0, len = configs.length; j < len; j++) {
-              content = getContent(configs[j], directoryArr[i]);
+      for (var j = 0, len = configs.length; j < len; j++) {
+        content = getContent(configs[j], directoryArr[i])
 
-              if (content) {
-                  return content;
-              }
-          }
+        if (content) {
+          return content
+        }
       }
     }
+  }
 }

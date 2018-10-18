@@ -1,37 +1,35 @@
 /* eslint-env mocha */
 /* eslint-disable no-unused-expressions */
 
-import { expect } from 'chai';
-import path from 'path';
+import { expect } from 'chai'
+import path from 'path'
 
 // TODO: augment these tests with tests using the actual cli call
 // For now we're just using the library, which is probably fine
 // in the short term
-import { adapter, init as commitizenInit } from '../../src/commitizen';
+import { adapter, init as commitizenInit } from '../../src/commitizen'
 
-import { isFunction } from '../../src/common/util';
+import { isFunction } from '../../src/common/util'
 
 // Bootstrap our tester
-import { bootstrap } from '../tester';
+import { bootstrap } from '../tester'
 
 // Destructure some things based on the bootstrap process
-let { config, sh, repo, clean } = bootstrap();
+let { config, sh, repo, clean } = bootstrap()
 
 before(function () {
   // Creates the temp path
-  clean.before(sh, config.paths.tmp);
-});
+  clean.before(sh, config.paths.tmp)
+})
 
 beforeEach(function () {
-  this.timeout(config.maxTimeout); // this could take a while
-  repo.createEndUser(sh, config.paths.endUserRepo);
-});
+  this.timeout(config.maxTimeout) // this could take a while
+  repo.createEndUser(sh, config.paths.endUserRepo)
+})
 
 describe('adapter', function () {
-
   it('resolves adapter paths', function () {
-
-    this.timeout(config.maxTimeout); // this could take a while
+    this.timeout(config.maxTimeout) // this could take a while
 
     // SETUP
 
@@ -40,39 +38,38 @@ describe('adapter', function () {
       path: config.paths.endUserRepo,
       files: {
         dummyfile: {
-            contents: `duck-duck-goose`,
-            filename: `mydummyfile.txt`,
+          contents: `duck-duck-goose`,
+          filename: `mydummyfile.txt`
         },
         gitignore: {
           contents: `node_modules/`,
           filename: `.gitignore`
         }
       }
-    };
+    }
 
     // Describe an adapter
     let adapterConfig = {
       path: path.join(repoConfig.path, '/node_modules/cz-conventional-changelog'),
       npmName: 'cz-conventional-changelog'
-    };
+    }
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog')
 
     // TEST
-    expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function () { adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
-    expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
+    expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH') }).to.throw(Error)
+    expect(function () { adapter.resolveAdapterPath(adapterConfig.path) }).not.to.throw(Error)
+    expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')) }).not.to.throw(Error)
 
     // This line is only here to make sure that cz-conventional-changelog
     // was installed for the purposes of running tests, it is not needed
     // for testing any other adapters.
-    expect(function () { adapter.resolveAdapterPath('cz-conventional-changelog'); }).not.to.throw(Error);
-  });
+    expect(function () { adapter.resolveAdapterPath('cz-conventional-changelog') }).not.to.throw(Error)
+  })
 
   it('resolves scoped adapter paths', function () {
-
-    this.timeout(config.maxTimeout); // this could take a while
+    this.timeout(config.maxTimeout) // this could take a while
 
     // SETUP
 
@@ -81,34 +78,33 @@ describe('adapter', function () {
       path: config.paths.endUserRepo,
       files: {
         dummyfile: {
-            contents: `duck-duck-goose`,
-            filename: `mydummyfile.txt`,
+          contents: `duck-duck-goose`,
+          filename: `mydummyfile.txt`
         },
         gitignore: {
           contents: `node_modules/`,
           filename: `.gitignore`
         }
       }
-    };
+    }
 
     // Describe an adapter
     let adapterConfig = {
       path: path.join(repoConfig.path, '/node_modules/@commitizen/cz-conventional-changelog'),
       npmName: '@commitizen/cz-conventional-changelog'
-    };
+    }
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, '@commitizen/cz-conventional-changelog');
+    commitizenInit(sh, config.paths.endUserRepo, '@commitizen/cz-conventional-changelog')
 
     // TEST
-    expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function () { adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
-    expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
-  });
+    expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH') }).to.throw(Error)
+    expect(function () { adapter.resolveAdapterPath(adapterConfig.path) }).not.to.throw(Error)
+    expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')) }).not.to.throw(Error)
+  })
 
   it('gets adapter prompter functions', function () {
-
-    this.timeout(config.maxTimeout); // this could take a while
+    this.timeout(config.maxTimeout) // this could take a while
 
     // SETUP
 
@@ -117,34 +113,33 @@ describe('adapter', function () {
       path: config.paths.endUserRepo,
       files: {
         dummyfile: {
-            contents: `duck-duck-goose`,
-            filename: `mydummyfile.txt`,
+          contents: `duck-duck-goose`,
+          filename: `mydummyfile.txt`
         },
         gitignore: {
           contents: `node_modules/`,
           filename: `.gitignore`
         }
       }
-    };
+    }
 
     // Describe an adapter
     let adapterConfig = {
       path: path.join(repoConfig.path, '/node_modules/cz-conventional-changelog'),
       npmName: 'cz-conventional-changelog'
-    };
+    }
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog')
 
     // TEST
-    expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function () { adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
-    expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true;
-  });
+    expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH') }).to.throw(Error)
+    expect(function () { adapter.getPrompter(adapterConfig.path) }).not.to.throw(Error)
+    expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true
+  })
 
   it('gets adapter prompter functions for default export adapters', function () {
-
-    this.timeout(config.maxTimeout); // this could take a while
+    this.timeout(config.maxTimeout) // this could take a while
 
     // SETUP
 
@@ -153,42 +148,41 @@ describe('adapter', function () {
       path: config.paths.endUserRepo,
       files: {
         dummyfile: {
-            contents: `duck-duck-goose`,
-            filename: `mydummyfile.txt`,
+          contents: `duck-duck-goose`,
+          filename: `mydummyfile.txt`
         },
         gitignore: {
           contents: `node_modules/`,
           filename: `.gitignore`
         }
       }
-    };
+    }
 
     // Describe an adapter
     let adapterConfig = {
       path: path.join(repoConfig.path, '/node_modules/cz-conventional-changelog-default-export'),
       npmName: 'cz-conventional-changelog-default-export'
-    };
+    }
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog-default-export');
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog-default-export')
 
     // TEST
-    expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function () { adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
-    expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true;
-  });
-
-});
+    expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH') }).to.throw(Error)
+    expect(function () { adapter.getPrompter(adapterConfig.path) }).not.to.throw(Error)
+    expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true
+  })
+})
 
 afterEach(function () {
-  this.timeout(config.maxTimeout); // this could take a while
+  this.timeout(config.maxTimeout) // this could take a while
   // All this should do is archive the tmp path to the artifacts
-  clean.afterEach(sh, config.paths.tmp, config.preserve);
-});
+  clean.afterEach(sh, config.paths.tmp, config.preserve)
+})
 
 after(function () {
-  this.timeout(config.maxTimeout); // this could take a while
+  this.timeout(config.maxTimeout) // this could take a while
   // Once everything is done, the artifacts should be cleaned up based on
   // the preserve setting in the config
-  clean.after(sh, config.paths.tmp, config.preserve);
-});
+  clean.after(sh, config.paths.tmp, config.preserve)
+})

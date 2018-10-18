@@ -1,2 +1,2 @@
-var commitizen = require('./commitizen');
-module.exports = commitizen;
+var commitizen = require('./commitizen')
+module.exports = commitizen

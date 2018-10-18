@@ -1,51 +1,51 @@
 export {
   parse
-};
+}
 
-const reShortMessage = /^-([a-zA-Z]*)m(.*)$/;
-const reLongMessage = /^--message(=.*)?$/;
+const reShortMessage = /^-([a-zA-Z]*)m(.*)$/
+const reLongMessage = /^--message(=.*)?$/
 
 /**
  * Strip message declaration from git arguments
  */
 function parse (rawGitArgs) {
-  let result = [];
-  let skipNext = false;
+  let result = []
+  let skipNext = false
 
   for (const arg of rawGitArgs) {
-    let match;
+    let match
 
     if (skipNext) {
-      skipNext = false;
-      continue;
+      skipNext = false
+      continue
     }
 
-    match = reShortMessage.exec(arg);
+    match = reShortMessage.exec(arg)
 
     if (match) {
       if (match[1]) {
-        result.push(`-${match[1]}`);
+        result.push(`-${match[1]}`)
       }
 
       if (!match[2]) {
-        skipNext = true;
+        skipNext = true
       }
 
-      continue;
+      continue
     }
 
-    match = reLongMessage.exec(arg);
+    match = reLongMessage.exec(arg)
 
     if (match) {
       if (!match[1]) {
-        skipNext = true;
+        skipNext = true
       }
 
-      continue;
+      continue
     }
 
-    result.push(arg);
+    result.push(arg)
   }
 
-  return result;
+  return result
 }

@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import _ from 'lodash';
+import fs from 'fs'
+import path from 'path'
+import _ from 'lodash'
 
 export {
   writeFilesToPath
-};
+}
 
 /**
  * Opinionated writing of files to a path.
@@ -14,6 +14,6 @@ export {
  */
 function writeFilesToPath (files, directoryPath) {
   _.forOwn(files, function (key, value) {
-    fs.writeFileSync(path.resolve(directoryPath, files[value].filename), files[value].contents);
-  });
+    fs.writeFileSync(path.resolve(directoryPath, files[value].filename), files[value].contents)
+  })
 }

@@ -1,19 +1,19 @@
-import path from 'path';
-import * as configLoader from './configLoader';
-import { executeShellCommand } from '../common/util';
-import * as adapter from './adapter';
+import path from 'path'
+import * as configLoader from './configLoader'
+import { executeShellCommand } from '../common/util'
+import * as adapter from './adapter'
 
 let {
   addPathToAdapterConfig,
   generateNpmInstallAdapterCommand,
   getNpmInstallStringMappings,
   generateYarnAddAdapterCommand,
-  getYarnAddStringMappings,
-} = adapter;
+  getYarnAddStringMappings
+} = adapter
 
-export default init;
+export default init
 
-const CLI_PATH = path.normalize(path.join(__dirname, '../../'));
+const CLI_PATH = path.normalize(path.join(__dirname, '../../'))
 
 /**
  * CZ INIT
@@ -42,8 +42,8 @@ const defaultInitOptions = {
   // @see https://github.com/commitizen/cz-cli/issues/527#issuecomment-392653897
   yarn: false,
   dev: true,
-  exact: false, // should add trailing comma, thus next developer doesn't got blamed for this line
-};
+  exact: false // should add trailing comma, thus next developer doesn't got blamed for this line
+}
 
 /**
  * Runs npm install for the adapter then modifies the config.commitizen as needed
@@ -55,23 +55,22 @@ function init (sh, repoPath, adapterNpmName, {
   force = false,
   yarn = false,
   dev = false,
-  exact = false,
+  exact = false
 } = defaultInitOptions) {
-
   // Don't let things move forward if required args are missing
-  checkRequiredArguments(sh, repoPath, adapterNpmName);
+  checkRequiredArguments(sh, repoPath, adapterNpmName)
 
   // Move to the correct directory so we can run commands
-  sh.cd(repoPath);
+  sh.cd(repoPath)
 
   // Load the current adapter config
-  let adapterConfig = loadAdapterConfig();
+  let adapterConfig = loadAdapterConfig()
 
   // Get the npm string mappings based on the arguments provided
-  let stringMappings = yarn ? getYarnAddStringMappings(dev, exact, force) : getNpmInstallStringMappings(save, saveDev, saveExact, force);
+  let stringMappings = yarn ? getYarnAddStringMappings(dev, exact, force) : getNpmInstallStringMappings(save, saveDev, saveExact, force)
 
   // Generate a string that represents the npm install command
-  let installAdapterCommand = yarn ? generateYarnAddAdapterCommand(stringMappings, adapterNpmName) : generateNpmInstallAdapterCommand(stringMappings, adapterNpmName);
+  let installAdapterCommand = yarn ? generateYarnAddAdapterCommand(stringMappings, adapterNpmName) : generateNpmInstallAdapterCommand(stringMappings, adapterNpmName)
 
   // Check for previously installed adapters
   if (adapterConfig && adapterConfig.path && adapterConfig.path.length > 0 && !force) {
@@ -81,14 +80,14 @@ function init (sh, repoPath, adapterNpmName, {
     CLI_PATH: ${CLI_PATH}
     installAdapterCommand: ${installAdapterCommand}
     adapterNpmName: ${adapterNpmName}
-    `);
+    `)
   }
 
   try {
-    executeShellCommand(sh, repoPath, installAdapterCommand);
-    addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
+    executeShellCommand(sh, repoPath, installAdapterCommand)
+    addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName)
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 }
 
@@ -98,13 +97,13 @@ function init (sh, repoPath, adapterNpmName, {
  */
 function checkRequiredArguments (sh, path, adapterNpmName) {
   if (!sh) {
-    throw new Error("You must pass an instance of shelljs when running init.");
+    throw new Error('You must pass an instance of shelljs when running init.')
   }
   if (!path) {
-    throw new Error("Path is required when running init.");
+    throw new Error('Path is required when running init.')
   }
   if (!adapterNpmName) {
-    throw new Error("The adapter's npm name is required when running init.");
+    throw new Error("The adapter's npm name is required when running init.")
   }
 }
 
@@ -113,9 +112,9 @@ function checkRequiredArguments (sh, path, adapterNpmName) {
  * Loads and returns the adapter config at key config.commitizen, if it exists
  */
 function loadAdapterConfig () {
-  let config = configLoader.load();
+  let config = configLoader.load()
   if (config) {
-    return config;
+    return config
   } else {
 
   }

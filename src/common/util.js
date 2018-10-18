@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
 
 export {
   executeShellCommand,
@@ -16,8 +16,8 @@ export {
  * using the instance of shelljs passed in
  */
 function executeShellCommand (sh, path, installCommand) {
-  sh.cd(path);
-  sh.exec(installCommand);
+  sh.cd(path)
+  sh.exec(installCommand)
 }
 
 /**
@@ -25,10 +25,10 @@ function executeShellCommand (sh, path, installCommand) {
  */
 function getParsedJsonFromFile (filePath, fileName, encoding = 'utf8') {
   try {
-    var packageJsonContents = fs.readFileSync(path.join(filePath, fileName), encoding);
-    return JSON.parse(packageJsonContents);
+    var packageJsonContents = fs.readFileSync(path.join(filePath, fileName), encoding)
+    return JSON.parse(packageJsonContents)
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 }
 
@@ -36,20 +36,19 @@ function getParsedJsonFromFile (filePath, fileName, encoding = 'utf8') {
  * A helper method for getting the contents of package.json at a given path
  */
 function getParsedPackageJsonFromPath (path) {
-  return getParsedJsonFromFile(path, 'package.json');
+  return getParsedJsonFromFile(path, 'package.json')
 }
 
 /**
  * Test if the passed argument is an array
  */
 function isArray (arr) {
-    if (typeof arr === "undefined")
-  {
-    return false;
+  if (typeof arr === 'undefined') {
+    return false
   } else if (arr === null) {
-    return false;
+    return false
   } else {
-    return arr.constructor === Array;
+    return arr.constructor === Array
   }
 }
 
@@ -57,14 +56,13 @@ function isArray (arr) {
  * Test if the passed argument is a function
  */
 function isFunction (functionToCheck) {
-  if (typeof functionToCheck === "undefined")
-  {
-    return false;
+  if (typeof functionToCheck === 'undefined') {
+    return false
   } else if (functionToCheck === null) {
-    return false;
+    return false
   } else {
-    var getType = {};
-    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+    var getType = {}
+    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]'
   }
 }
 
@@ -72,16 +70,15 @@ function isFunction (functionToCheck) {
  * Test if the passed argument is a string
  */
 function isString (str) {
-  if (typeof str === "undefined")
-  {
-    return false;
+  if (typeof str === 'undefined') {
+    return false
   } else if (str === null) {
-    return false;
+    return false
   } else {
-    return Object.prototype.toString.call(str) === '[object String]';
+    return Object.prototype.toString.call(str) === '[object String]'
   }
 }
 
 function isInTest () {
-  return typeof global.it === 'function';
+  return typeof global.it === 'function'
 }

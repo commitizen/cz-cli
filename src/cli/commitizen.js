@@ -1,38 +1,37 @@
-import { init } from '../commitizen';
-import { commitizen as commitizenParser } from './parsers';
-import * as sh from 'shelljs';
+import { init } from '../commitizen'
+import { commitizen as commitizenParser } from './parsers'
+import * as sh from 'shelljs'
 
-let { parse } = commitizenParser;
+let { parse } = commitizenParser
 
 export {
   bootstrap
-};
+}
 
 /**
  * This is the main cli entry point.
  * environment may be used for debugging.
  */
 function bootstrap (environment = {}) {
-
   // Get cli args
-  let rawGitArgs = process.argv.slice(2, process.argv.length);
+  let rawGitArgs = process.argv.slice(2, process.argv.length)
 
   // Parse the args
-  let parsedArgs = parse(rawGitArgs);
-  let command = parsedArgs._[0];
+  let parsedArgs = parse(rawGitArgs)
+  let command = parsedArgs._[0]
 
   // Do actions based on commands
-  if (command === "init") {
-    let adapterNpmName = parsedArgs._[1];
+  if (command === 'init') {
+    let adapterNpmName = parsedArgs._[1]
     if (adapterNpmName) {
-      console.log(`Attempting to initialize using the npm package ${adapterNpmName}`);
+      console.log(`Attempting to initialize using the npm package ${adapterNpmName}`)
       try {
-        init(sh, process.cwd(), adapterNpmName, parsedArgs);
+        init(sh, process.cwd(), adapterNpmName, parsedArgs)
       } catch (e) {
-        console.error(`Error: ${e}`);
+        console.error(`Error: ${e}`)
       }
     } else {
-      console.error('Error: You must provide an adapter name as the second argument.');
+      console.error('Error: You must provide an adapter name as the second argument.')
     }
   } else {
     console.log(`
@@ -80,7 +79,6 @@ function bootstrap (environment = {}) {
 
                        note: git-cz may even be run as 'git cz' if installed with -g.
 
-    `);
+    `)
   }
-
 }
