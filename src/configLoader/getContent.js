@@ -78,6 +78,5 @@ function readConfigFileContent (configPath) {
     throw new Error(`The config file at "${configPath}" contains invalid charset, expect utf8`);
   }
 
-
   return stripBom(rawBufContent.toString("utf8"));
 }
