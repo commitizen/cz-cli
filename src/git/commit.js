@@ -1,8 +1,6 @@
-import os from 'os';
-import {spawn} from 'child_process';
+import { spawn } from 'child_process';
 
 import dedent from 'dedent';
-import {isString} from '../common/util';
 
 export { commit };
 
@@ -29,6 +27,14 @@ function commit (sh, repoPath, message, options, done) {
     called = true;
 
     if (code) {
+      if (code === 128) {
+        console.warn(`
+          Git exited with code 128. Did you forget to run:
+  
+            git config --global user.email "you@example.com"
+            git config --global user.name "Your Name"
+          `)
+      }
       done(Object.assign(new Error(`git exited with error code ${code}`), { code, signal }));
     } else {
       done(null);

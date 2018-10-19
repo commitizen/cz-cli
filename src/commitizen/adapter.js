@@ -5,7 +5,7 @@ import _ from 'lodash';
 import detectIndent from 'detect-indent';
 import sh from 'shelljs';
 
-import {isFunction} from '../common/util';
+import { isFunction } from '../common/util';
 
 export {
   addPathToAdapterConfig,
@@ -14,7 +14,9 @@ export {
   getNpmInstallStringMappings,
   getPrompter,
   generateNpmInstallAdapterCommand,
-  resolveAdapterPath
+  resolveAdapterPath,
+  getYarnAddStringMappings,
+  generateYarnAddAdapterCommand,
 };
 
 /**
@@ -61,7 +63,25 @@ function generateNpmInstallAdapterCommand (stringMappings, adapterNpmName) {
   let installAdapterCommand = `npm install ${adapterNpmName}`;
 
   // Append the neccesary arguments to it based on user preferences
-  for (let [key, value] of stringMappings.entries()) {
+  for (let value of stringMappings.values()) {
+    if (value) {
+      installAdapterCommand = installAdapterCommand + ' ' + value;
+    }
+  }
+
+  return installAdapterCommand;
+}
+
+/**
+ * Generates an yarn add command given a map of strings and a package name
+ */
+function generateYarnAddAdapterCommand (stringMappings, adapterNpmName) {
+
+  // Start with an initial yarn add command
+  let installAdapterCommand = `yarn add ${adapterNpmName}`;
+
+  // Append the necessary arguments to it based on user preferences
+  for (let value of stringMappings.values()) {
     if (value) {
       installAdapterCommand = installAdapterCommand + ' ' + value;
     }
@@ -107,6 +127,16 @@ function getNpmInstallStringMappings (save, saveDev, saveExact, force) {
 }
 
 /**
+ * Gets a map of arguments where the value is the corresponding yarn strings
+ */
+function getYarnAddStringMappings (dev, exact, force) {
+  return new Map()
+    .set('dev', dev ? '--dev' : undefined)
+    .set('exact', exact ? '--exact' : undefined)
+    .set('force', force ? '--force' : undefined);
+}
+
+/**
  * Gets the prompter from an adapter given an adapter path
  */
 function getPrompter (adapterPath) {
@@ -115,14 +145,14 @@ function getPrompter (adapterPath) {
 
   // Load the adapter
   let adapter = require(resolvedAdapterPath);
-  
+
   /* istanbul ignore next */
   if (adapter && adapter.prompter && isFunction(adapter.prompter)) {
      return adapter.prompter;
   } else if (adapter && adapter.default && adapter.default.prompter && isFunction(adapter.default.prompter)) {
      return adapter.default.prompter;
   } else {
-    throw "Could not find prompter method in the provided adapter module: " + adapterPath;
+    throw new Error(`Could not find prompter method in the provided adapter module: ${adapterPath}`);
   }
 }
 
@@ -150,5 +180,5 @@ function resolveAdapterPath (inboundAdapterPath) {
 }
 
 function getGitRootPath () {
-  return sh.exec('git rev-parse --show-toplevel', {silent: true}).stdout.trim();
+  return sh.exec('git rev-parse --show-toplevel', { silent: true }).stdout.trim();
 }

@@ -1,8 +1,8 @@
 ### Commitizen for contributors
 When you commit with Commitizen, you'll be prompted to fill out any required commit fields at commit time. No more waiting until later for a git commit hook to run and reject your commit (though [that](https://github.com/kentcdodds/validate-commit-msg) can still be helpful). No more digging through [CONTRIBUTING.md](CONTRIBUTING.md) to find what the preferred format is. Get instant feedback on your commit message formatting and be prompted for required fields.
 
-[![Backers on Open Collective](https://opencollective.com/commitizen/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/commitizen/sponsors/badge.svg)](#sponsors) [![travis.ci](https://img.shields.io/travis/commitizen/cz-cli.svg?style=flat-square)](https://travis-ci.org/commitizen/cz-cli) [![Build status](https://ci.appveyor.com/api/projects/status/ha5vb0p6iq8450un/branch/master?svg=true)](https://ci.appveyor.com/project/jimthedev/cz-cli/branch/master)
- [![codecov.io](https://img.shields.io/codecov/c/github/commitizen/cz-cli.svg?style=flat-square)](https://codecov.io/github/commitizen/cz-cli?branch=master) [![npm monthly downloads](https://img.shields.io/npm/dm/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![current version](https://img.shields.io/npm/v/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![bitHound Score](https://www.bithound.io/github/commitizen/cz-cli/badges/score.svg)](https://www.bithound.io/github/commitizen/cz-cli) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
+[![Backers on Open Collective](https://opencollective.com/commitizen/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/commitizen/sponsors/badge.svg)](#sponsors) [![travis.ci](https://img.shields.io/travis/commitizen/cz-cli.svg?style=flat-square&branch=master)](https://travis-ci.org/commitizen/cz-cli) [![Azure Build Status](https://dev.azure.com/commitizen/cz-cli/_apis/build/status/commitizen.cz-cli?branchName=master)](https://dev.azure.com/commitizen/cz-cli/_build/latest?definitionId=2) 
+ [![codecov.io](https://img.shields.io/codecov/c/github/commitizen/cz-cli.svg?style=flat-square)](https://codecov.io/github/commitizen/cz-cli?branch=master) [![npm monthly downloads](https://img.shields.io/npm/dm/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![current version](https://img.shields.io/npm/v/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release) [![commitizen on stackoverflow](https://img.shields.io/badge/stackoverflow-community-orange.svg?longCache=true&style=flat-square&logo=stackoverflow)](https://stackoverflow.com/tags/commitizen)
 
 #### Installing the command line tool
 Installation is as simple as running the following command (if you see `EACCES` error, reading [fixing npm permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions) may help):
@@ -13,6 +13,18 @@ npm install -g commitizen
 
 #### Using the command line tool
 Now, simply use `git cz` instead of `git commit` when committing.
+
+_Alternatively_, if you are using **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) instead of installing globally:
+```
+npx git-cz
+```
+or as an npm script:
+```json
+  ...
+  "scripts": {
+    "commit": "npx git-cz"
+  }
+```
 
 When you're working in a Commitizen friendly repository, you'll be prompted to fill in any required fields and your commit messages will be formatted according to the standards defined by project maintainers.
 
@@ -67,9 +79,15 @@ Next, initialize your project to use the cz-conventional-changelog adapter by ty
 commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
 
+Or if you are using Yarn:
+
+```
+commitizen init cz-conventional-changelog --yarn --dev --exact
+```
+
 Note that if you want to force install over the top of an old adapter, you can apply the `--force` argument. For more information on this, just run `commitizen help`.
 
-The above command does three things for you. 
+The above command does three things for you.
 1. Installs the cz-conventional-changelog adapter npm module
 2. Saves it to package.json's dependencies or devDependencies
 3. Adds the `config.commitizen` key to the root of your **package.json** as shown here:
@@ -101,7 +119,12 @@ Installing and running Commitizen locally allows you to make sure that developer
 
 Install Commitizen with `npm install --save-dev commitizen`.
 
-Once you have Commitizen installed as a local dev dependency you can execute `./node_modules/.bin/commitizen` or `./node_modules/.bin/git-cz` in order to actually use the commands.
+On **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) to initialize the conventional changelog adapter:
+```
+npx commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+
+For **previous versions of NPM (< 5.2) ** you can execute `./node_modules/.bin/commitizen` or `./node_modules/.bin/git-cz` in order to actually use the commands.
 
 You can then initialize the conventional changelog adapter using: `./node_modules/.bin/commitizen init cz-conventional-changelog --save-dev --save-exact`
 
@@ -203,6 +226,8 @@ We know that every project and build process has different requirements so we've
 
 - [cz-conventional-changelog](https://www.npmjs.com/package/cz-conventional-changelog)
 - [cz-jira-smart-commit](https://www.npmjs.com/package/cz-jira-smart-commit)
+- [@endemolshinegroup/cz-jira-smart-commit](https://github.com/EndemolShineGroup/cz-jira-smart-commit)
+- [@endemolshinegroup/cz-github](https://github.com/EndemolShineGroup/cz-github)
 - [rb-conventional-changelog](https://www.npmjs.com/package/rb-conventional-changelog)
 - [cz-mapbox-changelog](https://www.npmjs.com/package/cz-mapbox-changelog)
 - [cz-customizable](https://github.com/leonardoanalista/cz-customizable)

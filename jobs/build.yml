@@ -1,0 +1,34 @@
+  # File: jobs/build.yml
+
+parameters:
+  name: ''
+  pool: ''
+  sign: false
+
+jobs:
+- job: ${{ parameters.name }}
+  pool: ${{ parameters.pool }}
+  strategy:
+    maxParallel: 3
+    matrix:
+      node-10:
+        node_version: ^10.10.0
+      node-8:
+        node_version: ^8.12.0
+      node-6:
+        node_version: ^6.14.4
+  steps:
+  - task: NodeTool@0
+    displayName: " Install Node.js"
+    inputs:
+      versionSpec: $(node_version)
+  - script: git config --global user.email "example@example.com"
+  - script: git config --global user.name "Example Git User"
+  - script: npm install
+  - script: npm run build
+  - script: npm test
+  - task: PublishBuildArtifacts@1
+    displayName: Publish packages
+    condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
