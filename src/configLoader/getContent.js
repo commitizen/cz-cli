@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 import stripJSONComments from 'strip-json-comments';
-import isUTF8 from 'isutf8';
+import isUTF8 from 'is-utf8';
 import stripBom from 'strip-bom';
 
 import { getNormalizedConfig } from '../configLoader';
