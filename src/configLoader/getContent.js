@@ -2,8 +2,6 @@ import fs from 'fs';
 import path from 'path';
 
 import stripJSONComments from 'strip-json-comments';
-import isUTF8 from 'is-utf8';
-import stripBom from 'strip-bom';
 
 import { getNormalizedConfig } from '../configLoader';
 
@@ -19,7 +17,7 @@ export default getConfigContent;
 function readConfigContent (configPath) {
     const parsedPath = path.parse(configPath)
     const isRcFile = parsedPath.ext !== '.js' && parsedPath.ext !== '.json';
-    const jsonString = readConfigFileContent(configPath);
+    const jsonString = fs.readFileSync(configPath, 'utf-8');
     const parse = isRcFile ?
       (contents) => JSON.parse(stripJSONComments(contents)) :
       (contents) => JSON.parse(contents);
@@ -63,20 +61,3 @@ function getConfigContent (configPath, baseDirectory) {
     const content = readConfigContent(resolvedPath);
     return getNormalizedConfig(configBasename, content);
 };
-
-/**
- * Read proper content from config file.
- * If the chartset of the config file is not utf-8, one error will be thrown.
- * @param {String} configPath
- * @return {String}
- */
-function readConfigFileContent (configPath) {
-
-  let rawBufContent = fs.readFileSync(configPath);
-
-  if (!isUTF8(rawBufContent)) {
-    throw new Error(`The config file at "${configPath}" contains invalid charset, expect utf8`);
-  }
-
-  return stripBom(rawBufContent.toString("utf8"));
-}
