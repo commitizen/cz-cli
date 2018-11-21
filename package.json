@@ -98,7 +98,9 @@
         }
       ]
     ],
-    "plugins": ["istanbul"]
+    "plugins": [
+      "istanbul"
+    ]
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-babel",
