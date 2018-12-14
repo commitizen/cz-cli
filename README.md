@@ -234,6 +234,7 @@ We know that every project and build process has different requirements so we've
 - [commitlint](https://github.com/marionebl/commitlint)
 - [vscode-commitizen](https://github.com/KnisterPeter/vscode-commitizen)
 - [cz-emoji](https://github.com/ngryman/cz-emoji)
+- [cz-adapter-eslint](https://www.npmjs.com/package/cz-adapter-eslint)
 
 To create an adapter, just fork one of these great adapters and modify it to suit your needs.  We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
 
