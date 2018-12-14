@@ -68,7 +68,7 @@
     "nodemon": "1.18.7",
     "nyc": "13.0.1",
     "proxyquire": "^2.1.0",
-    "semantic-release": "7.0.2",
+    "semantic-release": "15.12.5",
     "semver": "5.5.1",
     "sinon": "^6.3.4"
   },
