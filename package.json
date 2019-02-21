@@ -82,9 +82,11 @@
     "fs-extra": "^7.0.0",
     "glob": "7.1.3",
     "inquirer": "6.2.0",
+    "is-utf8": "^0.2.1",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
     "shelljs": "0.7.6",
+    "strip-bom": "3.0.0",
     "strip-json-comments": "2.0.1"
   },
   "babel": {
