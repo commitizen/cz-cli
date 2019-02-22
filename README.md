@@ -30,7 +30,7 @@ When you're working in a Commitizen friendly repository, you'll be prompted to f
 
 [![Add and commit with Commitizen](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)
 
-If you're not working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit`.
+If you're not working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit` but `npx git-cz` will use the [streamich/git-cz](https://github.com/streamich/git-cz) adapter. 
 
 #### Conventional commit messages as a global utility
 
