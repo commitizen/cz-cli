@@ -1,24 +1,32 @@
-### Commitizen for contributors
+## Commitizen for contributors
+
 When you commit with Commitizen, you'll be prompted to fill out any required commit fields at commit time. No more waiting until later for a git commit hook to run and reject your commit (though [that](https://github.com/kentcdodds/validate-commit-msg) can still be helpful). No more digging through [CONTRIBUTING.md](CONTRIBUTING.md) to find what the preferred format is. Get instant feedback on your commit message formatting and be prompted for required fields.
 
-[![Backers on Open Collective](https://opencollective.com/commitizen/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/commitizen/sponsors/badge.svg)](#sponsors) [![travis.ci](https://img.shields.io/travis/commitizen/cz-cli.svg?style=flat-square&branch=master)](https://travis-ci.org/commitizen/cz-cli) [![Azure Build Status](https://dev.azure.com/commitizen/cz-cli/_apis/build/status/commitizen.cz-cli?branchName=master)](https://dev.azure.com/commitizen/cz-cli/_build/latest?definitionId=2) 
- [![codecov.io](https://img.shields.io/codecov/c/github/commitizen/cz-cli.svg?style=flat-square)](https://codecov.io/github/commitizen/cz-cli?branch=master) [![npm monthly downloads](https://img.shields.io/npm/dm/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![current version](https://img.shields.io/npm/v/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release) [![commitizen on stackoverflow](https://img.shields.io/badge/stackoverflow-community-orange.svg?longCache=true&style=flat-square&logo=stackoverflow)](https://stackoverflow.com/tags/commitizen)
+[![Backers on Open Collective](https://opencollective.com/commitizen/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/commitizen/sponsors/badge.svg)](#sponsors) [![travis.ci](https://img.shields.io/travis/commitizen/cz-cli.svg?style=flat-square&branch=master)](https://travis-ci.org/commitizen/cz-cli) [![Azure Build Status](https://dev.azure.com/commitizen/cz-cli/_apis/build/status/commitizen.cz-cli?branchName=master)](https://dev.azure.com/commitizen/cz-cli/_build/latest?definitionId=2)
+[![codecov.io](https://img.shields.io/codecov/c/github/commitizen/cz-cli.svg?style=flat-square)](https://codecov.io/github/commitizen/cz-cli?branch=master) [![npm monthly downloads](https://img.shields.io/npm/dm/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![current version](https://img.shields.io/npm/v/commitizen.svg?style=flat-square)](https://www.npmjs.com/package/commitizen) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release) [![commitizen on stackoverflow](https://img.shields.io/badge/stackoverflow-community-orange.svg?longCache=true&style=flat-square&logo=stackoverflow)](https://stackoverflow.com/tags/commitizen)
 
-#### Installing the command line tool
+## Installing the command line tool
+
 Installation is as simple as running the following command (if you see `EACCES` error, reading [fixing npm permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions) may help):
 
 ```
 npm install -g commitizen
 ```
 
-#### Using the command line tool
-Now, simply use `git cz` instead of `git commit` when committing.
+## Using the command line tool
+
+### If your repo is [Commitzen-Friendly]:
+
+Simply use `git cz` instead of `git commit` when committing.
 
 _Alternatively_, if you are using **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) instead of installing globally:
+
 ```
 npx git-cz
 ```
+
 or as an npm script:
+
 ```json
   ...
   "scripts": {
@@ -30,9 +38,11 @@ When you're working in a Commitizen friendly repository, you'll be prompted to f
 
 [![Add and commit with Commitizen](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)
 
-If you're not working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit` but `npx git-cz` will use the [streamich/git-cz](https://github.com/streamich/git-cz) adapter. 
+### If your repo is **NOT** [Commitzen-Friendly]:
 
-#### Conventional commit messages as a global utility
+If you're **not** working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit` but `npx git-cz` will use the [streamich/git-cz](https://github.com/streamich/git-cz) adapter. To fix this, you need to first [make your repo Commitizen-friendly](#making-your-repo-commitizen-friendly)
+
+## Conventional commit messages as a global utility
 
 Install `commitizen` globally, if you have not already.
 
@@ -54,16 +64,17 @@ echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 
 You are all set! Now `cd`into any `git` repository and use `git cz` instead of `git commit` and you will find the `commitizen` prompt.
 
-Protip:  You can use all the `git commit` `options` with `git cz`, for example: `git cz -a`.
+Protip: You can use all the `git commit` `options` with `git cz`, for example: `git cz -a`.
 
->If your repository is a [nodejs](https://nodejs.org/en/) project, making it [Commitizen-friendly](#making-your-repo-commitizen-friendly) is super easy.
+> If your repository is a [nodejs](https://nodejs.org/en/) project, making it [Commitizen-friendly] is super easy.
 
-If your repository is already [Commitizen-friendly](#making-your-repo-commitizen-friendly), the local `commitizen` adapter will be used, instead of globally installed one.
+If your repository is already [Commitizen-friendly], the local `commitizen` adapter will be used, instead of globally installed one.
 
-### Commitizen for project maintainers
+## Commitizen for project maintainers
+
 As a project maintainer, making your repo Commitizen friendly allows you to select pre-existing commit message conventions or to create your own custom commit message convention. When a contributor to your repo uses Commitizen, they will be prompted for the correct fields at commit time.
 
-#### Making your repo Commitizen-friendly
+## Making your repo Commitizen-friendly
 
 For this example, we'll be setting up our repo to use [AngularJS's commit message convention](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) also known as [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
 
@@ -88,6 +99,7 @@ commitizen init cz-conventional-changelog --yarn --dev --exact
 Note that if you want to force install over the top of an old adapter, you can apply the `--force` argument. For more information on this, just run `commitizen help`.
 
 The above command does three things for you.
+
 1. Installs the cz-conventional-changelog adapter npm module
 2. Saves it to package.json's dependencies or devDependencies
 3. Adds the `config.commitizen` key to the root of your **package.json** as shown here:
@@ -105,21 +117,22 @@ This just tells Commitizen which adapter we actually want our contributors to us
 
 `commitizen.path` is resolved via [require.resolve](https://nodejs.org/api/globals.html#globals_require_resolve) and supports
 
-*  npm modules
-*  directories relative to `process.cwd()` containing an `index.js` file
-*  file base names relative to `process.cwd()` with `js` extension
-*  full relative file names
-*  absolute paths.
+- npm modules
+- directories relative to `process.cwd()` containing an `index.js` file
+- file base names relative to `process.cwd()` with `js` extension
+- full relative file names
+- absolute paths.
 
 Please note that in the previous version of Commitizen we used czConfig. **czConfig has been deprecated** and you should migrate to the new format before Commitizen 3.0.0.
 
-#### Optional: Install and run Commitizen locally
+## Optional: Install and run Commitizen locally
 
 Installing and running Commitizen locally allows you to make sure that developers are running the exact same version of Commitizen on every machine.
 
 Install Commitizen with `npm install --save-dev commitizen`.
 
 On **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) to initialize the conventional changelog adapter:
+
 ```
 npx commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
@@ -139,11 +152,12 @@ And you can then add some nice npm run scripts in your package.json pointing to 
 
 This will be more convenient for your users because then if they want to do a commit, all they need to do is run `npm run commit` and they will get the prompts needed to start a commit!
 
-> **NOTE:** if you are using `precommit` hooks thanks to something like `husky`, you will need to name your script some thing other than "commit" (e.g. "cm": "git-cz"). The reason is because npm-scripts has a "feature" where it automatically runs scripts with the name *prexxx* where *xxx* is the name of another script. In essence, npm and husky will run "precommit" scripts twice if you name the script "commit," and the work around is to prevent the npm-triggered *precommit* script.
+> **NOTE:** if you are using `precommit` hooks thanks to something like `husky`, you will need to name your script some thing other than "commit" (e.g. "cm": "git-cz"). The reason is because npm-scripts has a "feature" where it automatically runs scripts with the name _prexxx_ where _xxx_ is the name of another script. In essence, npm and husky will run "precommit" scripts twice if you name the script "commit," and the work around is to prevent the npm-triggered _precommit_ script.
 
-#### Congratulations your repo is Commitizen-friendly. Time to flaunt it!
+## Congratulations your repo is Commitizen-friendly. Time to flaunt it!
 
 Add the Commitizen-friendly badge to your README using the following markdown:
+
 ```
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 ```
@@ -154,31 +168,30 @@ Your badge will look like this:
 
 It may also make sense to change your README.md or CONTRIBUTING.md to include or link to the Commitizen project so that your new contributors may learn more about installing and using Commitizen.
 
-
-#### Go further
+## Go further
 
 Commitizen is great on its own, but it shines when you use it with some other amazing open source tools. Kent C. Dodds shows you how to accomplish this in his Egghead.io series, [How to write an open source javascript library](https://egghead.io/series/how-to-write-an-open-source-javascript-library). Many of the concepts can be applied to non-javascript projects as well.
 
-#### Retrying failed commits
+## Retrying failed commits
 
-As of version 2.7.1, you may attempt to retry the last commit using the `git cz --retry` command. This can be helpful when you have tests set up to run via a git precommit hook.  In this scenario, you may have attempted a Commitizen commit, painstakingly filled out all of the commitizen fields, but your tests fail. In previous Commitizen versions, after fixing your tests, you would be forced to fill out all of the fields again. Enter the retry command. Commitizen will retry the last commit that you attempted in this repo without you needing to fill out the fields again.
+As of version 2.7.1, you may attempt to retry the last commit using the `git cz --retry` command. This can be helpful when you have tests set up to run via a git precommit hook. In this scenario, you may have attempted a Commitizen commit, painstakingly filled out all of the commitizen fields, but your tests fail. In previous Commitizen versions, after fixing your tests, you would be forced to fill out all of the fields again. Enter the retry command. Commitizen will retry the last commit that you attempted in this repo without you needing to fill out the fields again.
 
-Please note that the retry cache may be cleared when upgrading commitizen versions, upgrading adapters, or if you delete the `commitizen.json` file in your home or temp directory.  Additionally, the commit cache uses the filesystem path of the repo, so if you move a repo or change its path, you will not be able to retry a commit. This is an edge case, but might be confusing if you have scenarios where you are moving folders that contain repos.
+Please note that the retry cache may be cleared when upgrading commitizen versions, upgrading adapters, or if you delete the `commitizen.json` file in your home or temp directory. Additionally, the commit cache uses the filesystem path of the repo, so if you move a repo or change its path, you will not be able to retry a commit. This is an edge case, but might be confusing if you have scenarios where you are moving folders that contain repos.
 
 It is important to note that if you are running `git-cz` from a npm script (let's say it is called `commit`) you will need to do one of the following:
+
 - Pass `-- --retry` as an argument for your script. i.e: `npm run commit -- --retry`
 - Use [npm-run](https://www.npmjs.com/package/npm-run) to find and call git-cz executable directly. i.e: `npm-run git-cz --retry`
 - Use [npm-quick-run](https://www.npmjs.com/package/npm-quick-run) i.e: `nr commit --retry` or just `nr c --retry` (which will run all scripts that starts with the letter 'c')
 
 Note that the last two options **do not** require you to pass `--` before the args but the first **does**.
 
-### Commitizen for multi-repo projects
+## Commitizen for multi-repo projects
 
 As a project maintainer of many projects, you may want to standardize on a single commit message
 format for all of them. You can create your own node module which acts as front-end for commitizen.
 
-#### 1. Create your own entry point script
-
+## 1. Create your own entry point script
 
 ```
 // my-cli.js
@@ -198,7 +211,7 @@ bootstrap({
 });
 ```
 
-#### 2. Add script to package.json
+## 2. Add script to package.json
 
 ```
 // package.json
@@ -213,14 +226,14 @@ bootstrap({
 }
 ```
 
-#### 3. Publish it to npm and use it!
+## 3. Publish it to npm and use it!
 
 ```
 npm install company-commit --save-dev
 ./node_modules/.bin/company-commit
 ```
 
-### Adapters
+## Adapters
 
 We know that every project and build process has different requirements so we've tried to keep Commitizen open for extension. You can do this by choosing from any of the pre-build adapters or even by building your own. Here are some of the great adapters available to you:
 
@@ -236,23 +249,27 @@ We know that every project and build process has different requirements so we've
 - [cz-emoji](https://github.com/ngryman/cz-emoji)
 - [cz-adapter-eslint](https://www.npmjs.com/package/cz-adapter-eslint)
 
-To create an adapter, just fork one of these great adapters and modify it to suit your needs.  We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
+To create an adapter, just fork one of these great adapters and modify it to suit your needs. We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
 
-### Philosophy
+## Philosophy
 
-#### About Commitizen
+## About Commitizen
+
 Commitizen is an open source project that helps contributors be good open source citizens. It accomplishes this by prompting them to follow commit message conventions at commit time. It also empowers project maintainers to create or use predefined commit message conventions in their repos to better communicate their expectations to potential contributors.
 
-#### Commitizen or Commit Hooks
+## Commitizen or Commit Hooks
+
 Both! Commitizen is not meant to be a replacement for git commit hooks. Rather, it is meant to work side-by-side with them to ensure a consistent and positive experience for your contributors. Commitizen treats the commit command as a declarative action. The contributor is declaring that they wish to contribute to your project. It is up to you as the maintainer to define what rules they should be following.
 
 We accomplish this by letting you define which adapter you'd like to use in your project. Adapters just allow multiple projects to share the same commit message conventions. A good example of an adapter is the cz-conventional-changelog adapter.
 
-### Related projects
-* [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) – Generate a changelog from conventional commit history
-* [commitlint](https://github.com/marionebl/commitlint) - Lint commit messages
+## Related projects
 
-### Authors and Contributors
+- [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) – Generate a changelog from conventional commit history
+- [commitlint](https://github.com/marionebl/commitlint) - Lint commit messages
+
+## Authors and Contributors
+
 @JimTheDev (Jim Cummins, author)
 @kentcdodds
 @accraze
@@ -266,13 +283,11 @@ Special thanks to @stevelacy, whose [gulp-git](https://www.npmjs.com/package/gul
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
 <a href="graphs/contributors"><img src="https://opencollective.com/commitizen/contributors.svg?width=890&button=false" /></a>
 
-
 ## Backers
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/commitizen#backer)]
 
 <a href="https://opencollective.com/commitizen#backers" target="_blank"><img src="https://opencollective.com/commitizen/backers.svg?width=890"></a>
-
 
 ## Sponsors
 
@@ -289,4 +304,4 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/commitizen/sponsor/8/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/commitizen/sponsor/9/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/9/avatar.svg"></a>
 
-
+[commitizen-friendly]: #making-your-repo-commitizen-friendly
