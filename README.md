@@ -164,28 +164,6 @@ Protip: You can use all the `git commit` `options` with `git cz`, for example: `
 
 If your repository is already [Commitizen-friendly], the local `commitizen` adapter will be used, instead of globally installed one.
 
-## Commitizen for project maintainers
-
-As a project maintainer, making your repo Commitizen friendly allows you to select pre-existing commit message conventions or to create your own custom commit message convention. When a contributor to your repo uses Commitizen, they will be prompted for the correct fields at commit time.
-
-## Go further
-
-Commitizen is great on its own, but it shines when you use it with some other amazing open source tools. Kent C. Dodds shows you how to accomplish this in his Egghead.io series, [How to write an open source javascript library](https://egghead.io/series/how-to-write-an-open-source-javascript-library). Many of the concepts can be applied to non-javascript projects as well.
-
-## Retrying failed commits
-
-As of version 2.7.1, you may attempt to retry the last commit using the `git cz --retry` command. This can be helpful when you have tests set up to run via a git precommit hook. In this scenario, you may have attempted a Commitizen commit, painstakingly filled out all of the commitizen fields, but your tests fail. In previous Commitizen versions, after fixing your tests, you would be forced to fill out all of the fields again. Enter the retry command. Commitizen will retry the last commit that you attempted in this repo without you needing to fill out the fields again.
-
-Please note that the retry cache may be cleared when upgrading commitizen versions, upgrading adapters, or if you delete the `commitizen.json` file in your home or temp directory. Additionally, the commit cache uses the filesystem path of the repo, so if you move a repo or change its path, you will not be able to retry a commit. This is an edge case, but might be confusing if you have scenarios where you are moving folders that contain repos.
-
-It is important to note that if you are running `git-cz` from a npm script (let's say it is called `commit`) you will need to do one of the following:
-
-- Pass `-- --retry` as an argument for your script. i.e: `npm run commit -- --retry`
-- Use [npm-run](https://www.npmjs.com/package/npm-run) to find and call git-cz executable directly. i.e: `npm-run git-cz --retry`
-- Use [npm-quick-run](https://www.npmjs.com/package/npm-quick-run) i.e: `nr commit --retry` or just `nr c --retry` (which will run all scripts that starts with the letter 'c')
-
-Note that the last two options **do not** require you to pass `--` before the args but the first **does**.
-
 ## Commitizen for multi-repo projects
 
 As a project maintainer of many projects, you may want to standardize on a single commit message
@@ -250,6 +228,28 @@ We know that every project and build process has different requirements so we've
 - [cz-adapter-eslint](https://www.npmjs.com/package/cz-adapter-eslint)
 
 To create an adapter, just fork one of these great adapters and modify it to suit your needs. We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
+
+## Retrying failed commits
+
+As of version 2.7.1, you may attempt to retry the last commit using the `git cz --retry` command. This can be helpful when you have tests set up to run via a git precommit hook. In this scenario, you may have attempted a Commitizen commit, painstakingly filled out all of the commitizen fields, but your tests fail. In previous Commitizen versions, after fixing your tests, you would be forced to fill out all of the fields again. Enter the retry command. Commitizen will retry the last commit that you attempted in this repo without you needing to fill out the fields again.
+
+Please note that the retry cache may be cleared when upgrading commitizen versions, upgrading adapters, or if you delete the `commitizen.json` file in your home or temp directory. Additionally, the commit cache uses the filesystem path of the repo, so if you move a repo or change its path, you will not be able to retry a commit. This is an edge case, but might be confusing if you have scenarios where you are moving folders that contain repos.
+
+It is important to note that if you are running `git-cz` from a npm script (let's say it is called `commit`) you will need to do one of the following:
+
+- Pass `-- --retry` as an argument for your script. i.e: `npm run commit -- --retry`
+- Use [npm-run](https://www.npmjs.com/package/npm-run) to find and call git-cz executable directly. i.e: `npm-run git-cz --retry`
+- Use [npm-quick-run](https://www.npmjs.com/package/npm-quick-run) i.e: `nr commit --retry` or just `nr c --retry` (which will run all scripts that starts with the letter 'c')
+
+Note that the last two options **do not** require you to pass `--` before the args but the first **does**.
+
+## Commitizen for project maintainers
+
+As a project maintainer, making your repo Commitizen friendly allows you to select pre-existing commit message conventions or to create your own custom commit message convention. When a contributor to your repo uses Commitizen, they will be prompted for the correct fields at commit time.
+
+## Go further
+
+Commitizen is great on its own, but it shines when you use it with some other amazing open source tools. Kent C. Dodds shows you how to accomplish this in his Egghead.io series, [How to write an open source javascript library](https://egghead.io/series/how-to-write-an-open-source-javascript-library). Many of the concepts can be applied to non-javascript projects as well.
 
 ## Philosophy
 
