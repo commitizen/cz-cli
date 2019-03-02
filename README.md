@@ -15,7 +15,7 @@ npm install -g commitizen
 
 ## Using the command line tool
 
-### If your repo is [Commitzen-Friendly]:
+### If your repo is [Commitizen-friendly]:
 
 Simply use `git cz` instead of `git commit` when committing.
 
@@ -38,7 +38,7 @@ When you're working in a Commitizen friendly repository, you'll be prompted to f
 
 [![Add and commit with Commitizen](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)
 
-### If your repo is **NOT** [Commitzen-Friendly]:
+### If your repo is NOT Commitizen friendly:
 
 If you're **not** working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit` but `npx git-cz` will use the [streamich/git-cz](https://github.com/streamich/git-cz) adapter. To fix this, you need to first [make your repo Commitizen-friendly](#making-your-repo-commitizen-friendly)
 
@@ -191,7 +191,7 @@ Note that the last two options **do not** require you to pass `--` before the ar
 As a project maintainer of many projects, you may want to standardize on a single commit message
 format for all of them. You can create your own node module which acts as front-end for commitizen.
 
-## 1. Create your own entry point script
+### 1. Create your own entry point script
 
 ```
 // my-cli.js
@@ -211,7 +211,7 @@ bootstrap({
 });
 ```
 
-## 2. Add script to package.json
+### 2. Add script to package.json
 
 ```
 // package.json
@@ -226,7 +226,7 @@ bootstrap({
 }
 ```
 
-## 3. Publish it to npm and use it!
+### 3. Publish it to npm and use it!
 
 ```
 npm install company-commit --save-dev
@@ -253,11 +253,11 @@ To create an adapter, just fork one of these great adapters and modify it to sui
 
 ## Philosophy
 
-## About Commitizen
+### About Commitizen
 
 Commitizen is an open source project that helps contributors be good open source citizens. It accomplishes this by prompting them to follow commit message conventions at commit time. It also empowers project maintainers to create or use predefined commit message conventions in their repos to better communicate their expectations to potential contributors.
 
-## Commitizen or Commit Hooks
+### Commitizen or Commit Hooks
 
 Both! Commitizen is not meant to be a replacement for git commit hooks. Rather, it is meant to work side-by-side with them to ensure a consistent and positive experience for your contributors. Commitizen treats the commit command as a declarative action. The contributor is declaring that they wish to contribute to your project. It is up to you as the maintainer to define what rules they should be following.
 
@@ -304,4 +304,4 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/commitizen/sponsor/8/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/commitizen/sponsor/9/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/9/avatar.svg"></a>
 
-[commitizen-friendly]: #making-your-repo-commitizen-friendly
+[Commitizen-friendly]: #making-your-repo-commitizen-friendly
