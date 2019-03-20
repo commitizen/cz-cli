@@ -35,6 +35,10 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
   // normal commit.
   let retryLastCommit = rawGitArgs && rawGitArgs[0] === '--retry';
 
+  // Determine if we need to process this commit using interactive hook mode
+  // for husky prepare-commit-message
+  let hookMode = !(typeof parsedCommitizenArgs.hook === 'undefined');
+
   let resolvedAdapterConfigPath = resolveAdapterPath(adapterConfig.path);
   let resolvedAdapterRootPath = findRoot(resolvedAdapterConfigPath);
   let prompter = getPrompter(adapterConfig.path);
@@ -57,7 +61,8 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
       disableAppendPaths: true,
       emitData: true,
       quiet: false,
-      retryLastCommit
+      retryLastCommit,
+      hookMode
     }, function (error) {
       if (error) {
         throw error;
