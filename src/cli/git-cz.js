@@ -9,10 +9,10 @@ export {
  * This is the main cli entry point.
  * environment may be used for debugging.
  */
-function bootstrap (environment = {}) {
+function bootstrap (environment = {}, argv = process.argv) {
 
   // Get cli args
-  let rawGitArgs = process.argv.slice(2, process.argv.length);
+  let rawGitArgs = argv.slice(2, argv.length);
 
   let adapterConfig = environment.config || configLoader.load();
 

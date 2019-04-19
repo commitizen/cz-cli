@@ -57,5 +57,12 @@ describe('git-cz', () => {
         });
       });
     });
+
+    describe('when argv is overridden', () => {
+      it('uses the overridden argv', () => {
+        bootstrap({}, ['node', 'git-cz', 'index.js']);
+        expect(fakeStrategies.git.args[0][0][0]).to.equal('index.js');
+      });
+    })
   });
 });
