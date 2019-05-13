@@ -120,8 +120,6 @@ And you can then add some nice npm run scripts in your package.json pointing to 
 
 This will be more convenient for your users because then if they want to do a commit, all they need to do is run `npm run commit` and they will get the prompts needed to start a commit!
 
-> **NOTE:** if you are using `precommit` hooks thanks to something like `husky`, you will need to name your script some thing other than "commit" (e.g. "cm": "git-cz"). The reason is because npm-scripts has a "feature" where it automatically runs scripts with the name _prexxx_ where _xxx_ is the name of another script. In essence, npm and husky will run "precommit" scripts twice if you name the script "commit," and the work around is to prevent the npm-triggered _precommit_ script.
-
 > **NOTE:** if you are using `precommit` hooks thanks to something like `husky`, you will need to name your script some thing other than "commit" (e.g. "cm": "git-cz"). The reason is because npm-scripts has a "feature" where it automatically runs scripts with the name *prexxx* where *xxx* is the name of another script. In essence, npm and husky will run "precommit" scripts twice if you name the script "commit," and the work around is to prevent the npm-triggered *precommit* script.
 
 #### Optional: Running Commitizen on `git commit`
@@ -129,7 +127,7 @@ This will be more convenient for your users because then if they want to do a co
 This example shows how to incorporate Commitizen into the existing `git commit` workflow by using git hooks and the `--hook` command-line option. This is useful for project maintainers
 who wish to ensure the proper commit format is enforced on contributions from those unfamiliar with Commitizen.
 
-Once either of these methods is implemented, users running `git commit` will be presented with an interactive Commitizen session that helps them write useful commit messages. 
+Once either of these methods is implemented, users running `git commit` will be presented with an interactive Commitizen session that helps them write useful commit messages.
 
 > **NOTE:** This example assumes that the project has been set up to [use Commitizen locally](https://github.com/commitizen/cz-cli#optional-install-and-run-commitizen-locally).
 
@@ -143,7 +141,7 @@ exec < /dev/tty
 node_modules/.bin/git-cz --hook
 ```
 
-##### Husky 
+##### Husky
 For `husky` users, add the following configuration to the project's `package.json`:
 
 ```
