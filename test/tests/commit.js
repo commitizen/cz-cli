@@ -2,6 +2,7 @@
 
 import { expect } from 'chai';
 import os from 'os';
+import fs from 'fs';
 import path from 'path';
 
 import inquirer from 'inquirer';
@@ -274,6 +275,44 @@ ${(os.platform === 'win32') ? '' : '    '}
 
   });
 
+  it('should save directly to .git/COMMIT_EDITMSG with --hook option', function (done) {
+
+    this.timeout(config.maxTimeout);
+
+    // SETUP
+    let dummyCommitMessage = `doggies!`;
+
+    let repoConfig = {
+      path: config.paths.endUserRepo,
+      files: {
+        dummyfile: {
+          contents: 'arf arf!',
+          filename: 'woof.txt'
+        }
+      }
+    };
+
+    // Describe an adapter
+    let adapterConfig = {
+      path: path.join(repoConfig.path, '/node_modules/cz-jira-smart-commit'),
+      npmName: 'cz-jira-smart-commit'
+    }
+
+    // Quick setup the repos, adapter, and grab a simple prompter
+    let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage);
+    // TEST
+
+    // This is a successful commit directly to .git/COMMIT_EDITMSG
+    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true, hookMode: true }, function (err) {
+      const commitFilePath = path.join(repoConfig.path, '.git/COMMIT_EDITMSG')
+      const commitFile = fs.openSync(commitFilePath, 'r+')
+      let commitContents = fs.readFileSync(commitFile, { flags: 'r+' }).toString();
+      fs.closeSync(commitFile);
+      expect(commitContents).to.have.string(dummyCommitMessage);
+      expect(err).to.be.a('null');
+      done();
+    });
+  });
 });
 
 afterEach(function () {
