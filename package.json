@@ -73,7 +73,7 @@
     "sinon": "^6.3.4"
   },
   "dependencies": {
-    "cachedir": "2.1.0",
+    "cachedir": "2.2.0",
     "cz-conventional-changelog": "2.1.0",
     "dedent": "0.7.0",
     "detect-indent": "^5.0.0",
