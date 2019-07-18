@@ -57,13 +57,13 @@
     "ghooks": "^2.0.4",
     "in-publish": "^2.0.0",
     "mocha": "5.2.0",
-    "node-uuid": "1.4.8",
     "nodemon": "1.18.7",
     "nyc": "14.0.0",
     "proxyquire": "^2.1.0",
     "semantic-release": "15.13.18",
     "semver": "5.5.1",
-    "sinon": "^6.3.4"
+    "sinon": "^6.3.4",
+    "uuid": "3.3.2"
   },
   "dependencies": {
     "cachedir": "2.1.0",
