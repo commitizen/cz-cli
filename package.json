@@ -13,7 +13,6 @@
     "write-coverage": "nyc report --reporter=lcov",
     "semantic-release": "npx semantic-release",
     "start": "npm run test:watch",
-    "lint": "eslint --ignore-path .gitignore .",
     "test": "nyc --require @babel/register _mocha -- test/tests/index.js",
     "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --"
   },
@@ -22,7 +21,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     },
     "ghooks": {
-      "pre-commit": "npm run lint && npm run test && npm run check-coverage"
+      "pre-commit": "npm run test && npm run check-coverage"
     }
   },
   "homepage": "https://github.com/commitizen/cz-cli",
@@ -55,12 +54,6 @@
     "chai": "^4.1.2",
     "codecov.io": "0.1.6",
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
-    "eslint": "5.6.0",
-    "eslint-config-standard": "12.0.0",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-node": "7.0.1",
-    "eslint-plugin-promise": "4.0.1",
-    "eslint-plugin-standard": "4.0.0",
     "ghooks": "^2.0.4",
     "in-publish": "^2.0.0",
     "mocha": "5.2.0",
@@ -95,7 +88,7 @@
         "@babel/preset-env",
         {
           "targets": {
-            "node": "6"
+            "node": "10"
           }
         }
       ]
@@ -109,7 +102,7 @@
   },
   "engineStrict": true,
   "engines": {
-    "node": ">= 6"
+    "node": ">= 10"
   },
   "collective": {
     "type": "opencollective",

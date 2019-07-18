@@ -1,6 +1,3 @@
-/* eslint-env mocha */
-/* eslint-disable no-unused-expressions */
-
 import { expect } from 'chai';
 import { isArray, isFunction, isString } from '../../src/common/util';
 
@@ -11,9 +8,7 @@ describe('common util', function () {
     // Truthies
     expect(isArray([])).to.be.true;
     expect(isArray([1, 2, 3])).to.be.true;
-    // eslint-disable-next-line no-sparse-arrays
     expect(isArray([1, , 3])).to.be.true;
-    // eslint-disable-next-line no-array-constructor
     expect(isArray(new Array())).to.be.true;
 
     // Falsies
@@ -33,7 +28,6 @@ describe('common util', function () {
 
     // Truthies
     expect(isFunction(function () {})).to.be.true;
-    // eslint-disable-next-line no-new-func
     expect(isFunction(new Function())).to.be.true;
 
     // Falsies
@@ -59,7 +53,6 @@ describe('common util', function () {
       line
       string`
     )).to.be.true;
-    // eslint-disable-next-line no-new-wrappers
     expect(isString(new String())).to.be.true;
 
     // Falsies

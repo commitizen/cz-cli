@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import { expect } from 'chai';
 import { gitCz as gitCzParser, commitizen as commitizenParser } from '../../src/cli/parsers';
 
