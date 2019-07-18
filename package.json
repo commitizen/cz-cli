@@ -13,7 +13,6 @@
     "write-coverage": "nyc report --reporter=lcov",
     "semantic-release": "npx semantic-release",
     "start": "npm run test:watch",
-    "lint": "eslint --ignore-path .gitignore .",
     "test": "nyc --require @babel/register _mocha -- test/tests/index.js",
     "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --"
   },
@@ -22,7 +21,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     },
     "ghooks": {
-      "pre-commit": "npm run lint && npm run test && npm run check-coverage"
+      "pre-commit": "npm run test && npm run check-coverage"
     }
   },
   "homepage": "https://github.com/commitizen/cz-cli",
@@ -89,7 +88,7 @@
         "@babel/preset-env",
         {
           "targets": {
-            "node": "6"
+            "node": "10"
           }
         }
       ]
@@ -103,7 +102,7 @@
   },
   "engineStrict": true,
   "engines": {
-    "node": ">= 6"
+    "node": ">= 10"
   },
   "collective": {
     "type": "opencollective",
