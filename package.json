@@ -72,7 +72,7 @@
   },
   "dependencies": {
     "cachedir": "2.2.0",
-    "cz-conventional-changelog": "2.1.0",
+    "cz-conventional-changelog": "3.0.1",
     "dedent": "0.7.0",
     "detect-indent": "6.0.0",
     "find-node-modules": "2.0.0",
