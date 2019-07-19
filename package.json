@@ -13,7 +13,8 @@
     "write-coverage": "nyc report --reporter=lcov",
     "semantic-release": "npx semantic-release",
     "start": "npm run test:watch",
-    "test": "nyc --require @babel/register _mocha -- test/tests/index.js",
+    "test-actual": "mocha test/tests/index.js",
+    "test": "nyc --require @babel/register npm run test-actual",
     "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --"
   },
   "config": {
@@ -50,18 +51,20 @@
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
+    "@istanbuljs/nyc-config-babel": "2.1.1",
     "axios": "0.19.0",
+    "babel-plugin-istanbul": "5.1.4",
     "chai": "^4.1.2",
     "codecov.io": "0.1.6",
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
     "ghooks": "^2.0.4",
     "in-publish": "^2.0.0",
-    "mocha": "5.2.0",
+    "mocha": "6.2.0",
     "nodemon": "1.19.1",
-    "nyc": "14.0.0",
+    "nyc": "14.1.1",
     "proxyquire": "^2.1.0",
     "semantic-release": "15.13.18",
-    "semver": "5.5.1",
+    "semver": "6.2.0",
     "sinon": "^6.3.4",
     "uuid": "3.3.2"
   },
@@ -80,7 +83,7 @@
     "minimist": "1.2.0",
     "shelljs": "0.7.6",
     "strip-bom": "4.0.0",
-    "strip-json-comments": "2.0.1"
+    "strip-json-comments": "3.0.1"
   },
   "babel": {
     "presets": [
@@ -92,9 +95,11 @@
           }
         }
       ]
-    ]
+    ],
+    "plugins": ["istanbul"]
   },
   "nyc": {
+    "extends": "@istanbuljs/nyc-config-babel",
     "exclude": [
       "src/cli",
       "test"
