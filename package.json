@@ -76,7 +76,7 @@
     "glob": "7.1.4",
     "inquirer": "6.5.0",
     "is-utf8": "^0.2.1",
-    "lodash": "4.17.14",
+    "lodash": "4.17.15",
     "minimist": "1.2.0",
     "shelljs": "0.7.6",
     "strip-bom": "4.0.0",
