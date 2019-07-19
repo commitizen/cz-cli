@@ -80,7 +80,7 @@
     "minimist": "1.2.0",
     "shelljs": "0.7.6",
     "strip-bom": "4.0.0",
-    "strip-json-comments": "2.0.1"
+    "strip-json-comments": "3.0.1"
   },
   "babel": {
     "presets": [
