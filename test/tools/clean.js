@@ -1,6 +1,6 @@
 import * as path from 'path';
 import fs from 'fs-extra';
-import uuid from 'node-uuid';
+import uuidv4 from 'uuid/v4';
 
 export {
   before,
@@ -9,7 +9,7 @@ export {
 };
 
 // Unique id for each 'run' of the entire test suite
-let testSuiteRunId = uuid.v4();
+let testSuiteRunId = uuidv4();
 
 // At the beginning of a run purge .tmp
 function before (sh, tmpPath) {
@@ -37,7 +37,7 @@ function after (sh, tmpPath, preserve) {
  * Generally should be run in afterEach()
  */
 function archive (sh, tmpPath, testSuiteRunId) {
-  let destinationPath = path.resolve(tmpPath + '/../artifacts/' + testSuiteRunId + '/' + uuid.v4());
+  let destinationPath = path.resolve(tmpPath + '/../artifacts/' + testSuiteRunId + '/' + uuidv4());
   sh.mkdir('-p', destinationPath);
   sh.cp('-Rf', tmpPath + '/*', destinationPath);
 }
