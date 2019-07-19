@@ -131,7 +131,7 @@ describe('adapter', function () {
     };
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', {includeCommitizen: true});
 
     // TEST
     expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);

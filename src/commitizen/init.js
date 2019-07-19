@@ -56,6 +56,7 @@ function init (sh, repoPath, adapterNpmName, {
   yarn = false,
   dev = false,
   exact = false,
+  includeCommitizen = false
 } = defaultInitOptions) {
 
   // Don't let things move forward if required args are missing
@@ -73,6 +74,8 @@ function init (sh, repoPath, adapterNpmName, {
   // Generate a string that represents the npm install command
   let installAdapterCommand = yarn ? generateYarnAddAdapterCommand(stringMappings, adapterNpmName) : generateNpmInstallAdapterCommand(stringMappings, adapterNpmName);
 
+  let installCommitizenCommand = yarn ? generateYarnAddAdapterCommand(stringMappings, "commitizen") : generateNpmInstallAdapterCommand(stringMappings, "commitizen");
+
   // Check for previously installed adapters
   if (adapterConfig && adapterConfig.path && adapterConfig.path.length > 0 && !force) {
     throw new Error(`A previous adapter is already configured. Use --force to override
@@ -86,6 +89,9 @@ function init (sh, repoPath, adapterNpmName, {
 
   try {
     executeShellCommand(sh, repoPath, installAdapterCommand);
+    if(includeCommitizen) {
+      executeShellCommand(sh, repoPath, installCommitizenCommand);
+    }
     addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
   } catch (e) {
     console.error(e);
