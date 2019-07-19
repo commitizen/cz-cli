@@ -58,7 +58,7 @@
     "in-publish": "^2.0.0",
     "mocha": "5.2.0",
     "nodemon": "1.19.1",
-    "nyc": "14.0.0",
+    "nyc": "14.1.1",
     "proxyquire": "^2.1.0",
     "semantic-release": "15.13.18",
     "semver": "5.5.1",
