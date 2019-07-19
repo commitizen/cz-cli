@@ -56,7 +56,7 @@
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
     "ghooks": "^2.0.4",
     "in-publish": "^2.0.0",
-    "mocha": "5.2.0",
+    "mocha": "6.2.0",
     "nodemon": "1.19.1",
     "nyc": "14.0.0",
     "proxyquire": "^2.1.0",
