@@ -24,7 +24,17 @@ jobs:
   - script: git config --global user.name "Example Git User"
   - script: npm install
   - script: npm run build
-  - script: npm test
+  - script: npm test && npm run write-coverage
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    inputs:
+      testResultsFiles: '**/junit-*.xml'
+      testRunTitle: TestRun ${{ parameters.name }} $(node_version)
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish code coverage results'
+    inputs:
+      codeCoverageTool: 'cobertura'
+      summaryFileLocation: '**/coverage/cobertura-coverage.xml'
   - task: PublishBuildArtifacts@1
     displayName: Publish packages
     condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))
