@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import * as adapter from './commitizen/adapter';
 import * as cache from './commitizen/cache';
 import commit from './commitizen/commit';
