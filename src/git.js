@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { addPath, addFile } from './git/add';
 import { commit } from './git/commit';
 import { init } from './git/init';

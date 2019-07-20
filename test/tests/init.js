@@ -155,6 +155,30 @@ describe('init', function () {
 
   });
 
+  it('installs an commitizen with includeCommitizen', function () {
+
+    this.timeout(config.maxTimeout); // this could take a while
+
+    // SETUP
+
+    // Add a first adapter
+    sh.cd(config.paths.endUserRepo);
+    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { includeCommitizen: true });
+    let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
+
+    // TEST
+    expect(packageJson.devDependencies).to.have.property('cz-conventional-changelog');
+    expect(packageJson.devDependencies).to.have.property('commitizen');
+    let range = packageJson.devDependencies['cz-conventional-changelog'];
+
+    // It should satisfy the requirements of a range
+    expect(semver.validRange(range)).to.not.equal(null);
+
+    // But you CAN increment a single version
+    expect(semver.inc(range, 'major')).not.to.equal(null);
+
+  });
+
   it('installs an adapter with --yarn', function () {
 
     this.timeout(config.maxTimeout); // this could take a while

@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import findup from './configLoader/findup';
 import getContent from './configLoader/getContent';
 import getNormalizedConfig from './configLoader/getNormalizedConfig';
