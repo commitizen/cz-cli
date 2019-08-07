@@ -233,7 +233,7 @@ bootstrap({
 
 {
   "name": "company-commit",
-  "bin": "./my-cli.js"
+  "bin": "./my-cli.js",
   "dependencies": {
     "commitizen": "^2.7.6",
     "cz-conventional-changelog": "^1.1.5",
