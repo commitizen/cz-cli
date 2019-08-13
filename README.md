@@ -142,8 +142,7 @@ Update `.git/hooks/prepare-commit-msg` with the following code:
 
 ```
 #!/bin/bash
-exec < /dev/tty
-node_modules/.bin/git-cz --hook
+exec < /dev/tty && node_modules/.bin/git-cz --hook || true
 ```
 
 ##### Husky
@@ -152,7 +151,7 @@ For `husky` users, add the following configuration to the project's `package.jso
 ```
 "husky": {
   "hooks": {
-    "prepare-commit-msg": "exec < /dev/tty && git cz --hook",
+    "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
   }
 }
 ```
