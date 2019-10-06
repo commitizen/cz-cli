@@ -9,7 +9,7 @@ import * as gitStrategy from './git';
 // destructure for shorter apis
 let { parse } = gitCzParser;
 
-let { getPrompter, resolveAdapterPath } = adapter;
+let { getPrompter, resolveAdapterPath, getGitRootPath } = adapter;
 let { isClean } = staging;
 
 export default gitCz;
@@ -56,7 +56,7 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
     let adapterPackageJson = getParsedPackageJsonFromPath(resolvedAdapterRootPath);
     let cliPackageJson = getParsedPackageJsonFromPath(environment.cliPath);
     console.log(`cz-cli@${cliPackageJson.version}, ${adapterPackageJson.name}@${adapterPackageJson.version}\n`);
-    commit(sh, inquirer, process.cwd(), prompter, {
+    commit(sh, inquirer, getGitRootPath(), prompter, {
       args: parsedGitCzArgs,
       disableAppendPaths: true,
       emitData: true,

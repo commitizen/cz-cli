@@ -17,6 +17,7 @@ export {
   resolveAdapterPath,
   getYarnAddStringMappings,
   generateYarnAddAdapterCommand,
+  getGitRootPath,
 };
 
 /**
