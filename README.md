@@ -151,7 +151,7 @@ For `husky` users, add the following configuration to the project's `package.jso
 ```
 "husky": {
   "hooks": {
-    "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+    "prepare-commit-msg": "exec < /dev/tty && git cz --hook || false",
   }
 }
 ```
