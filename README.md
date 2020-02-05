@@ -317,7 +317,7 @@ Special thanks to @stevelacy, whose [gulp-git](https://www.npmjs.com/package/gul
 ## Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="graphs/contributors"><img src="https://opencollective.com/commitizen/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/commitizen/cz-cli/graphs/contributors"><img src="https://opencollective.com/commitizen/contributors.svg?width=890&button=false" /></a>
 
 ## Backers
 
