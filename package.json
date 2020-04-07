@@ -88,22 +88,6 @@
     "strip-bom": "4.0.0",
     "strip-json-comments": "3.0.1"
   },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "10"
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-object-rest-spread",
-      "istanbul"
-    ]
-  },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-babel",
     "exclude": [
