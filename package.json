@@ -49,6 +49,7 @@
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.9.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
     "@istanbuljs/nyc-config-babel": "2.1.1",
@@ -99,6 +100,7 @@
       ]
     ],
     "plugins": [
+      "@babel/plugin-proposal-object-rest-spread",
       "istanbul"
     ]
   },
