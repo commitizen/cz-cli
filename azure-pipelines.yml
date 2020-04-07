@@ -8,7 +8,7 @@ jobs:
   parameters:
     name: macOS
     pool:
-      vmImage: 'macOS-10.13'
+      vmImage: 'macOS-latest'
 
 - template: jobs/build.yml  # Template reference
   parameters:
@@ -20,5 +20,5 @@ jobs:
   parameters:
     name: Windows
     pool:
-      vmImage: 'vs2017-win2016'
+      vmImage: 'windows-latest'
     sign: true  # Extra step on Windows only
