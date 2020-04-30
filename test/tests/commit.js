@@ -59,12 +59,12 @@ describe('commit', function () {
     };
 
     // Quick setup the repos, adapter, and grab a simple prompter
-    let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage);
+    let prompter = quickPrompterSetup(repoConfig, adapterConfig, dummyCommitMessage);
     // TEST
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
+    commitizenCommit(inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
@@ -103,12 +103,12 @@ describe('commit', function () {
     };
 
     // Quick setup the repos, adapter, and grab a simple prompter
-    let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage);
+    let prompter = quickPrompterSetup(repoConfig, adapterConfig, dummyCommitMessage);
     // TEST
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
+    commitizenCommit(inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
@@ -152,12 +152,12 @@ ${(os.platform === 'win32') ? '' : '    '}
     };
 
     // Quick setup the repos, adapter, and grab a simple prompter
-    let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage);
+    let prompter = quickPrompterSetup(repoConfig, adapterConfig, dummyCommitMessage);
     // TEST
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true }, function () {
+    commitizenCommit(inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
         done();
@@ -201,12 +201,12 @@ ${(os.platform === 'win32') ? '' : '    '}
     };
 
     // Quick setup the repos, adapter, and grab a simple prompter
-    let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage, options);
+    let prompter = quickPrompterSetup(repoConfig, adapterConfig, dummyCommitMessage, options);
     // TEST
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
+    commitizenCommit(inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(author);
         expect(logOutput).to.have.string(dummyCommitMessage);
@@ -255,12 +255,12 @@ ${(os.platform === 'win32') ? '' : '    '}
     };
 
     // Quick setup the repos, adapter, and grab a simple prompter
-    let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage, options);
+    let prompter = quickPrompterSetup(repoConfig, adapterConfig, dummyCommitMessage, options);
     // TEST
 
     // Pass in inquirer but it never gets used since we've mocked out a different
     // version of prompter.
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
+    commitizenCommit(inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function () {
       log(repoConfig.path, function (logOutput) {
         expect(logOutput).to.have.string(dummyCommitMessage);
       });
@@ -297,11 +297,11 @@ ${(os.platform === 'win32') ? '' : '    '}
     }
 
     // Quick setup the repos, adapter, and grab a simple prompter
-    let prompter = quickPrompterSetup(sh, repoConfig, adapterConfig, dummyCommitMessage);
+    let prompter = quickPrompterSetup(repoConfig, adapterConfig, dummyCommitMessage);
     // TEST
 
     // This is a successful commit directly to .git/COMMIT_EDITMSG
-    commitizenCommit(sh, inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true, hookMode: true }, function (err) {
+    commitizenCommit(inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true, hookMode: true }, function (err) {
       const commitFilePath = path.join(repoConfig.path, '.git/COMMIT_EDITMSG')
       const commitFile = fs.openSync(commitFilePath, 'r+')
       let commitContents = fs.readFileSync(commitFile, { flags: 'r+' }).toString();
@@ -330,9 +330,9 @@ after(function () {
   * This is just a helper for testing. NOTE that prompter
   * prompter is overriden for testing purposes.
   */
-function quickPrompterSetup (sh, repoConfig, adapterConfig, commitMessage, options = {}) {
+function quickPrompterSetup (repoConfig, adapterConfig, commitMessage, options = {}) {
 
-  commitizenInit(sh, repoConfig.path, adapterConfig.npmName);
+  commitizenInit(repoConfig.path, adapterConfig.npmName);
 
   // NOTE:
   // In our real code we'd use this here but since we're testing,
@@ -342,14 +342,14 @@ function quickPrompterSetup (sh, repoConfig, adapterConfig, commitMessage, optio
     commit(commitMessage, options);
   }
 
-  gitInit(sh, repoConfig.path);
+  gitInit(repoConfig.path);
 
   writeFilesToPath(repoConfig.files, repoConfig.path);
 
   for (let key in repoConfig.files) {
     let file = repoConfig.files[key];
     if (file.add !== false) {
-      gitAddFile(sh, repoConfig.path, file.filename);
+      gitAddFile(repoConfig.path, file.filename);
     }
   }
 

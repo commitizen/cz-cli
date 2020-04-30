@@ -2,22 +2,12 @@ import fs from 'fs';
 import path from 'path';
 
 export {
-  executeShellCommand,
   getParsedJsonFromFile,
   getParsedPackageJsonFromPath,
   isArray,
   isFunction,
   isString,
   isInTest
-}
-
-/**
- * Executes the command passed to it at the path requested
- * using the instance of shelljs passed in
- */
-function executeShellCommand (sh, path, installCommand) {
-  sh.cd(path);
-  sh.exec(installCommand);
 }
 
 /**

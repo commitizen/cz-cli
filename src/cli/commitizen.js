@@ -1,6 +1,5 @@
 import { init } from '../commitizen';
 import { commitizen as commitizenParser } from './parsers';
-import * as sh from 'shelljs';
 
 let { parse } = commitizenParser;
 
@@ -27,7 +26,7 @@ function bootstrap (environment = {}, argv = process.argv) {
     if (adapterNpmName) {
       console.log(`Attempting to initialize using the npm package ${adapterNpmName}`);
       try {
-        init(sh, process.cwd(), adapterNpmName, parsedArgs);
+        init(process.cwd(), adapterNpmName, parsedArgs);
       } catch (e) {
         console.error(`Error: ${e}`);
       }

@@ -1,6 +1,6 @@
+import childProcess from 'child_process';
 import path from 'path';
 import * as configLoader from './configLoader';
-import { executeShellCommand } from '../common/util';
 import * as adapter from './adapter';
 
 let {
@@ -48,7 +48,7 @@ const defaultInitOptions = {
 /**
  * Runs npm install for the adapter then modifies the config.commitizen as needed
  */
-function init (sh, repoPath, adapterNpmName, {
+function init (repoPath, adapterNpmName, {
   save = false,
   saveDev = true,
   saveExact = false,
@@ -60,10 +60,7 @@ function init (sh, repoPath, adapterNpmName, {
 } = defaultInitOptions) {
 
   // Don't let things move forward if required args are missing
-  checkRequiredArguments(sh, repoPath, adapterNpmName);
-
-  // Move to the correct directory so we can run commands
-  sh.cd(repoPath);
+  checkRequiredArguments(repoPath, adapterNpmName);
 
   // Load the current adapter config
   let adapterConfig = loadAdapterConfig();
@@ -88,11 +85,11 @@ function init (sh, repoPath, adapterNpmName, {
   }
 
   try {
-    executeShellCommand(sh, repoPath, installAdapterCommand);
+    childProcess.execSync(installAdapterCommand, { cwd: repoPath });
     if(includeCommitizen) {
-      executeShellCommand(sh, repoPath, installCommitizenCommand);
+      childProcess.execSync(installCommitizenCommand, { cwd: repoPath });
     }
-    addPathToAdapterConfig(sh, CLI_PATH, repoPath, adapterNpmName);
+    addPathToAdapterConfig(CLI_PATH, repoPath, adapterNpmName);
   } catch (e) {
     console.error(e);
   }
@@ -102,10 +99,7 @@ function init (sh, repoPath, adapterNpmName, {
  * Checks to make sure that the required arguments are passed
  * Throws an exception if any are not.
  */
-function checkRequiredArguments (sh, path, adapterNpmName) {
-  if (!sh) {
-    throw new Error("You must pass an instance of shelljs when running init.");
-  }
+function checkRequiredArguments (path, adapterNpmName) {
   if (!path) {
     throw new Error("Path is required when running init.");
   }

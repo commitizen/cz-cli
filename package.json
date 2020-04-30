@@ -68,6 +68,7 @@
     "proxyquire": "^2.1.0",
     "semantic-release": "15.13.18",
     "semver": "6.2.0",
+    "shelljs": "0.7.6",
     "sinon": "^6.3.4",
     "uuid": "3.3.2"
   },
@@ -84,7 +85,6 @@
     "is-utf8": "^0.2.1",
     "lodash": "4.17.15",
     "minimist": "1.2.5",
-    "shelljs": "0.7.6",
     "strip-bom": "4.0.0",
     "strip-json-comments": "3.0.1"
   },

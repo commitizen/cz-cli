@@ -11,7 +11,7 @@ export { commit };
 /**
  * Asynchronously git commit at a given path with a message
  */
-function commit (sh, repoPath, message, options, done) {
+function commit (repoPath, message, options, done) {
   let called = false;
 
   // commit the file by spawning a git process, unless the --hook
@@ -39,7 +39,7 @@ function commit (sh, repoPath, message, options, done) {
         if (code === 128) {
           console.warn(`
             Git exited with code 128. Did you forget to run:
-    
+
               git config --global user.email "you@example.com"
               git config --global user.name "Your Name"
             `)

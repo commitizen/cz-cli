@@ -31,7 +31,7 @@ describe('init', function () {
     // SETUP
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog');
 
     // TEST
 
@@ -48,7 +48,7 @@ describe('init', function () {
     // SETUP
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { save: true, saveDev: false });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { save: true, saveDev: false });
 
     // TEST
 
@@ -66,13 +66,13 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev: true });
 
     // TEST
     sh.cd(config.paths.endUserRepo);
     // Adding a second adapter
     expect(function () {
-      commitizenInit(sh, config.paths.endUserRepo, 'cz-jira-smart-commit', { saveDev: true });
+      commitizenInit(config.paths.endUserRepo, 'cz-jira-smart-commit', { saveDev: true });
     }).to.throw(/already configured/);
 
     // Check resulting json
@@ -91,13 +91,13 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { saveDev: true });
 
     // TEST
 
     // Adding a second adapter
     expect(function () {
-      commitizenInit(sh, config.paths.endUserRepo, 'cz-jira-smart-commit', { saveDev: true, force: true });
+      commitizenInit(config.paths.endUserRepo, 'cz-jira-smart-commit', { saveDev: true, force: true });
     }).to.not.throw();
 
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
@@ -114,7 +114,7 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog');
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
 
     // TEST
@@ -140,7 +140,7 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { saveExact: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { saveExact: true });
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
 
     // TEST
@@ -163,7 +163,7 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { includeCommitizen: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { includeCommitizen: true });
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
 
     // TEST
@@ -186,7 +186,7 @@ describe('init', function () {
     // SETUP
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true });
 
     // TEST
 
@@ -203,7 +203,7 @@ describe('init', function () {
     // SETUP
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
 
     // TEST
 
@@ -221,13 +221,13 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
 
     // TEST
     sh.cd(config.paths.endUserRepo);
     // Adding a second adapter
     expect(function () {
-      commitizenInit(sh, config.paths.endUserRepo, 'cz-jira-smart-commit', { yarn: true, dev: true });
+      commitizenInit(config.paths.endUserRepo, 'cz-jira-smart-commit', { yarn: true, dev: true });
     }).to.throw(/already configured/);
 
     // Check resulting json
@@ -246,13 +246,13 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
 
     // TEST
 
     // Adding a second adapter
     expect(function () {
-      commitizenInit(sh, config.paths.endUserRepo, 'cz-jira-smart-commit', { yarn: true, dev: true, force: true });
+      commitizenInit(config.paths.endUserRepo, 'cz-jira-smart-commit', { yarn: true, dev: true, force: true });
     }).to.not.throw();
 
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
@@ -269,7 +269,7 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
 
     // TEST
@@ -295,7 +295,7 @@ describe('init', function () {
 
     // Add a first adapter
     sh.cd(config.paths.endUserRepo);
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true, exact: true });
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true, exact: true });
     let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
 
     // TEST

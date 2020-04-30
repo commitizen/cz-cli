@@ -44,7 +44,7 @@ describe('staging', function () {
       }
     };
 
-    gitInit(sh, repoConfig.path);
+    gitInit(repoConfig.path);
 
     staging.isClean('./@this-actually-does-not-exist', function (stagingError) {
       expect(stagingError).to.be.an.instanceof(Error);
@@ -55,7 +55,7 @@ describe('staging', function () {
 
         writeFilesToPath(repoConfig.files, repoConfig.path);
 
-        gitAdd(sh, repoConfig.path);
+        gitAdd(repoConfig.path);
 
         staging.isClean(repoConfig.path, function (afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
           expect(afterWriteStagingIsCleanError).to.be.null;

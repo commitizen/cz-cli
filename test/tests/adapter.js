@@ -54,7 +54,7 @@ describe('adapter', function () {
     };
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog');
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog');
 
     // TEST
     expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
@@ -95,7 +95,7 @@ describe('adapter', function () {
     };
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, '@commitizen/cz-conventional-changelog');
+    commitizenInit(config.paths.endUserRepo, '@commitizen/cz-conventional-changelog');
 
     // TEST
     expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
@@ -131,7 +131,7 @@ describe('adapter', function () {
     };
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog', {includeCommitizen: true});
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', {includeCommitizen: true});
 
     // TEST
     expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
@@ -167,7 +167,7 @@ describe('adapter', function () {
     };
 
     // Install an adapter
-    commitizenInit(sh, config.paths.endUserRepo, 'cz-conventional-changelog-default-export');
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog-default-export');
 
     // TEST
     expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);

@@ -10,9 +10,9 @@ export default commit;
 /**
  * Takes all of the final inputs needed in order to make dispatch a git commit
  */
-function dispatchGitCommit (sh, repoPath, template, options, overrideOptions, done) {
+function dispatchGitCommit (repoPath, template, options, overrideOptions, done) {
     // Commit the user input -- side effect that we'll test
-    gitCommit(sh, repoPath, template, { ...options, ...overrideOptions }, function (error) {
+    gitCommit(repoPath, template, { ...options, ...overrideOptions }, function (error) {
       done(error, template);
     });
 }
@@ -20,7 +20,7 @@ function dispatchGitCommit (sh, repoPath, template, options, overrideOptions, do
  /**
   * Asynchronously commits files using commitizen
   */
-function commit (sh, inquirer, repoPath, prompter, options, done) {
+function commit (inquirer, repoPath, prompter, options, done) {
   var cacheDirectory = cacheDir('commitizen');
   var cachePath = path.join(cacheDirectory, 'commitizen.json');
 
@@ -40,7 +40,7 @@ function commit (sh, inquirer, repoPath, prompter, options, done) {
           overrideOptions: retryOverrideOptions,
           template: retryTemplate
         } = cache.getCacheValueSync(cachePath, repoPath);
-        dispatchGitCommit(sh, repoPath, retryTemplate, retryOptions, retryOverrideOptions, done);
+        dispatchGitCommit(repoPath, retryTemplate, retryOptions, retryOverrideOptions, done);
 
       } else {
         // Get user input -- side effect that is hard to test
@@ -59,7 +59,7 @@ function commit (sh, inquirer, repoPath, prompter, options, done) {
 
           // We don't want to add retries to the cache, only actual commands
           cache.setCacheValueSync(cachePath, repoPath, { template, options, overrideOptions });
-          dispatchGitCommit(sh, repoPath, template, options, overrideOptions, done);
+          dispatchGitCommit(repoPath, template, options, overrideOptions, done);
         });
       }
     }

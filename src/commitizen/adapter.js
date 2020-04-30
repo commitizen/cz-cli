@@ -1,9 +1,9 @@
+import childProcess from 'child_process';
 import path from 'path';
 import fs from 'fs';
 import findNodeModules from 'find-node-modules';
 import _ from 'lodash';
 import detectIndent from 'detect-indent';
-import sh from 'shelljs';
 
 import { isFunction } from '../common/util';
 
@@ -32,7 +32,7 @@ export {
  * Modifies the package.json, sets config.commitizen.path to the path of the adapter
  * Must be passed an absolute path to the cli's root
  */
-function addPathToAdapterConfig (sh, cliPath, repoPath, adapterNpmName) {
+function addPathToAdapterConfig (cliPath, repoPath, adapterNpmName) {
 
   let commitizenAdapterConfig = {
     config: {
@@ -180,5 +180,5 @@ function resolveAdapterPath (inboundAdapterPath) {
 }
 
 function getGitRootPath () {
-  return sh.exec('git rev-parse --show-toplevel', { silent: true }).stdout.trim();
+  return childProcess.spawnSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' }).stdout.trim();
 }

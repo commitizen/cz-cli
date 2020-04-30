@@ -1,4 +1,3 @@
-import sh from 'shelljs';
 import inquirer from 'inquirer';
 import findRoot from 'find-root';
 import { getParsedPackageJsonFromPath } from '../../common/util';
@@ -56,7 +55,7 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
     let adapterPackageJson = getParsedPackageJsonFromPath(resolvedAdapterRootPath);
     let cliPackageJson = getParsedPackageJsonFromPath(environment.cliPath);
     console.log(`cz-cli@${cliPackageJson.version}, ${adapterPackageJson.name}@${adapterPackageJson.version}\n`);
-    commit(sh, inquirer, process.cwd(), prompter, {
+    commit(inquirer, process.cwd(), prompter, {
       args: parsedGitCzArgs,
       disableAppendPaths: true,
       emitData: true,
