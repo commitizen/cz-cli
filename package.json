@@ -68,7 +68,6 @@
     "proxyquire": "^2.1.0",
     "semantic-release": "15.13.18",
     "semver": "6.2.0",
-    "shelljs": "0.7.6",
     "sinon": "^6.3.4",
     "uuid": "3.3.2"
   },

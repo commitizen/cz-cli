@@ -12,16 +12,16 @@ import { isFunction } from '../../src/common/util';
 import { bootstrap } from '../tester';
 
 // Destructure some things based on the bootstrap process
-let { config, sh, repo, clean } = bootstrap();
+let { config, repo, clean } = bootstrap();
 
 before(function () {
   // Creates the temp path
-  clean.before(sh, config.paths.tmp);
+  clean.before(config.paths.tmp);
 });
 
 beforeEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
-  repo.createEndUser(sh, config.paths.endUserRepo);
+  repo.createEndUser(config.paths.endUserRepo);
 });
 
 describe('adapter', function () {
@@ -180,12 +180,12 @@ describe('adapter', function () {
 afterEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // All this should do is archive the tmp path to the artifacts
-  clean.afterEach(sh, config.paths.tmp, config.preserve);
+  clean.afterEach(config.paths.tmp, config.preserve);
 });
 
 after(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // Once everything is done, the artifacts should be cleaned up based on
   // the preserve setting in the config
-  clean.after(sh, config.paths.tmp, config.preserve);
+  clean.after(config.paths.tmp, config.preserve);
 });

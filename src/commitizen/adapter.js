@@ -42,7 +42,7 @@ function addPathToAdapterConfig (cliPath, repoPath, adapterNpmName) {
     }
   };
 
-  let packageJsonPath = path.join(getNearestProjectRootDirectory(), 'package.json');
+  let packageJsonPath = path.join(getNearestProjectRootDirectory(repoPath), 'package.json');
   let packageJsonString = fs.readFileSync(packageJsonPath, 'utf-8');
   // tries to detect the indentation and falls back to a default if it can't
   let indent = detectIndent(packageJsonString).indent || '  ';
@@ -111,8 +111,8 @@ function getNearestNodeModulesDirectory (options) {
 /**
  * Gets the nearest project root directory
  */
-function getNearestProjectRootDirectory (options) {
-  return path.join(process.cwd(), getNearestNodeModulesDirectory(options), '/../');
+function getNearestProjectRootDirectory (repoPath, options) {
+  return path.join(repoPath, getNearestNodeModulesDirectory(options), '/../');
 }
 
 /**

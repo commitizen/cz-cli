@@ -1,3 +1,6 @@
+import childProcess from 'child_process';
+import fs from 'fs';
+
 export {
   createEmpty,
   createEndUser
@@ -6,15 +9,14 @@ export {
 /**
  * Create an empty repo
  */
-function createEmpty (sh, path) {
-  sh.mkdir(path);
-  sh.cd(path);
-  sh.exec('npm init --force --yes');
+function createEmpty (path) {
+  fs.mkdirSync(path, { recursive: true });
+  childProcess.spawnSync('npm', ['init', '--force', '--yes'], { cwd: path });
 }
 
 /**
  * Create a new repo to hold an end user app
  */
-function createEndUser (sh, path) {
-  createEmpty(sh, path);
+function createEndUser (path) {
+  createEmpty(path);
 }

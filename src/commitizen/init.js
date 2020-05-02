@@ -63,7 +63,7 @@ function init (repoPath, adapterNpmName, {
   checkRequiredArguments(repoPath, adapterNpmName);
 
   // Load the current adapter config
-  let adapterConfig = loadAdapterConfig();
+  let adapterConfig = loadAdapterConfig(repoPath);
 
   // Get the npm string mappings based on the arguments provided
   let stringMappings = yarn ? getYarnAddStringMappings(dev, exact, force) : getNpmInstallStringMappings(save, saveDev, saveExact, force);
@@ -112,8 +112,8 @@ function checkRequiredArguments (path, adapterNpmName) {
  * CONFIG
  * Loads and returns the adapter config at key config.commitizen, if it exists
  */
-function loadAdapterConfig () {
-  let config = configLoader.load();
+function loadAdapterConfig (cwd) {
+  let config = configLoader.load(null, cwd);
   if (config) {
     return config;
   } else {
