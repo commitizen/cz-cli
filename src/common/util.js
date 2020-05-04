@@ -4,7 +4,6 @@ import path from 'path';
 export {
   getParsedJsonFromFile,
   getParsedPackageJsonFromPath,
-  isArray,
   isFunction,
   isString,
   isInTest
@@ -27,20 +26,6 @@ function getParsedJsonFromFile (filePath, fileName, encoding = 'utf8') {
  */
 function getParsedPackageJsonFromPath (path) {
   return getParsedJsonFromFile(path, 'package.json');
-}
-
-/**
- * Test if the passed argument is an array
- */
-function isArray (arr) {
-    if (typeof arr === "undefined")
-  {
-    return false;
-  } else if (arr === null) {
-    return false;
-  } else {
-    return arr.constructor === Array;
-  }
 }
 
 /**
