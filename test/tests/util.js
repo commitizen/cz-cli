@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { isFunction, isString } from '../../src/common/util';
+import { isFunction } from '../../src/common/util';
 
 describe('common util', function () {
 
@@ -22,28 +22,4 @@ describe('common util', function () {
 
   });
 
-  it('isString determines if string is passed', function () {
-
-    // Truthies
-    expect(isString('a single quoted string')).to.be.true;
-    expect(isString("a double quoted string")).to.be.true;
-    expect(isString(`
-      a multi
-      line
-      string`
-    )).to.be.true;
-    expect(isString(new String())).to.be.true;
-
-    // Falsies
-    expect(isString(function () {})).to.be.false;
-    expect(isString(undefined)).to.be.false;
-    expect(isString(null)).to.be.false;
-    expect(isString(49)).to.be.false;
-    expect(isString([])).to.be.false;
-    expect(isString({})).to.be.false;
-    expect(isString(true)).to.be.false;
-    expect(isString(false)).to.be.false;
-    expect(isString(Symbol('test'))).to.be.false;
-
-  });
 });

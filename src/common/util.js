@@ -5,7 +5,6 @@ export {
   getParsedJsonFromFile,
   getParsedPackageJsonFromPath,
   isFunction,
-  isString,
   isInTest
 }
 
@@ -40,20 +39,6 @@ function isFunction (functionToCheck) {
   } else {
     var getType = {};
     return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
-  }
-}
-
-/**
- * Test if the passed argument is a string
- */
-function isString (str) {
-  if (typeof str === "undefined")
-  {
-    return false;
-  } else if (str === null) {
-    return false;
-  } else {
-    return Object.prototype.toString.call(str) === '[object String]';
   }
 }
 
