@@ -12,22 +12,22 @@ export {
 let testSuiteRunId = uuidv4();
 
 // At the beginning of a run purge .tmp
-function before (sh, tmpPath) {
-  cleanPath(sh, tmpPath);
-  // clean(sh, tmpPath, 'all');
+function before (tmpPath) {
+  cleanPath(tmpPath);
+  // clean(tmpPath, 'all');
 }
 
-function afterEach (sh, tmpPath, preserve) {
+function afterEach (tmpPath, preserve) {
   if (preserve !== false) {
-    archive(sh, tmpPath, testSuiteRunId);
+    archive(tmpPath, testSuiteRunId);
   }
-  cleanPath(sh, tmpPath);
+  cleanPath(tmpPath);
 }
 
 // After should listen to the user via the config
 // Before should always purge .tmp irregardless of config
-function after (sh, tmpPath, preserve) {
-  clean(sh, tmpPath, preserve);
+function after (tmpPath, preserve) {
+  clean(tmpPath, preserve);
 }
 
 /**
@@ -36,10 +36,10 @@ function after (sh, tmpPath, preserve) {
  *
  * Generally should be run in afterEach()
  */
-function archive (sh, tmpPath, testSuiteRunId) {
+function archive (tmpPath, testSuiteRunId) {
   let destinationPath = path.resolve(tmpPath + '/../artifacts/' + testSuiteRunId + '/' + uuidv4());
-  sh.mkdir('-p', destinationPath);
-  sh.cp('-Rf', tmpPath + '/*', destinationPath);
+  fs.mkdirSync(destinationPath, { recursive: true });
+  fs.copySync(tmpPath, destinationPath);
 }
 
 /**
@@ -47,7 +47,7 @@ function archive (sh, tmpPath, testSuiteRunId) {
  *
  * Generally called in after()
  */
-function clean (sh, tmpPath, preserve) {
+function clean (tmpPath, preserve) {
 
   /**
    * If preserve is a normal integer over 0 thats how many results to keep.
@@ -85,11 +85,11 @@ function clean (sh, tmpPath, preserve) {
     });
 
     // Keep only the number of files defined in the config setting 'preserve'.
-    keep(sh, artifactsBasePath, artifactFolders, preserve);
+    keep(artifactsBasePath, artifactFolders, preserve);
   }
 
   // Always purge tmp, it needs to be empty for next run
-  cleanPath(sh, tmpPath);
+  cleanPath(tmpPath);
 }
 
 function isNormalNonZeroInteger (str) {
@@ -108,14 +108,14 @@ function isNormalNonZeroInteger (str) {
  *
  * n is the (1 indexed) count of files to keep.
  */
-function keep (sh, basePath, paths, n) {
+function keep (basePath, paths, n) {
 
   for (let i = paths.length; i > n; i--) {
     fs.removeSync(path.resolve(basePath, paths[i - 1]));
   }
 }
 
-function cleanPath (sh, tmpPath) {
-  sh.rm('-rf', tmpPath + '/*');
-  sh.mkdir(tmpPath);
+function cleanPath (tmpPath) {
+  fs.removeSync(tmpPath);
+  fs.mkdirSync(tmpPath);
 }

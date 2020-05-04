@@ -84,7 +84,6 @@
     "is-utf8": "^0.2.1",
     "lodash": "4.17.15",
     "minimist": "1.2.5",
-    "shelljs": "0.7.6",
     "strip-bom": "4.0.0",
     "strip-json-comments": "3.0.1"
   },

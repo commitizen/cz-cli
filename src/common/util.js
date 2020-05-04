@@ -2,22 +2,10 @@ import fs from 'fs';
 import path from 'path';
 
 export {
-  executeShellCommand,
   getParsedJsonFromFile,
   getParsedPackageJsonFromPath,
-  isArray,
   isFunction,
-  isString,
   isInTest
-}
-
-/**
- * Executes the command passed to it at the path requested
- * using the instance of shelljs passed in
- */
-function executeShellCommand (sh, path, installCommand) {
-  sh.cd(path);
-  sh.exec(installCommand);
 }
 
 /**
@@ -40,20 +28,6 @@ function getParsedPackageJsonFromPath (path) {
 }
 
 /**
- * Test if the passed argument is an array
- */
-function isArray (arr) {
-    if (typeof arr === "undefined")
-  {
-    return false;
-  } else if (arr === null) {
-    return false;
-  } else {
-    return arr.constructor === Array;
-  }
-}
-
-/**
  * Test if the passed argument is a function
  */
 function isFunction (functionToCheck) {
@@ -65,20 +39,6 @@ function isFunction (functionToCheck) {
   } else {
     var getType = {};
     return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
-  }
-}
-
-/**
- * Test if the passed argument is a string
- */
-function isString (str) {
-  if (typeof str === "undefined")
-  {
-    return false;
-  } else if (str === null) {
-    return false;
-  } else {
-    return Object.prototype.toString.call(str) === '[object String]';
   }
 }
 
