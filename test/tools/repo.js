@@ -11,7 +11,7 @@ export {
  */
 function createEmpty (path) {
   fs.mkdirSync(path, { recursive: true });
-  childProcess.spawnSync('npm', ['init', '--force', '--yes'], { cwd: path });
+  childProcess.spawnSync('npm', ['init', '--force', '--yes'], { cwd: path, shell: true });
 }
 
 /**
