@@ -14,12 +14,12 @@ export default loader;
 /**
  * Get content of the configuration file
  * @param {String} config - partial path to configuration file
- * @param {String} cwd - directory path which will be joined with config argument
+ * @param {String} [cwd = process.cwd()] - directory path which will be joined with config argument
  * @return {Object|undefined}
  */
 function loader (configs, config, cwd) {
     var content;
-    var directory = cwd;
+    var directory = cwd || process.cwd();
 
     // If config option is given, attempt to load it
     if (config) {
