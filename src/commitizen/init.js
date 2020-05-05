@@ -1,7 +1,7 @@
 import childProcess from 'child_process';
 import path from 'path';
+import * as configLoader from './configLoader';
 import * as adapter from './adapter';
-import * as configLoader from '../configLoader';
 
 let {
   addPathToAdapterConfig,
@@ -14,9 +14,6 @@ let {
 export default init;
 
 const CLI_PATH = path.normalize(path.join(__dirname, '../../'));
-
-/** Configuration sources in priority order. */
-const LOADER_CONFIGS = ['.czrc', '.cz.json', 'package.json'];
 
 /**
  * CZ INIT
@@ -66,7 +63,7 @@ function init (repoPath, adapterNpmName, {
   checkRequiredArguments(repoPath, adapterNpmName);
 
   // Load the current adapter config
-  let adapterConfig = configLoader.loader(LOADER_CONFIGS, null, repoPath);
+  let adapterConfig = loadAdapterConfig(repoPath);
 
   // Get the npm string mappings based on the arguments provided
   let stringMappings = yarn ? getYarnAddStringMappings(dev, exact, force) : getNpmInstallStringMappings(save, saveDev, saveExact, force);
@@ -108,5 +105,18 @@ function checkRequiredArguments (path, adapterNpmName) {
   }
   if (!adapterNpmName) {
     throw new Error("The adapter's npm name is required when running init.");
+  }
+}
+
+/**
+ * CONFIG
+ * Loads and returns the adapter config at key config.commitizen, if it exists
+ */
+function loadAdapterConfig (cwd) {
+  let config = configLoader.load(null, cwd);
+  if (config) {
+    return config;
+  } else {
+
   }
 }
