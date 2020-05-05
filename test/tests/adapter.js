@@ -103,7 +103,7 @@ describe('adapter', function () {
     expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
   });
 
-  it('gets adapter prompter functions', function () {
+  it.skip('gets adapter prompter functions', function () {
 
     this.timeout(config.maxTimeout); // this could take a while
 
