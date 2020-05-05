@@ -1,3 +1,5 @@
+import childProcess from 'child_process';
+
 export {
   addPath,
   addFile
@@ -6,15 +8,13 @@ export {
 /**
  * Synchronously adds a path to git staging
  */
-function addPath (sh, repoPath) {
-  sh.cd(repoPath);
-  sh.exec('git add .');
+function addPath (repoPath) {
+  childProcess.spawnSync('git', ['add', '.'], { cwd: repoPath });
 }
 
 /**
  * Synchronously adds a file to git staging
  */
-function addFile (sh, repoPath, filename) {
-  sh.cd(repoPath);
-  sh.exec('git add ' + filename)
+function addFile (repoPath, filename) {
+  childProcess.spawnSync('git', ['add', filename], { cwd: repoPath });
 }

@@ -34,12 +34,6 @@ let config = {
   maxTimeout: 240000,
 
   /**
-   * Whether shelljs should suppress output, should be true
-   * unless debugging.
-   */
-  silent: true,
-
-  /**
    * Whether or not to keep the artifacts of the tests after
    * they've run.
    *

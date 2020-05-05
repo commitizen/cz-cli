@@ -8,7 +8,7 @@ export { isClean };
 function isClean (repoPath, done) {
   exec('git diff --no-ext-diff --name-only && git diff --no-ext-diff --cached --name-only', {
     maxBuffer: Infinity,
-    cwd: repoPath || process.cwd()
+    cwd: repoPath
   }, function (error, stdout) {
     if (error) {
       return done(error);

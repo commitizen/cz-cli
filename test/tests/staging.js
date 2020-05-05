@@ -8,17 +8,17 @@ import { init as gitInit, addPath as gitAdd } from '../../src/git';
 import { staging } from '../../src/commitizen';
 
 // Destructure some things for cleaner tests
-let { config, sh, repo, clean, files } = bootstrap();
+let { config, repo, clean, files } = bootstrap();
 let { writeFilesToPath } = files;
 
 before(function () {
   // Creates the temp path
-  clean.before(sh, config.paths.tmp);
+  clean.before(config.paths.tmp);
 });
 
 beforeEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
-  repo.createEndUser(sh, config.paths.endUserRepo);
+  repo.createEndUser(config.paths.endUserRepo);
 });
 
 describe('staging', function () {
@@ -44,7 +44,7 @@ describe('staging', function () {
       }
     };
 
-    gitInit(sh, repoConfig.path);
+    gitInit(repoConfig.path);
 
     staging.isClean('./@this-actually-does-not-exist', function (stagingError) {
       expect(stagingError).to.be.an.instanceof(Error);
@@ -55,7 +55,7 @@ describe('staging', function () {
 
         writeFilesToPath(repoConfig.files, repoConfig.path);
 
-        gitAdd(sh, repoConfig.path);
+        gitAdd(repoConfig.path);
 
         staging.isClean(repoConfig.path, function (afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
           expect(afterWriteStagingIsCleanError).to.be.null;
@@ -83,12 +83,12 @@ describe('staging', function () {
 afterEach(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // All this should do is archive the tmp path to the artifacts
-  clean.afterEach(sh, config.paths.tmp, config.preserve);
+  clean.afterEach(config.paths.tmp, config.preserve);
 });
 
 after(function () {
   this.timeout(config.maxTimeout); // this could take a while
   // Once everything is done, the artifacts should be cleaned up based on
   // the preserve setting in the config
-  clean.after(sh, config.paths.tmp, config.preserve);
+  clean.after(config.paths.tmp, config.preserve);
 });
