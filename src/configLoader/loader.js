@@ -13,7 +13,7 @@ export default loader;
 
 /**
  * Get content of the configuration file
- * @param {String|null} config - partial path to configuration file
+ * @param {String} config - partial path to configuration file
  * @param {String} cwd - directory path which will be joined with config argument
  * @return {Object|undefined}
  */
