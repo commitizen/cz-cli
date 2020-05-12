@@ -1,4 +1,4 @@
-import { spawn } from 'child_process';
+import { execSync, spawn } from 'child_process';
 
 import path from 'path';
 
@@ -50,7 +50,11 @@ function commit (repoPath, message, options, done) {
       }
     });
   } else {
-    const commitFilePath = path.join(repoPath, '/.git/COMMIT_EDITMSG');
+    const gitDirPath = execSync(
+      'git rev-parse --absolute-git-dir',
+      { cwd: repoPath, encoding: 'utf8' },
+    ).trim();
+    const commitFilePath = path.join(gitDirPath, 'COMMIT_EDITMSG');
     try {
       const fd = openSync(commitFilePath, 'w');
       try {
