@@ -60,7 +60,7 @@
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
     "ghooks": "^2.0.4",
     "in-publish": "^2.0.0",
-    "mocha": "6.2.0",
+    "mocha": "7.2.0",
     "mocha-junit-reporter": "^1.18.0",
     "mocha-multi-reporters": "^1.1.7",
     "nodemon": "1.19.1",
