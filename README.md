@@ -86,6 +86,14 @@ The above command does three things for you.
   }
 ```
 
+Alternatively, commitizen configs may be added to a .czrc file:
+
+```json
+{
+  "path": "cz-conventional-changelog"
+}
+```
+
 This just tells Commitizen which adapter we actually want our contributors to use when they try to commit to this repo.
 
 `commitizen.path` is resolved via [require.resolve](https://nodejs.org/api/globals.html#globals_require_resolve) and supports
@@ -125,7 +133,7 @@ And you can then add some nice npm run scripts in your package.json pointing to 
 
 This will be more convenient for your users because then if they want to do a commit, all they need to do is run `npm run commit` and they will get the prompts needed to start a commit!
 
-> **NOTE:** if you are using `precommit` hooks thanks to something like `husky`, you will need to name your script some thing other than "commit" (e.g. "cm": "git-cz"). The reason is because npm-scripts has a "feature" where it automatically runs scripts with the name *prexxx* where *xxx* is the name of another script. In essence, npm and husky will run "precommit" scripts twice if you name the script "commit," and the work around is to prevent the npm-triggered *precommit* script.
+> **NOTE:** if you are using `precommit` hooks thanks to something like `husky`, you will need to name your script some thing other than "commit" (e.g. "cm": "git-cz"). The reason is because npm-scripts has a "feature" where it automatically runs scripts with the name _prexxx_ where _xxx_ is the name of another script. In essence, npm and husky will run "precommit" scripts twice if you name the script "commit," and the work around is to prevent the npm-triggered _precommit_ script.
 
 #### Optional: Running Commitizen on `git commit`
 
@@ -146,6 +154,7 @@ exec < /dev/tty && node_modules/.bin/git-cz --hook || true
 ```
 
 ##### Husky
+
 For `husky` users, add the following configuration to the project's `package.json`:
 
 ```
@@ -341,4 +350,4 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/commitizen/sponsor/8/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/commitizen/sponsor/9/website" target="_blank"><img src="https://opencollective.com/commitizen/sponsor/9/avatar.svg"></a>
 
-[Commitizen-friendly]: #making-your-repo-commitizen-friendly
+[commitizen-friendly]: #making-your-repo-commitizen-friendly
