@@ -267,7 +267,7 @@ We know that every project and build process has different requirements so we've
 - [rb-conventional-changelog](https://www.npmjs.com/package/rb-conventional-changelog)
 - [cz-mapbox-changelog](https://www.npmjs.com/package/cz-mapbox-changelog)
 - [cz-customizable](https://github.com/leonardoanalista/cz-customizable)
-- [commitlint](https://github.com/marionebl/commitlint)
+- [commitlint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/prompt#commitlintprompt)
 - [vscode-commitizen](https://github.com/KnisterPeter/vscode-commitizen)
 - [cz-emoji](https://github.com/ngryman/cz-emoji)
 - [cz-adapter-eslint](https://www.npmjs.com/package/cz-adapter-eslint)
