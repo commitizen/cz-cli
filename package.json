@@ -81,7 +81,7 @@
     "find-node-modules": "^2.1.2",
     "find-root": "1.1.0",
     "fs-extra": "8.1.0",
-    "glob": "7.1.4",
+    "glob": "7.1.6",
     "inquirer": "6.5.2",
     "is-utf8": "^0.2.1",
     "lodash": "4.17.21",
