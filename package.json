@@ -67,7 +67,7 @@
     "nyc": "15.0.1",
     "proxyquire": "^2.1.0",
     "semantic-release": "15.13.18",
-    "semver": "6.2.0",
+    "semver": "6.3.0",
     "sinon": "^6.3.4",
     "uuid": "3.3.2"
   },
