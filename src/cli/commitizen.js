@@ -38,14 +38,15 @@ function bootstrap (environment = {}, argv = process.argv) {
 
     Commitizen has two command line tools:
 
-      1) commitizen -- used for installing adapters into your project
-      2) git-cz     -- used for making commits according to convention
+      1) cz         -- used for making commits according to convention
                        note: you can run 'git cz' if installed with -g
+      2) git-cz     -- alias for 'cz'
+      3) commitizen -- used for installing adapters into your project
 
     Generally if you're using someone else's repo and they've already set up an
     adapter, you're going to just be running:
 
-         git-cz
+         cz
 
     However, if you create a new repo and you want to make it easier for future
     contributors to follow your commit message conventions using commitizen then
@@ -71,13 +72,13 @@ function bootstrap (environment = {}, argv = process.argv) {
              --save-exact   Install an exact version instead of a range
              --force        Force install the adapter, even if a previous one exists.
 
-      2) git-cz <any regular git commit arguments>
+      2) cz <any regular git commit arguments>
 
           description: Runs the commitizen prompter, asking you questions so that you
                        follow the commit conventions of the repository of the current
                        directory.
 
-                       note: git-cz may even be run as 'git cz' if installed with -g.
+                       note: cz may even be run as 'git cz' if installed with -g.
 
     `);
   }
