@@ -261,6 +261,7 @@ npm install company-commit --save-dev
 We know that every project and build process has different requirements so we've tried to keep Commitizen open for extension. You can do this by choosing from any of the pre-build adapters or even by building your own. Here are some of the great adapters available to you:
 
 - [cz-conventional-changelog](https://www.npmjs.com/package/cz-conventional-changelog)
+- [cz-conventional-changelog-for-jira](https://www.npmjs.com/package/@digitalroute/cz-conventional-changelog-for-jira)
 - [cz-jira-smart-commit](https://www.npmjs.com/package/cz-jira-smart-commit)
 - [@endemolshinegroup/cz-jira-smart-commit](https://github.com/EndemolShineGroup/cz-jira-smart-commit)
 - [@endemolshinegroup/cz-github](https://github.com/EndemolShineGroup/cz-github)
