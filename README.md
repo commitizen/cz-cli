@@ -270,7 +270,7 @@ We know that every project and build process has different requirements so we've
 - [rb-conventional-changelog](https://www.npmjs.com/package/rb-conventional-changelog)
 - [cz-mapbox-changelog](https://www.npmjs.com/package/cz-mapbox-changelog)
 - [cz-customizable](https://github.com/leonardoanalista/cz-customizable)
-- [commitlint](https://github.com/conventional-changelog/commitlint#tools)
+- [commitlint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/prompt)
 - [vscode-commitizen](https://github.com/KnisterPeter/vscode-commitizen)
 - [cz-emoji](https://github.com/ngryman/cz-emoji)
 - [cz-adapter-eslint](https://www.npmjs.com/package/cz-adapter-eslint)
@@ -315,7 +315,7 @@ We accomplish this by letting you define which adapter you'd like to use in your
 ## Related projects
 
 - [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) – Generate a changelog from conventional commit history
-- [commitlint](https://github.com/marionebl/commitlint) - Lint commit messages
+- [commitlint](https://github.com/conventional-changelog/commitlint) - Lint commit messages
 
 ## Authors and Contributors
 
