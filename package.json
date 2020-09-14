@@ -79,7 +79,7 @@
     "detect-indent": "6.0.0",
     "find-node-modules": "2.0.0",
     "find-root": "1.1.0",
-    "fs-extra": "8.1.0",
+    "fs-extra": "9.0.1",
     "glob": "7.1.4",
     "inquirer": "6.5.2",
     "is-utf8": "^0.2.1",
