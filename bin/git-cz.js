@@ -8,7 +8,7 @@ process.on('uncaughtException', function (err) {
 // catch SIGINT signal
 process.stdin.on('data', function (key) {
   if (key == '\u0003') {
-    process.exit(1);
+    process.exit(130); // 128 + SIGINT
   }
 });
 
