@@ -264,6 +264,7 @@ We know that every project and build process has different requirements so we've
 
 - [cz-conventional-changelog](https://www.npmjs.com/package/cz-conventional-changelog)
 - [cz-conventional-changelog-for-jira](https://www.npmjs.com/package/@digitalroute/cz-conventional-changelog-for-jira)
+- [cz-conventional-changelog-with-jiraid-detection](https://www.npmjs.com/package/cz-conventional-changelog-with-jiraid-detection)
 - [cz-jira-smart-commit](https://www.npmjs.com/package/cz-jira-smart-commit)
 - [@endemolshinegroup/cz-jira-smart-commit](https://github.com/EndemolShineGroup/cz-jira-smart-commit)
 - [@endemolshinegroup/cz-github](https://github.com/EndemolShineGroup/cz-github)
