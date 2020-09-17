@@ -14,7 +14,7 @@ or greater.
 
 Installation is as simple as running the following command (if you see `EACCES` error, reading [fixing npm permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions) may help):
 
-```
+```sh
 npm install -g commitizen
 ```
 
@@ -26,7 +26,7 @@ Simply use `git cz` or just `cz` instead of `git commit` when committing. You ca
 
 _Alternatively_, if you are using **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) instead of installing globally:
 
-```
+```sh
 npx cz
 ```
 
@@ -53,19 +53,19 @@ For this example, we'll be setting up our repo to use [AngularJS's commit messag
 
 First, install the Commitizen cli tools:
 
-```
+```sh
 npm install commitizen -g
 ```
 
 Next, initialize your project to use the cz-conventional-changelog adapter by typing:
 
-```
+```sh
 commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
 
 Or if you are using Yarn:
 
-```
+```sh
 commitizen init cz-conventional-changelog --yarn --dev --exact
 ```
 
@@ -150,7 +150,7 @@ Once either of these methods is implemented, users running `git commit` will be 
 
 Update `.git/hooks/prepare-commit-msg` with the following code:
 
-```
+```sh
 #!/bin/bash
 exec < /dev/tty && node_modules/.bin/cz --hook || true
 ```
@@ -159,7 +159,7 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 
 For `husky` users, add the following configuration to the project's `package.json`:
 
-```
+```json
 "husky": {
   "hooks": {
     "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
@@ -187,19 +187,19 @@ It may also make sense to change your README.md or CONTRIBUTING.md to include or
 
 Install `commitizen` globally, if you have not already.
 
-```
+```sh
 npm install -g commitizen
 ```
 
 Install your preferred `commitizen` adapter globally, for example [`cz-conventional-changelog`](https://www.npmjs.com/package/cz-conventional-changelog)
 
-```
+```sh
 npm install -g cz-conventional-changelog
 ```
 
 Create a `.czrc` file in your `home` directory, with `path` referring to the preferred, globally installed, `commitizen` adapter
 
-```
+```sh
 echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 ```
 
@@ -218,7 +218,7 @@ format for all of them. You can create your own node module which acts as front-
 
 ### 1. Create your own entry point script
 
-```
+```js
 // my-cli.js
 
 #!/usr/bin/env node
@@ -238,7 +238,7 @@ bootstrap({
 
 ### 2. Add script to package.json
 
-```
+```json
 // package.json
 
 {
@@ -253,9 +253,9 @@ bootstrap({
 
 ### 3. Publish it to npm and use it!
 
-```
-npm install company-commit --save-dev
-./node_modules/.bin/company-commit
+```sh
+npm install company-commit --save-dev \
+  ./node_modules/.bin/company-commit
 ```
 
 ## Adapters
