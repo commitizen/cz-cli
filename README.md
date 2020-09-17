@@ -254,8 +254,9 @@ bootstrap({
 ### 3. Publish it to npm and use it!
 
 ```sh
-npm install company-commit --save-dev \
-  ./node_modules/.bin/company-commit
+npm install --save-dev company-commit
+
+./node_modules/.bin/company-commit
 ```
 
 ## Adapters
