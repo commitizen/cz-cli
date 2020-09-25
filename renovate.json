@@ -1,5 +1,5 @@
 {
   "extends": [
-    "github>dmwelch/commitizen-renovate-config"
+    "github>commitizen/commitizen-renovate-config"
   ]
 }
