@@ -64,7 +64,7 @@
     "mocha": "6.2.0",
     "mocha-junit-reporter": "1.18.0",
     "mocha-multi-reporters": "1.1.7",
-    "nodemon": "1.19.1",
+    "nodemon": "1.19.4",
     "nyc": "15.1.0",
     "proxyquire": "2.1.0",
     "semantic-release": "15.13.18",
