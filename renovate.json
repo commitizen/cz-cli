@@ -1,5 +1,5 @@
 {
   "extends": [
-    "config:base"
+    "github>commitizen/commitizen-renovate-config"
   ]
 }
