@@ -70,7 +70,7 @@
     "semantic-release": "15.13.18",
     "semver": "6.3.0",
     "sinon": "6.3.4",
-    "uuid": "3.3.2"
+    "uuid": "3.4.0"
   },
   "dependencies": {
     "cachedir": "2.2.0",
