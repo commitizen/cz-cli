@@ -43,13 +43,13 @@ When you're working in a Commitizen friendly repository, you'll be prompted to f
 
 [![Add and commit with Commitizen](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)
 
-### If your repo is NOT Commitizen-friendly
+### If your repo is NOT Commitizen friendly:
 
-If you're **not** working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit` but `npx cz` will use the [cz-conventional-changelog](https://github.com/commitizen/cz-conventional-changelog) adapter. To fix this, you need to first [make your repo Commitizen-friendly](#making-your-repo-commitizen-friendly).
+If you're **not** working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit` but `npx cz` will use the [streamich/git-cz](https://github.com/streamich/git-cz) adapter. To fix this, you need to first [make your repo Commitizen-friendly](#making-your-repo-commitizen-friendly)
 
 ## Making your repo Commitizen-friendly
 
-For this example, we'll be setting up our repo to use [Conventional Commits convention](https://www.conventionalcommits.org/) through the [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) [commitizen adapter](https://github.com/commitizen/cz-conventional-changelog).
+For this example, we'll be setting up our repo to use [AngularJS's commit message convention](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) also known as [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
 
 First, install the Commitizen cli tools:
 
@@ -86,7 +86,7 @@ The above command does three things for you.
   }
 ```
 
-Alternatively, commitizen configs may be added to a `.czrc` or `.cz.json` file:
+Alternatively, commitizen configs may be added to a .czrc file:
 
 ```json
 {
