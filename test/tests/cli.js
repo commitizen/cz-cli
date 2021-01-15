@@ -8,6 +8,7 @@ describe('git-cz', () => {
 
   beforeEach(() => {
     fakeStrategies = {
+      git: sinon.spy(),
       gitCz: sinon.spy()
     }
 
@@ -48,10 +49,9 @@ describe('git-cz', () => {
       });
 
       describe('and the config is not returned from configLoader.load', () => {
-        it('tells commitizen to use the default adapter', () => {
+        it('tells commitizen to use the git strategy', () => {
           bootstrap({});
-
-          expect(fakeStrategies.gitCz.args[0][2].path).to.equal('cz-conventional-changelog');
+          expect(fakeStrategies.git.called).to.equal(true);
         });
       });
     });
@@ -59,7 +59,7 @@ describe('git-cz', () => {
     describe('when argv is overridden', () => {
       it('uses the overridden argv', () => {
         bootstrap({}, ['node', 'git-cz', 'index.js']);
-        expect(fakeStrategies.gitCz.args[0][0][0]).to.equal('index.js');
+        expect(fakeStrategies.git.args[0][0][0]).to.equal('index.js');
       });
     })
   });
