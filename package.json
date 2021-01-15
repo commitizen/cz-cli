@@ -54,7 +54,7 @@
     "@babel/preset-env": "7.11.5",
     "@babel/register": "7.11.5",
     "@istanbuljs/nyc-config-babel": "2.1.1",
-    "axios": "0.19.0",
+    "axios": "0.21.1",
     "babel-plugin-istanbul": "5.2.0",
     "chai": "4.1.2",
     "codecov.io": "0.1.6",
