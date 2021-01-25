@@ -77,7 +77,7 @@
     "cz-conventional-changelog": "3.2.0",
     "dedent": "0.7.0",
     "detect-indent": "6.0.0",
-    "find-node-modules": "2.0.0",
+    "find-node-modules": "2.1.1",
     "find-root": "1.1.0",
     "fs-extra": "8.1.0",
     "glob": "7.1.4",
