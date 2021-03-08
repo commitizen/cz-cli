@@ -157,7 +157,7 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 
 ##### Husky
 
-For `husky` users, add the following configuration to the project's `package.json`:
+*Prior `husky` v5* For `husky` users, add the following configuration to the project's `package.json`:
 
 ```json
 "husky": {
@@ -165,6 +165,16 @@ For `husky` users, add the following configuration to the project's `package.jso
     "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
   }
 }
+```
+
+*with husky >= v5*
+
+In [`husky v5`]() you need to call the locally instared binaries using `npx`
+
+in `.husky/prepare-commit-msg`:
+
+```
+exec < /dev/tty && npx --no-install cz --hook || true
 ```
 
 > **Why `exec < /dev/tty`?** By default, git hooks are not interactive. This command allows the user to use their terminal to interact with Commitizen during the hook.
