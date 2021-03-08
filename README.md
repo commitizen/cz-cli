@@ -157,7 +157,9 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 
 ##### Husky
 
-*Prior `husky` v5* For `husky` users, add the following configuration to the project's `package.json`:
+*Prior `husky` v5*: 
+
+For `husky` users, add the following configuration to the project's `package.json`:
 
 ```json
 "husky": {
@@ -167,9 +169,9 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 }
 ```
 
-*with husky >= v5*
+*with husky >= v5*:
 
-In [`husky v5`]() you need to call the locally instared binaries using `npx`
+In [`husky v5`](https://typicode.github.io/husky/#/?id=announcement) you need to call the locally instared binaries using `npx`
 
 in `.husky/prepare-commit-msg`:
 
