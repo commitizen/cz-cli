@@ -58,6 +58,7 @@
     "babel-plugin-istanbul": "5.2.0",
     "chai": "4.1.2",
     "codecov.io": "0.1.6",
+    "conventional-changelog-conventionalcommits": "4.4.0",
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
     "ghooks": "2.0.4",
     "in-publish": "2.0.0",
@@ -102,5 +103,8 @@
   "collective": {
     "type": "opencollective",
     "url": "https://opencollective.com/commitizen"
+  },
+  "release": {
+    "preset": "conventionalcommits"
   }
 }
