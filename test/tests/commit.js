@@ -311,6 +311,73 @@ ${(os.platform === 'win32') ? '' : '    '}
       done();
     });
   });
+
+  it('should throw error if staging area is empty', function (done) {
+
+    this.timeout(config.maxTimeout); // this could take a while
+
+    // SETUP
+
+    let dummyCommitMessage = `one does not simply ignore the tests`;
+
+    // Describe a repo and some files to add and commit
+    let repoConfig = {
+      path: config.paths.endUserRepo,
+      files: {
+        dummyfile: {
+          contents: `duck-duck-gray-duck`,
+          filename: `mydummiestfile.txt`,
+        },
+        gitignore: {
+          contents: `node_modules/`,
+          filename: `.gitignore`,
+        }
+      }
+    };
+
+    // Describe an adapter
+    let adapterConfig = {
+      path: path.join(repoConfig.path, '/node_modules/cz-jira-smart-commit'),
+      npmName: 'cz-jira-smart-commit'
+    };
+
+    // Quick setup the repos, adapter, and grab a simple prompter
+    let prompter = quickPrompterSetup(repoConfig, adapterConfig, dummyCommitMessage);
+    // TEST
+
+    // Make an initial commit
+    commitizenCommit(inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function (error) {
+      //  Should pass, as the files are added to the staging area
+      expect(error).to.be.null;
+
+      log(repoConfig.path, function (logOutput) {
+        expect(logOutput).to.have.string(dummyCommitMessage);
+      });
+      whatChanged(repoConfig.path, function (whatChangedOutput) {
+        expect(whatChangedOutput).to.have.string('A\t' + repoConfig.files.dummyfile.filename);
+
+        //  Make changes and don't add them to the staging area
+        writeFilesToPath({
+          dummymodified: {
+            contents: repoConfig.files.dummyfile.contents + '-modified',
+            filename: repoConfig.files.dummyfile.filename,
+            add: false,
+          }
+        }, repoConfig.path);
+        //  Define a dummy prompter
+        let prompter = function (cz, commit) {
+          commit(`${dummyCommitMessage} #2`, {});
+        };
+
+        commitizenCommit(inquirer, repoConfig.path, prompter, { disableAppendPaths: true, quiet: true, emitData: true }, function (error) {
+          //  Should fail, as staging are is empty
+          expect(error).to.be.instanceOf(Error);
+          done();
+        });
+      });
+    });
+
+  });
 });
 
 afterEach(function () {

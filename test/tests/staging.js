@@ -78,6 +78,43 @@ describe('staging', function () {
     });
   });
 
+  it('should determine if --all flag adds files to staging area', function (done) {
+
+    this.timeout(config.maxTimeout); // this could take a while
+
+    // SETUP
+
+    // Describe a repo and some files to add and commit
+    let repoConfig = {
+      path: config.paths.endUserRepo,
+      files: {
+        dummyfile: {
+          contents: `duck-duck-gray-duck`,
+          filename: `mydummiestfile.txt`,
+        },
+        gitignore: {
+          contents: `node_modules/`,
+          filename: `.gitignore`
+        }
+      }
+    };
+
+    gitInit(repoConfig.path);
+
+    staging.isClean(repoConfig.path, function (stagingIsCleanError, stagingIsClean) {
+      expect(stagingIsCleanError).to.be.null;
+      expect(stagingIsClean).to.be.true;
+
+      writeFilesToPath(repoConfig.files, repoConfig.path);
+
+      staging.isClean(repoConfig.path, function (afterWriteStagingIsCleanError, afterWriteStagingIsClean) {
+        expect(afterWriteStagingIsCleanError).to.be.null;
+        expect(afterWriteStagingIsClean).to.be.true;
+
+        done();
+      });
+    }, true);
+  });
 });
 
 afterEach(function () {
