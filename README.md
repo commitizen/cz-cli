@@ -157,7 +157,13 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 
 ##### Husky
 
-For `husky` users, add the following configuration to the project's `package.json`:
+For `husky 5` users, run the following command in your terminal:
+
+```
+npx husky add .husky/prepare-commit-msg 'exec < /dev/tty && git cz --hook || true'
+```
+
+For `husky 4` (and below) users, add the following configuration to the project's `package.json`:
 
 ```json
 "husky": {
