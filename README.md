@@ -246,7 +246,7 @@ bootstrap({
   "bin": "./my-cli.js",
   "dependencies": {
     "commitizen": "^2.7.6",
-    "cz-conventional-changelog": "^1.1.5",
+    "cz-conventional-changelog": "^1.1.5"
   }
 }
 ```
@@ -272,6 +272,7 @@ We know that every project and build process has different requirements so we've
 - [rb-conventional-changelog](https://www.npmjs.com/package/rb-conventional-changelog)
 - [cz-mapbox-changelog](https://www.npmjs.com/package/cz-mapbox-changelog)
 - [cz-customizable](https://github.com/leonardoanalista/cz-customizable)
+- [cz-commitlint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/cz-commitlint)
 - [commitlint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/prompt)
 - [vscode-commitizen](https://github.com/KnisterPeter/vscode-commitizen)
 - [cz-emoji](https://github.com/ngryman/cz-emoji)
