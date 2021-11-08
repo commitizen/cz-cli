@@ -7,10 +7,8 @@ When you commit with Commitizen, you'll be prompted to fill out any required com
 
 ## Installing the command line tool
 
-Commitizen is currently tested against
-node 10 and 12 although it may work in
-older node. You should also have npm 6
-or greater.
+Commitizen is currently tested against Node.js 10 and 12 although it may work in
+older versions of Node.js. You should also have npm 6 or greater.
 
 Installation is as simple as running the following command (if you see `EACCES` error, reading [fixing npm permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions) may help):
 
@@ -20,11 +18,11 @@ npm install -g commitizen
 
 ## Using the command line tool
 
-### If your repo is [Commitizen-friendly]:
+### If your repo is [Commitizen friendly](#making-your-repo-commitizen-friendly):
 
 Simply use `git cz` or just `cz` instead of `git commit` when committing. You can also use `git-cz`, which is an alias for `cz`.
 
-_Alternatively_, if you are using **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) instead of installing globally:
+_Alternatively_, if you are using **npm 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) instead of installing globally:
 
 ```sh
 npx cz
@@ -39,19 +37,19 @@ or as an npm script:
   }
 ```
 
-When you're working in a Commitizen friendly repository, you'll be prompted to fill in any required fields and your commit messages will be formatted according to the standards defined by project maintainers.
+When you're working in a Commitizen-friendly repository, you'll be prompted to fill in any required fields, and your commit messages will be formatted according to the standards defined by project maintainers.
 
 [![Add and commit with Commitizen](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)
 
 ### If your repo is NOT Commitizen friendly:
 
-If you're **not** working in a Commitizen friendly repository, then `git cz` will work just the same as `git commit` but `npx cz` will use the [streamich/git-cz](https://github.com/streamich/git-cz) adapter. To fix this, you need to first [make your repo Commitizen-friendly](#making-your-repo-commitizen-friendly)
+If you're **not** working in a Commitizen-friendly repository, then `git cz` will work just the same as `git commit`, but `npx cz` will use the [streamich/git-cz](https://github.com/streamich/git-cz) adapter. To fix this, you need to first [make your repo Commitizen friendly](#making-your-repo-commitizen-friendly)
 
-## Making your repo Commitizen-friendly
+## Making your repo Commitizen friendly
 
-For this example, we'll be setting up our repo to use [AngularJS's commit message convention](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) also known as [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
+For this example, we'll be setting up our repo to use [AngularJS's commit message convention](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines), also known as [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
 
-First, install the Commitizen cli tools:
+First, install the Commitizen CLI tools:
 
 ```sh
 npm install commitizen -g
@@ -71,11 +69,11 @@ commitizen init cz-conventional-changelog --yarn --dev --exact
 
 Note that if you want to force install over the top of an old adapter, you can apply the `--force` argument. For more information on this, just run `commitizen help`.
 
-The above command does three things for you.
+The above command does three things for you:
 
 1. Installs the cz-conventional-changelog adapter npm module
-2. Saves it to package.json's dependencies or devDependencies
-3. Adds the `config.commitizen` key to the root of your **package.json** as shown here:
+2. Saves it to `package.json`'s `dependencies` or `devDependencies`
+3. Adds the `config.commitizen` key to the root of your `package.json` file as shown here:
 
 ```json
 ...
@@ -86,7 +84,7 @@ The above command does three things for you.
   }
 ```
 
-Alternatively, commitizen configs may be added to a .czrc file:
+Alternatively, Commitizen configs may be added to a `.czrc` file:
 
 ```json
 {
@@ -96,15 +94,15 @@ Alternatively, commitizen configs may be added to a .czrc file:
 
 This just tells Commitizen which adapter we actually want our contributors to use when they try to commit to this repo.
 
-`commitizen.path` is resolved via [require.resolve](https://nodejs.org/api/globals.html#globals_require_resolve) and supports
+`commitizen.path` is resolved via [require.resolve](https://nodejs.org/api/globals.html#globals_require_resolve) and supports:
 
 - npm modules
 - directories relative to `process.cwd()` containing an `index.js` file
-- file base names relative to `process.cwd()` with `js` extension
+- file base names relative to `process.cwd()` with `.js` extension
 - full relative file names
-- absolute paths.
+- absolute paths
 
-Please note that in the previous version of Commitizen we used czConfig. **czConfig has been deprecated** and you should migrate to the new format before Commitizen 3.0.0.
+Please note that in the previous version of Commitizen we used czConfig. **czConfig has been deprecated**, and you should migrate to the new format before Commitizen 3.0.0.
 
 ### Optional: Install and run Commitizen locally
 
@@ -112,17 +110,17 @@ Installing and running Commitizen locally allows you to make sure that developer
 
 Install Commitizen with `npm install --save-dev commitizen`.
 
-On **NPM 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) to initialize the conventional changelog adapter:
+On **npm 5.2+** you can [use `npx`](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) to initialize the conventional changelog adapter:
 
 ```
 npx commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
 
-For **previous versions of NPM (< 5.2)** you can execute `./node_modules/.bin/commitizen` or `./node_modules/.bin/cz` in order to actually use the commands.
+For **previous versions of npm (< 5.2)** you can execute `./node_modules/.bin/commitizen` or `./node_modules/.bin/cz` in order to actually use the commands.
 
 You can then initialize the conventional changelog adapter using: `./node_modules/.bin/commitizen init cz-conventional-changelog --save-dev --save-exact`
 
-And you can then add some nice npm run scripts in your package.json pointing to the local version of commitizen:
+And you can then add some nice npm scripts in your `package.json` file pointing to the local version of Commitizen:
 
 ```json
   ...
@@ -133,9 +131,9 @@ And you can then add some nice npm run scripts in your package.json pointing to 
 
 This will be more convenient for your users because then if they want to do a commit, all they need to do is run `npm run commit` and they will get the prompts needed to start a commit!
 
-> **NOTE:** if you are using `precommit` hooks thanks to something like [`husky`](https://www.npmjs.com/package/husky), you will need to name your script some thing other than `"commit"`
-> (e.g. `"cm": "cz"`). The reason is because npm-scripts has a "feature" where it automatically runs scripts with the name _prexxx_ where _xxx_ is the name of another script. In essence,
-> npm and husky will run `"precommit"` scripts twice if you name the script `"commit"`, and the work around is to prevent the npm-triggered _precommit_ script.
+> **NOTE:** If you are using `precommit` hooks thanks to something like [`husky`](https://www.npmjs.com/package/husky), you will need to name your script something other than `"commit"`
+> (e.g. `"cm": "cz"`). The reason is because npm scripts has a "feature" where it automatically runs scripts with the name _prexxx_ where _xxx_ is the name of another script. In essence,
+> npm and husky will run `"precommit"` scripts twice if you name the script `"commit"`, and the workaround is to prevent the npm-triggered _precommit_ script.
 
 #### Optional: Running Commitizen on `git commit`
 
@@ -157,7 +155,7 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 
 ##### Husky
 
-For `husky` users, add the following configuration to the project's `package.json`:
+For `husky` users, add the following configuration to the project's `package.json` file:
 
 ```json
 "husky": {
@@ -169,9 +167,9 @@ For `husky` users, add the following configuration to the project's `package.jso
 
 > **Why `exec < /dev/tty`?** By default, git hooks are not interactive. This command allows the user to use their terminal to interact with Commitizen during the hook.
 
-#### Congratulations your repo is Commitizen-friendly. Time to flaunt it!
+#### Congratulations! Your repo is Commitizen friendly. Time to flaunt it!
 
-Add the Commitizen-friendly badge to your README using the following markdown:
+Add the "Commitizen friendly" badge to your README using the following markdown:
 
 ```
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
@@ -179,9 +177,9 @@ Add the Commitizen-friendly badge to your README using the following markdown:
 
 Your badge will look like this:
 
-[![Commitizen-friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-It may also make sense to change your README.md or CONTRIBUTING.md to include or link to the Commitizen project so that your new contributors may learn more about installing and using Commitizen.
+It may also make sense to change your `README.md` or `CONTRIBUTING.md` files to include or link to the Commitizen project so that your new contributors may learn more about installing and using Commitizen.
 
 ## Conventional commit messages as a global utility
 
@@ -191,30 +189,29 @@ Install `commitizen` globally, if you have not already.
 npm install -g commitizen
 ```
 
-Install your preferred `commitizen` adapter globally, for example [`cz-conventional-changelog`](https://www.npmjs.com/package/cz-conventional-changelog)
+Install your preferred `commitizen` adapter globally (for example [`cz-conventional-changelog`](https://www.npmjs.com/package/cz-conventional-changelog)).
 
 ```sh
 npm install -g cz-conventional-changelog
 ```
 
-Create a `.czrc` file in your `home` directory, with `path` referring to the preferred, globally installed, `commitizen` adapter
+Create a `.czrc` file in your `home` directory, with `path` referring to the preferred, globally-installed, `commitizen` adapter
 
 ```sh
 echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 ```
 
-You are all set! Now `cd`into any `git` repository and use `git cz` instead of `git commit` and you will find the `commitizen` prompt.
+You are all set! Now `cd` into any `git` repository and use `git cz` instead of `git commit`, and you will find the `commitizen` prompt.
 
-Protip: You can use all the `git commit` `options` with `git cz`, for example: `git cz -a`.
+Pro tip: You can use all the `git commit` `options` with `git cz`. For example: `git cz -a`.
 
-> If your repository is a [nodejs](https://nodejs.org/en/) project, making it [Commitizen-friendly] is super easy.
+> If your repository is a [Node.js](https://nodejs.org/en/) project, making it [Commitizen friendly](#making-your-repo-commitizen-friendly) is super easy.
 
-If your repository is already [Commitizen-friendly], the local `commitizen` adapter will be used, instead of globally installed one.
+If your repository is already [Commitizen friendly](#making-your-repo-commitizen-friendly), the local `commitizen` adapter will be used, instead of globally installed one.
 
 ## Commitizen for multi-repo projects
 
-As a project maintainer of many projects, you may want to standardize on a single commit message
-format for all of them. You can create your own node module which acts as front-end for commitizen.
+As a project maintainer of many projects, you may want to standardize on a single commit message format for all of them. You can create your own node module which acts as a front-end for Commitizen.
 
 ### 1. Create your own entry point script
 
@@ -236,7 +233,7 @@ bootstrap({
 });
 ```
 
-### 2. Add script to package.json
+### 2. Add the script to your `package.json` file
 
 ```json
 // package.json
@@ -261,7 +258,7 @@ npm install --save-dev company-commit
 
 ## Adapters
 
-We know that every project and build process has different requirements so we've tried to keep Commitizen open for extension. You can do this by choosing from any of the pre-build adapters or even by building your own. Here are some of the great adapters available to you:
+We know that every project and build process has different requirements, so we've tried to keep Commitizen open for extension. You can do this by choosing from any of the pre-built adapters or even by building your own. Here are some of the great adapters available to you:
 
 - [cz-conventional-changelog](https://www.npmjs.com/package/cz-conventional-changelog)
 - [cz-conventional-changelog-for-jira](https://www.npmjs.com/package/@digitalroute/cz-conventional-changelog-for-jira)
@@ -281,18 +278,18 @@ We know that every project and build process has different requirements so we've
 - [cz-format-extension](https://github.com/tyankatsu0105/cz-format-extension)
 - [cz-emoji-conventional](https://www.npmjs.com/package/cz-emoji-conventional)
 
-To create an adapter, just fork one of these great adapters and modify it to suit your needs. We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
+To create an adapter, just fork one of these great adapters and modify it to suit your needs. We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/), but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
 
 ## Retrying failed commits
 
 As of version 2.7.1, you may attempt to retry the last commit using the `git cz --retry` command. This can be helpful when you have tests set up to run via a git precommit hook. In this scenario, you may have attempted a Commitizen commit, painstakingly filled out all of the commitizen fields, but your tests fail. In previous Commitizen versions, after fixing your tests, you would be forced to fill out all of the fields again. Enter the retry command. Commitizen will retry the last commit that you attempted in this repo without you needing to fill out the fields again.
 
-Please note that the retry cache may be cleared when upgrading commitizen versions, upgrading adapters, or if you delete the `commitizen.json` file in your home or temp directory. Additionally, the commit cache uses the filesystem path of the repo, so if you move a repo or change its path, you will not be able to retry a commit. This is an edge case, but might be confusing if you have scenarios where you are moving folders that contain repos.
+Please note that the retry cache may be cleared when upgrading Commitizen versions, upgrading adapters, or if you delete the `commitizen.json` file in your home or temp directory. Additionally, the commit cache uses the filesystem path of the repo, so if you move a repo or change its path, you will not be able to retry a commit. This is an edge case but might be confusing if you have scenarios where you are moving folders that contain repos.
 
-It is important to note that if you are running `cz` from a npm script (let's say it is called `commit`) you will need to do one of the following:
+It is important to note that if you are running `cz` from an npm script (let's say it is called `commit`) you will need to do one of the following:
 
 - Pass `-- --retry` as an argument for your script. i.e: `npm run commit -- --retry`
-- Use [npx](https://www.npmjs.com/package/npx) to find and call `cz` executable directly. i.e: `npx cz --retry`
+- Use [npx](https://www.npmjs.com/package/npx) to find and call the `cz` executable directly. i.e: `npx cz --retry`
 
 Note that the last two options **do not** require you to pass `--` before the args but the first **does**.
 
@@ -302,7 +299,7 @@ As a project maintainer, making your repo Commitizen friendly allows you to sele
 
 ## Go further
 
-Commitizen is great on its own, but it shines when you use it with some other amazing open source tools. Kent C. Dodds shows you how to accomplish this in his Egghead.io series, [How to write an open source javascript library](https://egghead.io/series/how-to-write-an-open-source-javascript-library). Many of the concepts can be applied to non-javascript projects as well.
+Commitizen is great on its own, but it shines when you use it with some other amazing open source tools. Kent C. Dodds shows you how to accomplish this in his Egghead.io series, [How to write an open source javascript library](https://egghead.io/series/how-to-write-an-open-source-javascript-library). Many of the concepts can be applied to non-JavaScript projects as well.
 
 ## Philosophy
 
