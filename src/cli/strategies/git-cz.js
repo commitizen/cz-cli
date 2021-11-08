@@ -41,6 +41,7 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
   let resolvedAdapterConfigPath = resolveAdapterPath(adapterConfig.path);
   let resolvedAdapterRootPath = findRoot(resolvedAdapterConfigPath);
   let prompter = getPrompter(adapterConfig.path);
+  let shouldStageAllFiles = rawGitArgs.includes('-a') || rawGitArgs.includes('--all');
 
   isClean(process.cwd(), function (error, stagingIsClean) {
     if (error) {
@@ -67,6 +68,6 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
         throw error;
       }
     });
-  });
+  }, shouldStageAllFiles);
 
 }
