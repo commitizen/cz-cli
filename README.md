@@ -278,6 +278,7 @@ We know that every project and build process has different requirements so we've
 - [cz-adapter-eslint](https://www.npmjs.com/package/cz-adapter-eslint)
 - [commitiquette](https://github.com/martinmcwhorter/commitiquette)
 - [cz-format-extension](https://github.com/tyankatsu0105/cz-format-extension)
+- [cz-emoji-conventional](https://www.npmjs.com/package/cz-emoji-conventional)
 
 To create an adapter, just fork one of these great adapters and modify it to suit your needs. We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/) but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
 
