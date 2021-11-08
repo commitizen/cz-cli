@@ -7,3 +7,4 @@ test/tools/trigger-appveyor-tests.sh
 /appveyor.yml
 jsconfig.json
 travis_after_all.py
+/.nyc_output
