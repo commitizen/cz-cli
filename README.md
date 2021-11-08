@@ -267,7 +267,7 @@ We know that every project and build process has different requirements, so we'v
 - [@endemolshinegroup/cz-jira-smart-commit](https://github.com/EndemolShineGroup/cz-jira-smart-commit)
 - [@endemolshinegroup/cz-github](https://github.com/EndemolShineGroup/cz-github)
 - [rb-conventional-changelog](https://www.npmjs.com/package/rb-conventional-changelog)
-- [cz-mapbox-changelog](https://www.npmjs.com/package/cz-mapbox-changelog)
+- [@mapbox/cz-mapbox-changelog](https://www.npmjs.com/package/@mapbox/cz-mapbox-changelog)
 - [cz-customizable](https://github.com/leonardoanalista/cz-customizable)
 - [cz-commitlint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/cz-commitlint)
 - [commitlint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/prompt)
