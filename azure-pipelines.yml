@@ -14,7 +14,7 @@ jobs:
   parameters:
     name: Linux
     pool:
-      vmImage: 'Ubuntu-16.04'
+      vmImage: 'ubuntu-latest'
 
 - template: jobs/build.yml  # Template reference
   parameters:
