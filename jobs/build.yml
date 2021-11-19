@@ -11,10 +11,12 @@ jobs:
   strategy:
     maxParallel: 3
     matrix:
+      node-16:
+        node_version: ^16.13.0
+      node-14:
+        node_version: ^14.18.0
       node-12:
         node_version: ^12.6.0
-      node-10:
-        node_version: ^10.10.0
   steps:
   - task: NodeTool@0
     displayName: " Install Node.js"
