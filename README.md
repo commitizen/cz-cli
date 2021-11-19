@@ -7,7 +7,7 @@ When you commit with Commitizen, you'll be prompted to fill out any required com
 
 ## Installing the command line tool
 
-Commitizen is currently tested against Node.js 10 and 12 although it may work in
+Commitizen is currently tested against Node.js 12, 14, & 16, although it may work in
 older versions of Node.js. You should also have npm 6 or greater.
 
 Installation is as simple as running the following command (if you see `EACCES` error, reading [fixing npm permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions) may help):
