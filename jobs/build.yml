@@ -27,6 +27,7 @@ jobs:
   - script: npm install
   - script: npm run build
   - script: npm test && npm run write-coverage
+  - script: bash logo/generate.sh
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
     inputs:
