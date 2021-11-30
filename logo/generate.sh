@@ -20,7 +20,7 @@ convert () {
     # echo "file $FILE missing!"
     exit 1
   fi
-  echo "conversion in progress..."
+  # echo "conversion in progress..."
   for SIZE in 16 48 96 256 512 1024; do
     cairosvg ${FILE} -f png -W ${SIZE} -H ${SIZE} -d 300 -o logo/commitizen_logo_${COLOR}_${SIZE}x${SIZE}.png
   done
@@ -28,7 +28,15 @@ convert () {
   return 0
 }
 
-if [ ! -e $(which cairosvg) ]; then
+if [[ $(which cairosvg) == "" ]]; then
+  # We're not going to mess with installation on OSX or Windows in our build pipelines.
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "cairosvg not found in PATH.  Please see https://cairosvg.org/documentation/#installation"
+    exit 0
+  elif [[ "$OSTYPE" == "msys"* ]]; then
+    echo "cairosvg not found in PATH.  Please see https://cairosvg.org/documentation/#installation"
+    exit 0
+  fi
   pip3 install cairosvg
 fi
 
