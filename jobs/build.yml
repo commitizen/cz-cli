@@ -24,7 +24,7 @@ jobs:
       versionSpec: $(node_version)
   - script: git config --global user.email "example@example.com"
   - script: git config --global user.name "Example Git User"
-  - script: npm install
+  - script: npm ci
   - script: npm run build
   - script: npm test && npm run write-coverage
   - script: bash logo/generate.sh
