@@ -58,7 +58,7 @@
     "babel-plugin-istanbul": "6.1.1",
     "chai": "4.3.4",
     "codecov": "3.8.3",
-    "conventional-changelog-conventionalcommits": "4.6.1",
+    "conventional-changelog-conventionalcommits": "4.6.2",
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
     "ghooks": "2.0.4",
     "in-publish": "2.0.1",
