@@ -1,10 +1,13 @@
-import { loader } from '../configLoader';
+import { cosmiconfig } from "cosmiconfig";
 
 export { load };
 
-// Configuration sources in priority order.
-var configs = ['.czrc', '.cz.json', 'package.json'];
+async function load(config, cwd) {
+  const explorer = cosmiconfig("commitizen", {
+    packageProp: "config.commitizen",
+    searchPlaces: [".czrc", ".cz.json", "package.json"],
+    searchFrom: cwd,
+  });
 
-function load (config, cwd) {
-  return loader(configs, config, cwd);
+  return await explorer.search().config;
 }
