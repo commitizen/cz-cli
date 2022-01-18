@@ -82,7 +82,7 @@
     "find-root": "1.1.0",
     "fs-extra": "9.1.0",
     "glob": "7.2.0",
-    "inquirer": "6.5.2",
+    "inquirer": "8.2.0",
     "is-utf8": "^0.2.1",
     "lodash": "4.17.21",
     "minimist": "1.2.5",
