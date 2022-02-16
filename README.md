@@ -299,7 +299,7 @@ As a project maintainer, making your repo Commitizen friendly allows you to sele
 
 ## Go further
 
-Commitizen is great on its own, but it shines when you use it with some other amazing open source tools. Kent C. Dodds shows you how to accomplish this in his Egghead.io series, [How to write an open source javascript library](https://egghead.io/series/how-to-write-an-open-source-javascript-library). Many of the concepts can be applied to non-JavaScript projects as well.
+Commitizen is great on its own, but it shines when you use it with some other amazing open source tools. Kent C. Dodds shows you how to accomplish this in his Egghead.io series, [How to write an open source javascript library](https://app.egghead.io/playlists/how-to-write-an-open-source-javascript-library). Many of the concepts can be applied to non-JavaScript projects as well.
 
 ## Philosophy
 
