@@ -160,7 +160,7 @@ For `husky` users, add the following configuration to the project's `package.jso
 ```json
 "husky": {
   "hooks": {
-    "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
   }
 }
 ```
