@@ -49,10 +49,10 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "7.17.6",
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.17.7",
     "@babel/plugin-proposal-object-rest-spread": "7.17.3",
     "@babel/preset-env": "7.16.11",
-    "@babel/register": "7.17.0",
+    "@babel/register": "7.17.7",
     "@istanbuljs/nyc-config-babel": "3.0.0",
     "babel-plugin-istanbul": "6.1.1",
     "chai": "4.3.6",
