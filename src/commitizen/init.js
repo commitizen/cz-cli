@@ -5,10 +5,8 @@ import * as adapter from './adapter';
 
 let {
   addPathToAdapterConfig,
-  generateNpmInstallAdapterCommand,
-  getNpmInstallStringMappings,
-  generateYarnAddAdapterCommand,
-  getYarnAddStringMappings,
+  generateInstallAdapterCommand,
+  getInstallStringMappings,
 } = adapter;
 
 export default init;
@@ -43,6 +41,8 @@ const defaultInitOptions = {
   yarn: false,
   dev: true,
   exact: false, // should add trailing comma, thus next developer doesn't got blamed for this line
+
+  pnpm: false, // reuses `save`, `saveDev`, `saveExact`
 };
 
 /**
@@ -56,6 +56,7 @@ function init (repoPath, adapterNpmName, {
   yarn = false,
   dev = false,
   exact = false,
+  pnpm = false,
   includeCommitizen = false
 } = defaultInitOptions) {
 
@@ -65,13 +66,15 @@ function init (repoPath, adapterNpmName, {
   // Load the current adapter config
   let adapterConfig = loadAdapterConfig(repoPath);
 
+  const packageManager = yarn ? 'yarn' : pnpm ? 'pnpm' : 'npm';
+
   // Get the npm string mappings based on the arguments provided
-  let stringMappings = yarn ? getYarnAddStringMappings(dev, exact, force) : getNpmInstallStringMappings(save, saveDev, saveExact, force);
+  const stringMappings = getInstallStringMappings({ save, dev, saveDev, saveExact, force }, packageManager);
 
   // Generate a string that represents the npm install command
-  let installAdapterCommand = yarn ? generateYarnAddAdapterCommand(stringMappings, adapterNpmName) : generateNpmInstallAdapterCommand(stringMappings, adapterNpmName);
+  const installAdapterCommand = generateInstallAdapterCommand(stringMappings, adapterNpmName, packageManager);
 
-  let installCommitizenCommand = yarn ? generateYarnAddAdapterCommand(stringMappings, "commitizen") : generateNpmInstallAdapterCommand(stringMappings, "commitizen");
+  const installCommitizenCommand = generateInstallAdapterCommand(stringMappings, 'commitizen', packageManager);
 
   // Check for previously installed adapters
   if (adapterConfig && adapterConfig.path && adapterConfig.path.length > 0 && !force) {

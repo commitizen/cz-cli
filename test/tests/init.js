@@ -173,130 +173,140 @@ describe('init', function () {
 
   });
 
-  it('installs an adapter with --yarn', function () {
+  const supportedPackageManagers = ['yarn', 'pnpm'];
 
-    this.timeout(config.maxTimeout); // this could take a while
+  supportedPackageManagers.forEach((packageManger) => {
+    describe(`alternative package managers: ${packageManger}`, () => {
+      it(`installs an adapter with ${packageManger}`, function () {
+        this.timeout(config.maxTimeout); // this could take a while
 
-    // SETUP
+        // SETUP
 
-    // Install an adapter
-    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true });
+        // Install an adapter
+        commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { [packageManger]: true });
 
-    // TEST
+        // TEST
 
-    // Check resulting json
-    let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).to.have.nested.property('dependencies.cz-conventional-changelog');
+        // Check resulting json
+        let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
+        if (packageManger === 'yarn') {
+          expect(packageJson).to.have.nested.property('dependencies.cz-conventional-changelog');
+        } else {
+          expect(packageJson).to.have.nested.property('devDependencies.cz-conventional-changelog');
+        }
+      });
 
-  });
+      it(`installs an adapter with ${packageManger} --dev`, function () {
+        this.timeout(config.maxTimeout); // this could take a while
 
-  it('installs an adapter with --yarn --dev', function () {
+        // SETUP
 
-    this.timeout(config.maxTimeout); // this could take a while
+        // Install an adapter
+        commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { [packageManger]: true, dev: true });
 
-    // SETUP
+        // TEST
 
-    // Install an adapter
-    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
+        // Check resulting json
+        let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
+        expect(packageJson).to.have.nested.property('devDependencies.cz-conventional-changelog');
+      });
 
-    // TEST
+      it(`errors (with ${packageManger}) on previously installed adapter`, function () {
+        this.timeout(config.maxTimeout); // this could take a while
 
-    // Check resulting json
-    let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).to.have.nested.property('devDependencies.cz-conventional-changelog');
+        // SETUP
 
-  });
+        // Add a first adapter
+        commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { [packageManger]: true, dev: true });
 
-  it('errors (with --yarn) on previously installed adapter', function () {
+        // TEST
+        // Adding a second adapter
+        expect(function () {
+          commitizenInit(config.paths.endUserRepo, 'cz-jira-smart-commit', { [packageManger]: true, dev: true });
+        }).to.throw(/already configured/);
 
-    this.timeout(config.maxTimeout); // this could take a while
+        // Check resulting json
+        let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
+        expect(packageJson).not.to.have.nested.property('devDependencies', 'cz-jira-smart-commit');
+        expect(packageJson).to.have.nested.property(
+          'config.commitizen.path',
+          './node_modules/cz-conventional-changelog'
+        );
+        // TODO: Eventually may need to offer both path and package keys. package = npm package name
+        // Path for local development
+      });
 
-    // SETUP
+      it(`succeeds (with ${packageManger}) if force is true`, function () {
+        this.timeout(config.maxTimeout); // this could take a while
 
-    // Add a first adapter
-    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
+        // SETUP
 
-    // TEST
-    // Adding a second adapter
-    expect(function () {
-      commitizenInit(config.paths.endUserRepo, 'cz-jira-smart-commit', { yarn: true, dev: true });
-    }).to.throw(/already configured/);
+        // Add a first adapter
+        commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { [packageManger]: true, dev: true });
 
-    // Check resulting json
-    let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson).not.to.have.nested.property('devDependencies', 'cz-jira-smart-commit');
-    expect(packageJson).to.have.nested.property('config.commitizen.path', './node_modules/cz-conventional-changelog');
-    // TODO: Eventually may need to offer both path and package keys. package = npm package name
-    // Path for local development
-  });
+        // TEST
 
-  it('succeeds (with --yarn) if force is true', function () {
+        // Adding a second adapter
+        expect(function () {
+          commitizenInit(config.paths.endUserRepo, 'cz-jira-smart-commit', {
+            [packageManger]: true,
+            dev: true,
+            force: true,
+          });
+        }).to.not.throw();
 
-    this.timeout(config.maxTimeout); // this could take a while
+        let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
+        expect(packageJson.devDependencies).to.have.property('cz-jira-smart-commit');
+        expect(packageJson).to.have.nested.property('config.commitizen.path', './node_modules/cz-jira-smart-commit');
+      });
 
-    // SETUP
+      it(`installs (with ${packageManger}) an adapter without --save-exact`, function () {
+        this.timeout(config.maxTimeout); // this could take a while
 
-    // Add a first adapter
-    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
+        // SETUP
 
-    // TEST
+        // Add a first adapter
+        commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { [packageManger]: true, dev: true });
+        let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
 
-    // Adding a second adapter
-    expect(function () {
-      commitizenInit(config.paths.endUserRepo, 'cz-jira-smart-commit', { yarn: true, dev: true, force: true });
-    }).to.not.throw();
+        // TEST
+        expect(packageJson.devDependencies).to.have.property('cz-conventional-changelog');
+        let range = packageJson.devDependencies['cz-conventional-changelog'];
 
-    let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-    expect(packageJson.devDependencies).to.have.property('cz-jira-smart-commit');
-    expect(packageJson).to.have.nested.property('config.commitizen.path', './node_modules/cz-jira-smart-commit');
+        // It should satisfy the requirements of a range
+        expect(semver.validRange(range)).to.not.equal(null);
 
-  });
+        // // But you CAN NOT increment a range
+        // expect(semver.inc(range, 'major')).to.equal(null);
+        // TODO: We need to figure out how to check if the repo has save exact set
+        // in the config before we can re-enable this. The --save-exact setting
+        // in our package.json breaks this test
+      });
 
-  it('installs (with --yarn) an adapter without --save-exact', function () {
+      it(`installs an adapter with ${packageManger} --exact`, function () {
+        this.timeout(config.maxTimeout); // this could take a while
 
-    this.timeout(config.maxTimeout); // this could take a while
+        // SETUP
 
-    // SETUP
+        // Add a first adapter
+        commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', {
+          [packageManger]: true,
+          dev: true,
+          exact: true,
+        });
+        let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
 
-    // Add a first adapter
-    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true });
-    let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
+        // TEST
+        expect(packageJson.devDependencies).to.have.property('cz-conventional-changelog');
+        let range = packageJson.devDependencies['cz-conventional-changelog'];
 
-    // TEST
-    expect(packageJson.devDependencies).to.have.property('cz-conventional-changelog');
-    let range = packageJson.devDependencies['cz-conventional-changelog'];
+        // It should satisfy the requirements of a range
+        expect(semver.validRange(range)).to.not.equal(null);
 
-    // It should satisfy the requirements of a range
-    expect(semver.validRange(range)).to.not.equal(null);
-
-    // // But you CAN NOT increment a range
-    // expect(semver.inc(range, 'major')).to.equal(null);
-    // TODO: We need to figure out how to check if the repo has save exact set
-    // in the config before we can re-enable this. The --save-exact setting
-    // in our package.json breaks this test
-
-  });
-
-  it('installs an adapter with --yarn --exact', function () {
-
-    this.timeout(config.maxTimeout); // this could take a while
-
-    // SETUP
-
-    // Add a first adapter
-    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { yarn: true, dev: true, exact: true });
-    let packageJson = util.getParsedPackageJsonFromPath(config.paths.endUserRepo);
-
-    // TEST
-    expect(packageJson.devDependencies).to.have.property('cz-conventional-changelog');
-    let range = packageJson.devDependencies['cz-conventional-changelog'];
-
-    // It should satisfy the requirements of a range
-    expect(semver.validRange(range)).to.not.equal(null);
-
-    // But you CAN increment a single version
-    expect(semver.inc(range, 'major')).not.to.equal(null);
-
+        // But you CAN increment a single version
+        expect(semver.inc(range, 'major')).not.to.equal(null);
+      });
+    });
   });
 
 });
