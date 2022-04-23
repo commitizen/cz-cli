@@ -38,7 +38,8 @@ function isFunction (functionToCheck) {
     return false;
   } else {
     var getType = {};
-    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+    var functionType = getType.toString.call(functionToCheck);
+    return functionToCheck && (functionType === '[object Function]' || functionType === '[object AsyncFunction]');
   }
 }
 
