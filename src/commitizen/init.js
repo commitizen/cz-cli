@@ -112,8 +112,8 @@ function checkRequiredArguments (path, adapterNpmName) {
  * CONFIG
  * Loads and returns the adapter config at key config.commitizen, if it exists
  */
-function loadAdapterConfig (cwd) {
-  let config = configLoader.load(null, cwd);
+async function loadAdapterConfig (cwd) {
+  let config = await configLoader.load(null, cwd);
   if (config) {
     return config;
   } else {
