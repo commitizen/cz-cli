@@ -1,4 +1,4 @@
-import { loader } from "../configLoader";
+import { loader } from '../configLoader';
 
 export { load };
 
