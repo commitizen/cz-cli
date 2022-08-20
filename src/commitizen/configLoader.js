@@ -11,6 +11,6 @@ var configs = [
   "package.json",
 ];
 
-function load(config, cwd) {
+function load (config, cwd) {
   return loader(configs, config, cwd);
 }
