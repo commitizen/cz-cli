@@ -1,10 +1,16 @@
-import { loader } from '../configLoader';
+import { loader } from "../configLoader";
 
 export { load };
 
 // Configuration sources in priority order.
-var configs = ['.czrc', '.cz.json', 'package.json'];
+var configs = [
+  ".czrc",
+  ".cz.json",
+  "cz.config.js",
+  "commitizen.config.js",
+  "package.json",
+];
 
-function load (config, cwd) {
+function load(config, cwd) {
   return loader(configs, config, cwd);
 }

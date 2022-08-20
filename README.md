@@ -91,6 +91,13 @@ Alternatively, Commitizen configs may be added to a `.czrc` file:
   "path": "cz-conventional-changelog"
 }
 ```
+or
+```js
+// commitizen.config.js or cz.config.js
+module.exports = {
+  path: "cz-conventional-changelog"
+}
+```
 
 This just tells Commitizen which adapter we actually want our contributors to use when they try to commit to this repo.
 
