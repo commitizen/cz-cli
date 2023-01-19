@@ -11,12 +11,10 @@ export {
   addPathToAdapterConfig,
   getNearestNodeModulesDirectory,
   getNearestProjectRootDirectory,
-  getNpmInstallStringMappings,
+  getInstallStringMappings,
   getPrompter,
-  generateNpmInstallAdapterCommand,
+  generateInstallAdapterCommand,
   resolveAdapterPath,
-  getYarnAddStringMappings,
-  generateYarnAddAdapterCommand,
   getGitRootPath,
 };
 
@@ -55,40 +53,32 @@ function addPathToAdapterConfig (cliPath, repoPath, adapterNpmName) {
   fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageJsonContent, null, indent) + '\n');
 }
 
-/**
- * Generates an npm install command given a map of strings and a package name
+/*
+ * Get additional options for install command
  */
-function generateNpmInstallAdapterCommand (stringMappings, adapterNpmName) {
+function getInstallOptions(stringMappings) {
+  return Array.from(stringMappings.values()).filter(Boolean).join(" ")
+}
 
-  // Start with an initial npm install command
-  let installAdapterCommand = `npm install ${adapterNpmName}`;
+/*
+ * Get specific install command for passed package manager
+ */
+function getInstallCommand(packageManager) {
+  const fallbackCommand = 'install';
+  const commandByPackageManager = {
+    npm: 'install',
+    yarn: 'add',
+    pnpm: 'add',
+  };
 
-  // Append the neccesary arguments to it based on user preferences
-  for (let value of stringMappings.values()) {
-    if (value) {
-      installAdapterCommand = installAdapterCommand + ' ' + value;
-    }
-  }
-
-  return installAdapterCommand;
+  return commandByPackageManager[packageManager] || fallbackCommand;
 }
 
 /**
- * Generates an yarn add command given a map of strings and a package name
+ * Generates an npm install command given a map of strings and a package name
  */
-function generateYarnAddAdapterCommand (stringMappings, adapterNpmName) {
-
-  // Start with an initial yarn add command
-  let installAdapterCommand = `yarn add ${adapterNpmName}`;
-
-  // Append the necessary arguments to it based on user preferences
-  for (let value of stringMappings.values()) {
-    if (value) {
-      installAdapterCommand = installAdapterCommand + ' ' + value;
-    }
-  }
-
-  return installAdapterCommand;
+function generateInstallAdapterCommand(stringMappings, adapterNpmName, packageManager = "npm") {
+  return `${packageManager} ${getInstallCommand(packageManager)} ${adapterNpmName} ${getInstallOptions(stringMappings)}`;
 }
 
 /**
@@ -117,24 +107,28 @@ function getNearestProjectRootDirectory (repoPath, options) {
 }
 
 /**
- * Gets a map of arguments where the value is the corresponding npm strings
+ * Gets a map of arguments where the value is the corresponding (to passed package manager) string
  */
-function getNpmInstallStringMappings (save, saveDev, saveExact, force) {
-  return new Map()
-    .set('save', (save && !saveDev) ? '--save' : undefined)
+function getInstallStringMappings({ save, dev, saveDev, exact, saveExact, force }, packageManager) {
+  const npm = new Map()
+    .set('save', save && !saveDev ? '--save' : undefined)
     .set('saveDev', saveDev ? '--save-dev' : undefined)
     .set('saveExact', saveExact ? '--save-exact' : undefined)
     .set('force', force ? '--force' : undefined);
-}
 
-/**
- * Gets a map of arguments where the value is the corresponding yarn strings
- */
-function getYarnAddStringMappings (dev, exact, force) {
-  return new Map()
+  const yarn = new Map()
     .set('dev', dev ? '--dev' : undefined)
     .set('exact', exact ? '--exact' : undefined)
     .set('force', force ? '--force' : undefined);
+
+  const pnpm = new Map()
+    .set('save', save && !saveDev ? '--save-prod' : undefined)
+    .set('dev', saveDev ? '--save-dev' : undefined)
+    .set('exact', saveExact ? '--save-exact' : undefined);
+
+  const map = { npm, yarn, pnpm };
+
+  return map[packageManager] || npm;
 }
 
 /**
