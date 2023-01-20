@@ -73,20 +73,20 @@
     "uuid": "8.3.2"
   },
   "dependencies": {
-    "cachedir": "2.3.0",
-    "cz-conventional-changelog": "3.3.0",
-    "dedent": "0.7.0",
-    "detect-indent": "6.1.0",
+    "cachedir": "^2.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "dedent": "~0.7.0",
+    "detect-indent": "^6.1.0",
     "find-node-modules": "^2.1.2",
-    "find-root": "1.1.0",
-    "fs-extra": "9.1.0",
-    "glob": "7.2.3",
-    "inquirer": "8.2.5",
-    "is-utf8": "^0.2.1",
-    "lodash": "4.17.21",
-    "minimist": "1.2.7",
-    "strip-bom": "4.0.0",
-    "strip-json-comments": "3.1.1"
+    "find-root": "^1.1.0",
+    "fs-extra": "^9.1.0",
+    "glob": "^7.2.3",
+    "inquirer": "^8.2.5",
+    "is-utf8": "~0.2.1",
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.7",
+    "strip-bom": "^4.0.0",
+    "strip-json-comments": "^3.1.1"
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-babel",
