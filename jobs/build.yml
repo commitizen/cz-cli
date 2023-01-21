@@ -24,6 +24,10 @@ jobs:
       versionSpec: $(node_version)
   - script: git config --global user.email "example@example.com"
   - script: git config --global user.name "Example Git User"
+  - script: |
+      curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
+      pnpm config set store-dir $(pnpm_config_cache)
+    displayName: "Setup pnpm"
   - script: npm install
   - script: npm run build
   - script: npm test && npm run write-coverage
