@@ -162,7 +162,16 @@ For `husky` users, add the following configuration to the `.husky/prepare-commit
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-exec < /dev/tty && npx cz --hook
+# Check if COMMIT_EDITMSG is just a default message
+if grep -q "# Please enter the commit message" ".git/COMMIT_EDITMSG"; then
+  # Remove the default message
+  echo "" > .git/COMMIT_EDITMSG
+  # Run commitizen
+  exec < /dev/tty && npx cz --hook || true
+else
+  # Use the provided commit message
+  exit 0
+fi
 ```
 
 And make this file executable
