@@ -162,6 +162,15 @@ For `husky` users, add the following configuration to the `.husky/prepare-commit
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Ignore if amend commit
+parent=$(/bin/ps -o ppid -p $PPID | tail -1)
+if [ -n "$parent" ]; then
+    amended=$(/bin/ps -o command -p $parent | grep -e '--amend')
+    if [ -n "$amended" ]; then
+        exit 0
+    fi  
+fi
+
 # Check if COMMIT_EDITMSG is just a default message
 if grep -q "# Please enter the commit message" ".git/COMMIT_EDITMSG"; then
   # Remove the default message
