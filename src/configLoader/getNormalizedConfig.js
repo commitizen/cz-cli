@@ -1,10 +1,13 @@
 export default getNormalizedConfig;
 
-// Given a config and content, plucks the actual
-// settings that we're interested in
-function getNormalizedConfig (config, content) {
+/**
+ * @deprecated no need this function with cosmiconfig.
+ *
+ * Given a config and content, plucks the actual settings that we're interested in
+ */
+function getNormalizedConfig (baseName, content) {
 
-  if (content && (config === 'package.json')) {
+  if (content && (baseName === 'package.json')) {
 
   // PACKAGE.JSON
 

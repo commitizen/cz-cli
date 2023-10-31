@@ -6,3 +6,4 @@ import './init';
 import './parsers';
 import './staging';
 import './util';
+import './configLoaderCosmiconfig';

@@ -1,28 +1,18 @@
-import path from 'path';
-
 import { defaultConfigExplorer, deprecatedConfigExplorerFallback } from "./cosmiconfigLoader";
 import { isInTest } from "../common/util";
 
-export default getConfigContent;
-
+export default findConfigContent;
 /**
- * Get content of the configuration file
- * @param {String} [configPath] - partial path to configuration file
- * @param {String} [baseDirectory] - directory path which will be joined with config argument
+ * Find content of the configuration file
+ * @param {String} cwd - partial path to configuration file
  * @return {Object|undefined}
  */
-function getConfigContent (configPath, baseDirectory) {
-  if (!configPath) {
-    return;
-  }
-
-  const resolvedPath = path.resolve(baseDirectory, configPath);
-
-  const maybeConfig = defaultConfigExplorer.load(resolvedPath);
+function findConfigContent(cwd) {
+  const maybeConfig = defaultConfigExplorer.search(cwd);
   if (maybeConfig) {
     return maybeConfig.config
   } else {
-    const deprecatedConfig = loadOldCzConfig(resolvedPath);
+    const deprecatedConfig = findOldCzConfig(cwd);
     if (deprecatedConfig) {
       return deprecatedConfig
     }
@@ -32,14 +22,14 @@ function getConfigContent (configPath, baseDirectory) {
 }
 
 /**
- * load old czConfig from known place
+ * find old czConfig
  *
  * @deprecated
- * @param {string} [fullPath]
+ * @param {string} [searchFrom]
  * @return {Object|undefined}
  */
-function loadOldCzConfig(fullPath) {
-  const maybeDeprecatedConfig = deprecatedConfigExplorerFallback.load(fullPath);
+function findOldCzConfig(searchFrom) {
+  const maybeDeprecatedConfig = deprecatedConfigExplorerFallback.search(searchFrom);
   if (maybeDeprecatedConfig) {
     showOldCzConfigDeprecationWarning();
     return maybeDeprecatedConfig.config;

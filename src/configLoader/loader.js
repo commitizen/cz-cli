@@ -1,7 +1,6 @@
-import path from 'path';
-
-import { findup, getContent } from '../configLoader';
 import { isInTest } from '../common/util.js';
+import getConfigContent from "./getContent";
+import findConfigContent from "./findContent";
 
 export default loader;
 
@@ -13,48 +12,39 @@ export default loader;
 
 /**
  * Get content of the configuration file
- * @param {String} config - partial path to configuration file
- * @param {String} [cwd = process.cwd()] - directory path which will be joined with config argument
+ * @param {string} [config] - partial path to configuration file
+ * @param {string} [cwd = process.cwd()] - directory path which will be joined with config argument
  * @return {Object|undefined}
  */
-function loader (configs, config, cwd) {
-    var content;
-    var directory = cwd || process.cwd();
+function loader(config, cwd = process.cwd()) {
+  // If config option is given, attempt to load it
+  if (config) {
+    return getConfigContent(config, cwd);
+  }
 
-    // If config option is given, attempt to load it
-    if (config) {
-        return getContent(config, directory);
-    }
+  const content = findConfigContent(cwd)
 
-    content = getContent(
-        findup(configs, { nocase: true, cwd: directory }, function (configPath) {
-            if (path.basename(configPath) === 'package.json') {
-                // return !!this.getContent(configPath);
-            }
+  if (content) {
+    return content;
+  }
 
-            return true;
-        })
-    );
+  /* istanbul ignore if */
+  if (!isInTest()) {
+    // Try to load standard configs from home dir
+    const directoryArr = [process.env.USERPROFILE, process.env.HOMEPATH, process.env.HOME];
+    for (let i = 0; i < directoryArr.length; i++) {
+      const currentDirectory = directoryArr[i];
 
-    if (content) {
-        return content;
-    }
-    /* istanbul ignore if */
-    if (!isInTest()) {
-      // Try to load standard configs from home dir
-      var directoryArr = [process.env.USERPROFILE, process.env.HOMEPATH, process.env.HOME];
-      for (var i = 0, dirLen = directoryArr.length; i < dirLen; i++) {
-          if (!directoryArr[i]) {
-              continue;
-          }
+      if (!currentDirectory) {
+        continue;
+      }
 
-          for (var j = 0, len = configs.length; j < len; j++) {
-              content = getContent(configs[j], directoryArr[i]);
-
-              if (content) {
-                  return content;
-              }
-          }
+      const backupContent = findConfigContent(currentDirectory);
+      if (backupContent) {
+        return backupContent;
       }
     }
+  }
+
+  return undefined;
 }

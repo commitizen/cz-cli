@@ -2,9 +2,12 @@ import { loader } from '../configLoader';
 
 export { load };
 
-// Configuration sources in priority order.
-var configs = ['.czrc', '.cz.json', 'package.json'];
-
+/**
+ * Get content of the configuration file
+ * @param {string} [config] - partial path to configuration file
+ * @param {string} [cwd] - directory path which will be joined with config argument
+ * @return {Object|undefined}
+ */
 function load (config, cwd) {
-  return loader(configs, config, cwd);
+  return loader(config, cwd);
 }

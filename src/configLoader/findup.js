@@ -3,8 +3,16 @@ import glob from 'glob';
 
 export default findup;
 
-// Before, "findup-sync" package was used,
-// but it does not provide filter callback
+/**
+ * Before, "findup-sync" package was used,
+ * but it does not provide filter callback
+ *
+ * @param {string[]} patterns
+ * @param {Object} options
+ * @param {string} options.cwd
+ * @param {(baseName: string) => boolean} fn
+ * @return {string}
+ */
 function findup (patterns, options, fn) {
     /* jshint -W083 */
 
