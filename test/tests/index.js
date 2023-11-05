@@ -1,6 +1,7 @@
 import './adapter';
 import './cli';
 import './commit';
+import './commitizen';
 import './configLoader';
 import './init';
 import './parsers';

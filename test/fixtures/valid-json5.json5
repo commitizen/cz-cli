@@ -1,0 +1,5 @@
+{
+  some: "json",
+  // with comments
+  other: Infinity
+}

@@ -5,7 +5,8 @@ export {
   getParsedJsonFromFile,
   getParsedPackageJsonFromPath,
   isFunction,
-  isInTest
+  isInTest,
+  createEnvironmentConfig
 }
 
 /**
@@ -45,4 +46,11 @@ function isFunction (functionToCheck) {
 
 function isInTest () {
   return typeof global.it === 'function';
+}
+
+function createEnvironmentConfig(config) {
+  return {
+    config,
+    filepath: null,
+  }
 }
