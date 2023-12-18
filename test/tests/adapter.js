@@ -37,8 +37,8 @@ describe('adapter', function () {
       path: config.paths.endUserRepo,
       files: {
         dummyfile: {
-            contents: `duck-duck-goose`,
-            filename: `mydummyfile.txt`,
+          contents: `duck-duck-goose`,
+          filename: `mydummyfile.txt`,
         },
         gitignore: {
           contents: `node_modules/`,
@@ -57,14 +57,53 @@ describe('adapter', function () {
     commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog');
 
     // TEST
-    expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function () { adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
-    expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: adapterConfig,
+        filepath: 'IAMANIMPOSSIBLEPATH',
+      });
+    }).to.throw;
 
-    // This line is only here to make sure that cz-conventional-changelog
-    // was installed for the purposes of running tests, it is not needed
-    // for testing any other adapters.
-    expect(function () { adapter.resolveAdapterPath('cz-conventional-changelog'); }).not.to.throw(Error);
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: adapterConfig,
+        filepath: null,
+      });
+    }).not.to.throw;
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: {
+          path: './node_modules/cz-conventional-changelog',
+          npmName: 'cz-conventional-changelog'
+        },
+        filepath: repoConfig.path,
+      });
+    }).not.to.throw;
+
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: adapterConfig,
+        filepath: repoConfig.path,
+      });
+    }).not.to.throw;
+
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: {
+          path: 'cz-conventional-changelog',
+        },
+        filepath: repoConfig.path,
+      });
+    }).not.to.throw;
+
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: {
+          path: 'cz-conventional-changelog'
+        },
+        filepath: null,
+      });
+    }).not.to.throw(Error);
   });
 
   it('resolves scoped adapter paths', function () {
@@ -78,8 +117,8 @@ describe('adapter', function () {
       path: config.paths.endUserRepo,
       files: {
         dummyfile: {
-            contents: `duck-duck-goose`,
-            filename: `mydummyfile.txt`,
+          contents: `duck-duck-goose`,
+          filename: `mydummyfile.txt`,
         },
         gitignore: {
           contents: `node_modules/`,
@@ -98,9 +137,35 @@ describe('adapter', function () {
     commitizenInit(config.paths.endUserRepo, '@commitizen/cz-conventional-changelog');
 
     // TEST
-    expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function () { adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
-    expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: adapterConfig,
+        filepath: 'IAMANIMPOSSIBLEPATH',
+      });
+    }).to.throw;
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: adapterConfig,
+        filepath: null,
+      });
+    }).not.to.throw;
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: {
+          path: './node_modules/@commitizen/cz-conventional-changelog',
+        },
+        filepath: repoConfig.path,
+      });
+    }).not.to.throw;
+
+    expect(function () {
+      adapter.resolveAdapterPath({
+        config: {
+          path: '@commitizen/cz-conventional-changelog',
+        },
+        filepath: repoConfig.path,
+      });
+    }).not.to.throw;
   });
 
   it.skip('gets adapter prompter functions', function () {
@@ -114,8 +179,8 @@ describe('adapter', function () {
       path: config.paths.endUserRepo,
       files: {
         dummyfile: {
-            contents: `duck-duck-goose`,
-            filename: `mydummyfile.txt`,
+          contents: `duck-duck-goose`,
+          filename: `mydummyfile.txt`,
         },
         gitignore: {
           contents: `node_modules/`,
@@ -131,11 +196,15 @@ describe('adapter', function () {
     };
 
     // Install an adapter
-    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', {includeCommitizen: true});
+    commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog', { includeCommitizen: true });
 
     // TEST
-    expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function () { adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
+    expect(function () {
+      adapter.getPrompter('IAMANIMPOSSIBLEPATH');
+    }).to.throw(Error);
+    expect(function () {
+      adapter.getPrompter(adapterConfig.path);
+    }).not.to.throw(Error);
     expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true;
   });
 
@@ -150,8 +219,8 @@ describe('adapter', function () {
       path: config.paths.endUserRepo,
       files: {
         dummyfile: {
-            contents: `duck-duck-goose`,
-            filename: `mydummyfile.txt`,
+          contents: `duck-duck-goose`,
+          filename: `mydummyfile.txt`,
         },
         gitignore: {
           contents: `node_modules/`,
@@ -170,9 +239,37 @@ describe('adapter', function () {
     commitizenInit(config.paths.endUserRepo, 'cz-conventional-changelog-default-export');
 
     // TEST
-    expect(function () { adapter.getPrompter('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
-    expect(function () { adapter.getPrompter(adapterConfig.path); }).not.to.throw(Error);
-    expect(isFunction(adapter.getPrompter(adapterConfig.path))).to.be.true;
+    expect(function () {
+      adapter.getPrompter({
+        config: adapterConfig,
+        filepath: 'IAMANIMPOSSIBLEPATH',
+      });
+    }).to.throw;
+    expect(function () {
+      adapter.getPrompter({
+        config: adapterConfig,
+        filepath: null,
+      });
+    }).not.to.throw;
+    expect(function () {
+      adapter.getPrompter({
+        config: adapterConfig,
+        filepath: repoConfig.path,
+      });
+    }).not.to.throw;
+    expect(function () {
+      adapter.getPrompter({
+        config: {
+          path: 'cz-conventional-changelog-default-export'
+        },
+        filepath: repoConfig.path,
+      });
+    }).not.to.throw;
+
+    expect(isFunction(adapter.getPrompter({
+      config: adapterConfig,
+      filepath: null,
+    }))).to.be.true;
   });
 
 });

@@ -13,6 +13,16 @@ let { isClean } = staging;
 
 export default gitCz;
 
+/**
+ *
+ * @param {any} rawGitArgs
+ * @param {any} environment
+ * @param {Object} adapterConfig
+ * @param {Object} adapterConfig.config
+ * @param {string} adapterConfig.config.path
+ * @param {string|null} adapterConfig.filepath
+ * @param {boolean} [adapterConfig.isEmpty]
+ */
 function gitCz (rawGitArgs, environment, adapterConfig) {
 
   // See if any override conditions exist.
@@ -38,9 +48,9 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
   // for husky prepare-commit-message
   let hookMode = !(typeof parsedCommitizenArgs.hook === 'undefined');
 
-  let resolvedAdapterConfigPath = resolveAdapterPath(adapterConfig.path);
+  let resolvedAdapterConfigPath = resolveAdapterPath(adapterConfig);
   let resolvedAdapterRootPath = findRoot(resolvedAdapterConfigPath);
-  let prompter = getPrompter(adapterConfig.path);
+  let prompter = getPrompter(adapterConfig);
   let shouldStageAllFiles = rawGitArgs.includes('-a') || rawGitArgs.includes('--all');
 
   isClean(process.cwd(), function (error, stagingIsClean) {

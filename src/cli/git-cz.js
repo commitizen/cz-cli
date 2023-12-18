@@ -1,5 +1,6 @@
-import { configLoader } from '../commitizen';
+import { loadConfig } from '../configLoader/loader';
 import { git as useGitStrategy, gitCz as useGitCzStrategy } from './strategies';
+import { createEnvironmentConfig } from "../common/util";
 
 export {
   bootstrap
@@ -14,7 +15,12 @@ function bootstrap (environment = {}, argv = process.argv) {
   // Get cli args
   let rawGitArgs = argv.slice(2, argv.length);
 
-  let adapterConfig = environment.config || configLoader.load();
+  let adapterConfig;
+  if (environment.config) {
+    adapterConfig = createEnvironmentConfig(environment.config);
+  } else {
+    adapterConfig = loadConfig();
+  }
 
   // Choose a strategy based on the existance the adapter config
   if (typeof adapterConfig !== 'undefined') {

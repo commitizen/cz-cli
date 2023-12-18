@@ -133,10 +133,15 @@ function getInstallStringMappings({ save, dev, saveDev, exact, saveExact, force 
 
 /**
  * Gets the prompter from an adapter given an adapter path
+ * @param {Object} adapterConfig
+ * @param {Object} adapterConfig.config
+ * @param {string} adapterConfig.config.path
+ * @param {string|null} adapterConfig.filepath
+ * @param {boolean} [adapterConfig.isEmpty]
  */
-function getPrompter (adapterPath) {
+function getPrompter (adapterConfig) {
   // Resolve the adapter path
-  let resolvedAdapterPath = resolveAdapterPath(adapterPath);
+  let resolvedAdapterPath = resolveAdapterPath(adapterConfig);
 
   // Load the adapter
   let adapter = require(resolvedAdapterPath);
@@ -147,23 +152,41 @@ function getPrompter (adapterPath) {
   } else if (adapter && adapter.default && adapter.default.prompter && isFunction(adapter.default.prompter)) {
      return adapter.default.prompter;
   } else {
-    throw new Error(`Could not find prompter method in the provided adapter module: ${adapterPath}`);
+    throw new Error(`Could not find prompter method in the provided adapter module: ${adapterConfig.config.path}`);
   }
 }
 
 /**
  * Given a resolvable module name or path, which can be a directory or file, will
  * return a located adapter path or will throw.
+ *  * @param {Object} resolvedConfig
+ * @param {Object} resolvedConfig.config
+ * @param {string} resolvedConfig.config.path
+ * @param {string|null} resolvedConfig.filepath pass null when environment config was provided
+ * @param {boolean} [resolvedConfig.isEmpty]
  */
-function resolveAdapterPath (inboundAdapterPath) {
-  // Check if inboundAdapterPath is a path or node module name
-  let parsed = path.parse(inboundAdapterPath);
-  let isPath = parsed.dir.length > 0 && parsed.dir.charAt(0) !== "@";
+function resolveAdapterPath (resolvedConfig) {
+  // Check if resolvedConfig is a path or node module name
+  const parsed = path.parse(resolvedConfig.config.path);
+  const isPath = parsed.dir.length > 0 && parsed.dir.charAt(0) !== "@";
+  let absoluteAdapterPath;
 
-  // Resolve from the root of the git repo if inboundAdapterPath is a path
-  let absoluteAdapterPath = isPath ?
-    path.resolve(getGitRootPath(), inboundAdapterPath) :
-    inboundAdapterPath;
+  if (resolvedConfig.filepath == null) {
+    if (isPath) {
+      absoluteAdapterPath = path.resolve(getGitRootPath(), resolvedConfig.config.path)
+    } else {
+      absoluteAdapterPath = resolvedConfig.config.path;
+    }
+  } else {
+    if (isPath) {
+      absoluteAdapterPath = path.resolve(
+        path.basename(resolvedConfig.filepath),
+        resolvedConfig.config.path
+      )
+    } else {
+      absoluteAdapterPath = resolvedConfig.config.path
+    }
+  }
 
   try {
     // try to resolve the given path
