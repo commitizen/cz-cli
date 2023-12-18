@@ -334,13 +334,13 @@ Special thanks to @stevelacy, whose [gulp-git](https://www.npmjs.com/package/gul
 ## Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="graphs/contributors"><img src="https://opencollective.com/commitizen/contributors.svg?width=890&button=false" /></a>
+<a href="https://opencollective.com/commitizen#section-contributors"><img src="https://opencollective.com/commitizen/contributors.svg?width=890&button=false" /></a>
 
 ## Backers
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/commitizen#backer)]
 
-<a href="https://opencollective.com/commitizen#backers" target="_blank"><img src="https://opencollective.com/commitizen/backers.svg?width=890"></a>
+<a href="https://opencollective.com/commitizen#category-BUDGET" target="_blank"><img src="https://opencollective.com/commitizen/backers.svg?width=890"></a>
 
 ## Sponsors
 
