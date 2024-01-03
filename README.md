@@ -151,20 +151,28 @@ Update `.git/hooks/prepare-commit-msg` with the following code:
 
 ```sh
 #!/bin/bash
-exec < /dev/tty && node_modules/.bin/cz --hook || true
+test -z $2 && exec < /dev/tty && node_modules/.bin/cz --hook || true
 ```
 
 ##### Husky
 
-For `husky` users, add the following configuration to the project's `package.json` file:
+For `husky` <= v4 users, add the following configuration to the project's `package.json` file:
 
 ```json
 "husky": {
   "hooks": {
-    "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
+    "prepare-commit-msg": "test -z $2 && exec < /dev/tty && npx cz --hook || true"
   }
 }
 ```
+
+For `husky` > v4 users, run following:
+
+```sh
+npx husky add .husky/prepare-commit-msg 'test -z $2 && exec < /dev/tty && npx cz --hook || true'
+```
+
+> **Why `test -z $2`?** To prevent running commitizen, when commit source (passed as `$2` parameter) is not empty. E.g. when user provided it's own commit message manually e.g. using `git commit -m "doc: Improve README.md"`. More info in [git prepare_commit_msg hook documentation](https://git-scm.com/docs/githooks#_prepare_commit_msg).
 
 > **Why `exec < /dev/tty`?** By default, git hooks are not interactive. This command allows the user to use their terminal to interact with Commitizen during the hook.
 
