@@ -1,6 +1,6 @@
 {
   "name": "commitizen",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Git commit, but play nice with conventions.",
   "main": "dist/index.js",
   "scripts": {
@@ -61,7 +61,7 @@
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
     "ghooks": "2.0.4",
     "in-publish": "2.0.1",
-    "mocha": "9.2.2",
+    "mocha": "10.7.3",
     "mocha-junit-reporter": "1.23.3",
     "mocha-multi-reporters": "1.5.1",
     "nodemon": "2.0.20",
