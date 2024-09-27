@@ -1,7 +1,7 @@
 import childProcess from 'child_process';
 import path from 'path';
-import * as configLoader from './configLoader';
 import * as adapter from './adapter';
+import { loadAtRoot } from "./configLoader";
 
 let {
   addPathToAdapterConfig,
@@ -116,7 +116,7 @@ function checkRequiredArguments (path, adapterNpmName) {
  * Loads and returns the adapter config at key config.commitizen, if it exists
  */
 function loadAdapterConfig (cwd) {
-  let config = configLoader.load(null, cwd);
+  let config = loadAtRoot(undefined, cwd);
   if (config) {
     return config;
   } else {

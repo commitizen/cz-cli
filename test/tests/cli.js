@@ -2,11 +2,18 @@ import { expect } from 'chai';
 import proxyquire from 'proxyquire';
 import sinon from 'sinon';
 
+// Bootstrap our tester
+import { bootstrap } from '../tester';
+import { createEnvironmentConfig } from "../../src/common/util";
+// Destructure some things based on the bootstrap process
+let { config, repo, clean, util } = bootstrap();
+
 describe('git-cz', () => {
   let bootstrap;
-  let fakeStrategies, fakeCommitizen;
+  let fakeStrategies, fakeCommitizen, fakeConfigLoader;
 
-  beforeEach(() => {
+  beforeEach(function () {
+    this.timeout(config.maxTimeout);
     fakeStrategies = {
       git: sinon.spy(),
       gitCz: sinon.spy()
@@ -14,13 +21,20 @@ describe('git-cz', () => {
 
     fakeCommitizen = {
       configLoader: {
-        load: sinon.stub()
+        load: sinon.stub(),
+        loadAtRoot: sinon.stub()
       }
+    }
+
+    fakeConfigLoader = {
+      loadConfig: sinon.stub(),
+      loadConfigAtRoot: sinon.stub()
     }
 
     bootstrap = proxyquire('../../src/cli/git-cz', {
       './strategies': fakeStrategies,
-      '../commitizen': fakeCommitizen
+      '../commitizen': fakeCommitizen,
+      '../configLoader/loader': fakeConfigLoader
     }).bootstrap;
   });
 
@@ -31,7 +45,7 @@ describe('git-cz', () => {
 
         bootstrap({ config });
 
-        expect(fakeStrategies.gitCz.args[0][2]).to.equal(config);
+        expect(fakeStrategies.gitCz.args[0][2]).to.deep.equal(createEnvironmentConfig(config));
       });
     });
 
@@ -40,10 +54,9 @@ describe('git-cz', () => {
       describe('and the config is returned from configLoader.load', () => {
         it('uses config from configLoader.load()', () => {
           const config = sinon.stub();
-          fakeCommitizen.configLoader.load.returns(config);
+          fakeConfigLoader.loadConfig.returns(config);
 
           bootstrap({});
-
           expect(fakeStrategies.gitCz.args[0][2]).to.equal(config);
         });
       });

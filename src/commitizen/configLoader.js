@@ -1,10 +1,32 @@
-import { loader } from '../configLoader';
+import { loadConfig, loadConfigAtRoot } from '../configLoader/loader';
 
-export { load };
+export { load, loadAtRoot };
 
-// Configuration sources in priority order.
-var configs = ['.czrc', '.cz.json', 'package.json'];
 
+/**
+ * @param {String} [config] - partial path to configuration file
+ * @param {String} [cwd] - directory path which will be joined with config argument
+ * @return {any|undefined} - parsed config or nothing
+ */
 function load (config, cwd) {
-  return loader(configs, config, cwd);
+  const cfg = loadConfig(config, cwd);
+
+  if (cfg) {
+    return cfg.config;
+  } else return undefined;
+
+}
+
+/**
+ * @param {String} [config] - partial path to configuration file
+ * @param {String} [cwd] - directory path which will be joined with config argument
+ * @return {any|undefined} - parsed config or nothing
+ */
+function loadAtRoot (config, cwd) {
+  const cfg = loadConfigAtRoot(config, cwd);
+
+  if (cfg) {
+    return cfg.config;
+  } else return undefined;
+
 }
