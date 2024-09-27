@@ -1,6 +1,6 @@
 {
   "name": "commitizen",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Git commit, but play nice with conventions.",
   "main": "dist/index.js",
   "scripts": {
@@ -80,7 +80,7 @@
     "find-node-modules": "^2.1.2",
     "find-root": "1.1.0",
     "fs-extra": "9.1.0",
-    "glob": "7.2.3",
+    "glob": "8.1.0",
     "inquirer": "8.2.5",
     "is-utf8": "^0.2.1",
     "lodash": "4.17.21",
