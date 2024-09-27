@@ -67,6 +67,7 @@ function gitCz (rawGitArgs, environment, adapterConfig) {
       if (error) {
         throw error;
       }
+      process.exit(0);
     });
   }, shouldStageAllFiles);
 
