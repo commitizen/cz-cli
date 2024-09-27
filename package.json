@@ -1,6 +1,6 @@
 {
   "name": "commitizen",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Git commit, but play nice with conventions.",
   "main": "dist/index.js",
   "scripts": {
@@ -86,7 +86,7 @@
     "lodash": "4.17.21",
     "minimist": "1.2.7",
     "strip-bom": "4.0.0",
-    "strip-json-comments": "3.1.1"
+    "strip-json-comments": "4.0.0"
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-babel",
