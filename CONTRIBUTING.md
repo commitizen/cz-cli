@@ -1,4 +1,4 @@
-# Contribution guide
+Contribution guide
 
 ## Developing commitizen
 
