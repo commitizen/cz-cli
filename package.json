@@ -1,6 +1,6 @@
 {
   "name": "commitizen",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Git commit, but play nice with conventions.",
   "main": "dist/index.js",
   "scripts": {
@@ -70,7 +70,7 @@
     "semantic-release": "19.0.5",
     "semver": "7.3.8",
     "sinon": "12.0.1",
-    "uuid": "8.3.2"
+    "uuid": "14.0.0"
   },
   "dependencies": {
     "cachedir": "2.3.0",
