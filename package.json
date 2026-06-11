@@ -1,6 +1,6 @@
 {
   "name": "commitizen",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Git commit, but play nice with conventions.",
   "main": "dist/index.js",
   "scripts": {
@@ -83,7 +83,7 @@
     "glob": "7.2.3",
     "inquirer": "8.2.5",
     "is-utf8": "^0.2.1",
-    "lodash": "4.17.21",
+    "lodash": "4.18.1",
     "minimist": "1.2.7",
     "strip-bom": "4.0.0",
     "strip-json-comments": "3.1.1"
