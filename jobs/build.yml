@@ -24,12 +24,13 @@ jobs:
       versionSpec: $(node_version)
   - script: git config --global user.email "example@example.com"
   - script: git config --global user.name "Example Git User"
-  - script: npm install -g pnpm
+  - script: npm install -g pnpm@9
     displayName: "Setup pnpm"
   - script: npm install
   - script: npm run build
   - script: npm test && npm run write-coverage
   - script: bash logo/generate.sh
+    condition: eq(variables['Agent.OS'], 'Linux')
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
     inputs:
