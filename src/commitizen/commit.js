@@ -1,7 +1,7 @@
+import fs from 'fs';
 import path from 'path';
 
 import cacheDir from 'cachedir';
-import { ensureDir } from 'fs-extra';
 import { commit as gitCommit } from '../git';
 import * as cache from './cache';
 
@@ -24,7 +24,7 @@ function commit (inquirer, repoPath, prompter, options, done) {
   var cacheDirectory = cacheDir('commitizen');
   var cachePath = path.join(cacheDirectory, 'commitizen.json');
 
-  ensureDir(cacheDirectory, function (error) {
+  fs.mkdir(cacheDirectory, { recursive: true }, function (error) {
     if (error) {
       console.error("Couldn't create commitizen cache directory: ", error);
       // TODO: properly handle error?

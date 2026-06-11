@@ -1,5 +1,6 @@
+import fs from 'fs';
 import * as path from 'path';
-import fs from 'fs-extra';
+
 import { v4 as uuidv4} from 'uuid';
 
 export {
@@ -39,7 +40,7 @@ function after (tmpPath, preserve) {
 function archive (tmpPath, testSuiteRunId) {
   let destinationPath = path.resolve(tmpPath + '/../artifacts/' + testSuiteRunId + '/' + uuidv4());
   fs.mkdirSync(destinationPath, { recursive: true });
-  fs.copySync(tmpPath, destinationPath);
+  fs.cpSync(tmpPath, destinationPath, { recursive: true });
 }
 
 /**
@@ -111,11 +112,11 @@ function isNormalNonZeroInteger (str) {
 function keep (basePath, paths, n) {
 
   for (let i = paths.length; i > n; i--) {
-    fs.removeSync(path.resolve(basePath, paths[i - 1]));
+    fs.rmSync(path.resolve(basePath, paths[i - 1]), { recursive: true, force: true });
   }
 }
 
 function cleanPath (tmpPath) {
-  fs.removeSync(tmpPath);
-  fs.mkdirSync(tmpPath);
+  fs.rmSync(tmpPath, { recursive: true, force: true });
+  fs.mkdirSync(tmpPath, { recursive: true });
 }
