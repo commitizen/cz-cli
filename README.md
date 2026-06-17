@@ -156,14 +156,36 @@ exec < /dev/tty && node_modules/.bin/cz --hook || true
 
 ##### Husky
 
-For `husky` users, add the following configuration to the project's `package.json` file:
+For `husky` users, add the following configuration to the `.husky/prepare-commit-msg` file:
 
-```json
-"husky": {
-  "hooks": {
-    "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
-  }
-}
+```sh
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Ignore if amend commit
+parent=$(/bin/ps -o ppid -p $PPID | tail -1)
+if [ -n "$parent" ]; then
+    amended=$(/bin/ps -o command -p $parent | grep -e '--amend')
+    if [ -n "$amended" ]; then
+        exit 0
+    fi  
+fi
+
+# Check if COMMIT_EDITMSG is just a default message
+if grep -q "# Please enter the commit message" ".git/COMMIT_EDITMSG"; then
+  # Remove the default message
+  echo "" > .git/COMMIT_EDITMSG
+  # Run commitizen
+  exec < /dev/tty && npx cz --hook || true
+else
+  # Use the provided commit message
+  exit 0
+fi
+```
+
+And make this file executable
+```sh
+.husky/prepare-commit-msg
 ```
 
 > **Why `exec < /dev/tty`?** By default, git hooks are not interactive. This command allows the user to use their terminal to interact with Commitizen during the hook.
