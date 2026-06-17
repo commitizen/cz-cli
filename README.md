@@ -280,6 +280,7 @@ We know that every project and build process has different requirements, so we'v
 - [cz-emoji-conventional](https://www.npmjs.com/package/cz-emoji-conventional)
 - [cz-git](https://github.com/Zhengqbbb/cz-git)
 - [cz-vinyl](https://github.com/Exlint/cz-vinyl)
+- [commit-jazzer](https://github.com/Zilero232/commit-jazzer)
 
 To create an adapter, just fork one of these great adapters and modify it to suit your needs. We pass you an instance of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js/), but you can capture input using whatever means necessary. Just call the `commit` callback with a string and we'll be happy. Publish it to npm, and you'll be all set!
 
