@@ -1,5 +1,5 @@
 import path from 'path';
-import glob from 'glob';
+import { globSync } from 'glob';
 
 export default findup;
 
@@ -17,7 +17,7 @@ function findup (patterns, options, fn) {
 
     do {
         file = patterns.filter(function (pattern) {
-            var configPath = glob.sync(pattern, options)[0];
+            var configPath = globSync(pattern, options)[0];
 
             if (configPath) {
                 return fn(path.join(options.cwd, configPath));

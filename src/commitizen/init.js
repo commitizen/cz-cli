@@ -69,7 +69,7 @@ function init (repoPath, adapterNpmName, {
   const packageManager = yarn ? 'yarn' : pnpm ? 'pnpm' : 'npm';
 
   // Get the npm string mappings based on the arguments provided
-  const stringMappings = getInstallStringMappings({ save, dev, saveDev, saveExact, force }, packageManager);
+  const stringMappings = getInstallStringMappings({ save, dev, saveDev, exact, saveExact, force }, packageManager);
 
   // Generate a string that represents the npm install command
   const installAdapterCommand = generateInstallAdapterCommand(stringMappings, adapterNpmName, packageManager);

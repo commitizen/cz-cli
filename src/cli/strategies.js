@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import git from './strategies/git';
 import gitCz from './strategies/git-cz';
 

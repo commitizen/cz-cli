@@ -9,22 +9,24 @@ jobs:
 - job: ${{ parameters.name }}
   pool: ${{ parameters.pool }}
   strategy:
-    maxParallel: 3
+    maxParallel: 4
     matrix:
+      node-26:
+        node_version: ^26.8.1
+      node-24:
+        node_version: ^24.20.0
       node-22:
-        node_version: ^22.11.0
+        node_version: ^22.23.2
       node-20:
-        node_version: ^20.9.0
-      node-18:
-        node_version: ^18.12.0
+        node_version: ^20.20.2
   steps:
-  - task: NodeTool@0
-    displayName: " Install Node.js"
+  - task: UseNode@1
+    displayName: "Install Node.js"
     inputs:
-      versionSpec: $(node_version)
+      version: $(node_version)
   - script: git config --global user.email "example@example.com"
   - script: git config --global user.name "Example Git User"
-  - script: npm install -g pnpm@9
+  - script: npm install -g pnpm@12
     displayName: "Setup pnpm"
   - script: npm install
   - script: npm run build
@@ -34,13 +36,13 @@ jobs:
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
     inputs:
-      testResultsFiles: '**/junit-*.xml'
+      testResultsFiles: 'junit-testresults.xml'
+      searchFolder: '$(System.DefaultWorkingDirectory)'
       testRunTitle: TestRun ${{ parameters.name }} $(node_version)
-  - task: PublishCodeCoverageResults@1
+  - task: PublishCodeCoverageResults@2
     displayName: 'Publish code coverage results'
     inputs:
-      codeCoverageTool: 'cobertura'
-      summaryFileLocation: '**/coverage/cobertura-coverage.xml'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
   - task: PublishBuildArtifacts@1
     displayName: Publish packages
     condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false))

@@ -39,7 +39,12 @@ function after (tmpPath, preserve) {
 function archive (tmpPath, testSuiteRunId) {
   let destinationPath = path.resolve(tmpPath + '/../artifacts/' + testSuiteRunId + '/' + uuidv4());
   fs.mkdirSync(destinationPath, { recursive: true });
-  fs.copySync(tmpPath, destinationPath);
+  // Skip node_modules: it is large and slow to copy, and on Windows pnpm's
+  // nested junctions under .pnpm make later directory walks over the artifacts
+  // tree (e.g. Azure's PublishTestResults glob) fail with EPERM.
+  fs.copySync(tmpPath, destinationPath, {
+    filter: (src) => !src.split(path.sep).includes('node_modules')
+  });
 }
 
 /**

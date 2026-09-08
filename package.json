@@ -4,25 +4,22 @@
   "description": "Git commit, but play nice with conventions.",
   "main": "dist/index.js",
   "scripts": {
-    "check-coverage": "nyc check-coverage --statements 80 --branches 80 --functions 80 --lines 80 ",
+    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "commit": "node bin/git-cz",
     "build": "babel src --out-dir dist",
     "build:watch": "babel --watch src --out-dir dist",
-    "prepare": "not-in-install && npm run build || true",
-    "report-coverage": "nyc report --reporter=lcov | codecov",
+    "prepare": "husky || true",
+    "prepublishOnly": "npm run build",
     "write-coverage": "nyc report --reporter=lcov --reporter=cobertura --reporter=html",
     "semantic-release": "npx semantic-release",
     "start": "npm run test:watch",
-    "test-actual": "mocha --reporter=mocha-multi-reporters --reporter-options configFile=./test/mochareporters.json test/tests/index.js",
+    "test-actual": "mocha --require @babel/register --reporter ./test/reporters/multi-reporter.cjs --reporter-option output=./junit-testresults.xml test/tests/index.js",
     "test": "nyc --require @babel/register npm run test-actual",
     "test:watch": "nodemon -q --ignore test/.tmp/ --ignore test/artifacts/ --ignore coverage/ --exec \"npm run test\" --"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    },
-    "ghooks": {
-      "pre-commit": "npm run test && npm run check-coverage"
     }
   },
   "homepage": "https://github.com/commitizen/cz-cli",
@@ -54,33 +51,29 @@
     "@babel/preset-env": "7.29.7",
     "@babel/register": "7.29.7",
     "@istanbuljs/nyc-config-babel": "3.0.0",
-    "babel-plugin-istanbul": "6.1.1",
+    "babel-plugin-istanbul": "7.0.1",
     "chai": "4.5.0",
-    "codecov": "3.8.3",
-    "conventional-changelog-conventionalcommits": "4.6.3",
+    "conventional-changelog-conventionalcommits": "7.0.2",
+    "cz-conventional-changelog": "3.3.0",
     "cz-conventional-changelog-default-export": "0.0.0-semantically-released.1",
-    "ghooks": "2.0.4",
-    "in-publish": "2.0.1",
-    "mocha": "9.2.2",
-    "mocha-junit-reporter": "1.23.3",
-    "mocha-multi-reporters": "1.5.1",
-    "nodemon": "2.0.22",
-    "nyc": "15.1.0",
+    "husky": "9.1.7",
+    "mocha": "12.0.0",
+    "nodemon": "3.1.14",
+    "nyc": "18.0.0",
     "proxyquire": "2.1.3",
     "semantic-release": "25.0.9",
     "semver": "7.8.5",
-    "sinon": "12.0.1",
-    "uuid": "8.3.2"
+    "sinon": "22.1.0",
+    "uuid": "11.1.1"
   },
   "dependencies": {
     "cachedir": "2.4.0",
-    "cz-conventional-changelog": "3.3.0",
     "dedent": "0.7.0",
     "detect-indent": "6.1.0",
-    "find-node-modules": "^2.1.2",
+    "find-node-modules": "^2.1.3",
     "find-root": "1.1.0",
-    "fs-extra": "9.1.0",
-    "glob": "7.2.3",
+    "fs-extra": "11.4.0",
+    "glob": "13.0.6",
     "inquirer": "8.2.7",
     "is-utf8": "^0.2.1",
     "lodash": "4.18.1",
@@ -91,13 +84,12 @@
   "nyc": {
     "extends": "@istanbuljs/nyc-config-babel",
     "exclude": [
-      "src/cli",
       "test"
     ]
   },
   "engineStrict": true,
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20"
   },
   "collective": {
     "type": "opencollective",

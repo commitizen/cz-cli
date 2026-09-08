@@ -124,7 +124,10 @@ function getInstallStringMappings({ save, dev, saveDev, exact, saveExact, force 
   const pnpm = new Map()
     .set('save', save && !saveDev ? '--save-prod' : undefined)
     .set('dev', saveDev ? '--save-dev' : undefined)
-    .set('exact', saveExact ? '--save-exact' : undefined);
+    .set('exact', exact ? '--save-exact' : undefined)
+    // pnpm >= 10 turns "ignored build scripts" into a hard error; commitizen
+    // adapters never need their dependencies' install scripts to run.
+    .set('ignoreScripts', '--ignore-scripts');
 
   const map = { npm, yarn, pnpm };
 

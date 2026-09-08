@@ -1,8 +1,13 @@
 import './adapter';
+import './adapter-unit';
+import './cache';
 import './cli';
 import './commit';
+import './commitizen-commit';
 import './configLoader';
+import './git';
 import './init';
+import './init-unit';
 import './parsers';
 import './staging';
 import './util';
