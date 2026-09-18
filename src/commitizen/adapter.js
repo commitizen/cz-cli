@@ -1,6 +1,7 @@
 import childProcess from 'child_process';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 import findNodeModules from 'find-node-modules';
 import _ from 'lodash';
 import detectIndent from 'detect-indent';
@@ -152,6 +153,16 @@ function getPrompter (adapterPath) {
 }
 
 /**
+ * Expands a path that starts with ~ to the user's home directory
+ */
+function expandHome(p) {
+  if (p.startsWith("~/")) {
+    return path.join(os.homedir(), p.slice(1));
+  }
+  return p;
+}
+
+/**
  * Given a resolvable module name or path, which can be a directory or file, will
  * return a located adapter path or will throw.
  */
@@ -162,7 +173,7 @@ function resolveAdapterPath (inboundAdapterPath) {
 
   // Resolve from the root of the git repo if inboundAdapterPath is a path
   let absoluteAdapterPath = isPath ?
-    path.resolve(getGitRootPath(), inboundAdapterPath) :
+    path.resolve(getGitRootPath(), expandHome(inboundAdapterPath)) :
     inboundAdapterPath;
 
   try {

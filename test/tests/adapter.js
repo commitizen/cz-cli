@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import path from 'path';
 
 // TODO: augment these tests with tests using the actual cli call
@@ -101,6 +101,45 @@ describe('adapter', function () {
     expect(function () { adapter.resolveAdapterPath('IAMANIMPOSSIBLEPATH'); }).to.throw(Error);
     expect(function () { adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
     expect(function () { adapter.resolveAdapterPath(path.join(adapterConfig.path, 'index.js')); }).not.to.throw(Error);
+  });
+
+  it('resolves adapter path started with ~', function () {
+
+    this.timeout(config.maxTimeout); // this could take a while
+
+    // SETUP
+
+    // Describe a repo and some files to add and commit
+    let repoConfig = {
+      path: config.paths.endUserRepo,
+      files: {
+        dummyfile: {
+            contents: `duck-duck-goose`,
+            filename: `mydummyfile.txt`,
+        },
+        gitignore: {
+          contents: `node_modules/`,
+          filename: `.gitignore`
+        }
+      }
+    };
+
+    // Describe an adapter
+    let adapterConfig = {
+      path: path.join(repoConfig.path, '/node_modules/@commitizen/cz-conventional-changelog'),
+      npmName: '@commitizen/cz-conventional-changelog'
+    };
+    adapterConfig.path = adapterConfig.path.replace(process.env.HOME, '~');
+    assert(adapterConfig.path.startsWith('~'), 'adapterConfig.path should start with ~');
+
+    // TEST
+
+    expect(function () { adapter.resolveAdapterPath('~/non/existent/path'); }).to.throw(Error);
+    expect(function () { adapter.resolveAdapterPath(adapterConfig.path); }).not.to.throw(Error);
+
+    expect(adapter.resolveAdapterPath(adapterConfig.path)).to.equal(
+      path.join(repoConfig.path, '/node_modules/@commitizen/cz-conventional-changelog/index.js')
+    );
   });
 
   it.skip('gets adapter prompter functions', function () {
