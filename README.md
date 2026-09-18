@@ -173,12 +173,12 @@ For `husky` users, add the following configuration to the project's `package.jso
 Add the "Commitizen friendly" badge to your README using the following markdown:
 
 ```
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://commitizen.github.io/cz-cli/)
 ```
 
 Your badge will look like this:
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://commitizen.github.io/cz-cli/)
 
 It may also make sense to change your `README.md` or `CONTRIBUTING.md` files to include or link to the Commitizen project so that your new contributors may learn more about installing and using Commitizen.
 
